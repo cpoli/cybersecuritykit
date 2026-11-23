@@ -1,0 +1,142 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cybersecuritykit"
+dynamic = ["version"]
+description = "Cybersecurity breakthroughs, explained through reproducible and simulated Python experiments."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Charles Poli", email = "cpoli374@gmail.com"}]
+maintainers = [{name = "Charles Poli", email = "cpoli374@gmail.com"}]
+keywords = [
+  "cybersecurity",
+  "cryptography",
+  "cryptanalysis",
+  "education",
+  "simulation",
+  "security-protocols",
+  "authentication",
+  "access-control",
+  "side-channels",
+  "software-security",
+  "intrusion-detection",
+  "malware-epidemiology",
+  "differential-privacy",
+  "risk-analysis",
+  "post-quantum",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Typing :: Typed",
+  "Topic :: Education",
+  "Topic :: Security",
+  "Topic :: Security :: Cryptography",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = [
+  "matplotlib>=3.6",
+  "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-cov>=4", "hypothesis>=6"]
+docs = [
+  "sphinx>=7",
+  "pydata-sphinx-theme>=0.15",
+  "sphinx-gallery>=0.17",
+  "joblib>=1.3",
+  "sphinx-design>=0.6",
+  "sphinx-sitemap>=2.6",
+  "sphinxext-opengraph>=0.9",
+  "myst-parser>=2",
+  "jupyterlite-sphinx>=0.17",
+  "jupyterlite-pyodide-kernel>=0.4",
+  "pillow>=9",
+]
+dev = ["cybersecuritykit[test,docs]", "ruff==0.16.6", "mypy>=1.10", "pre-commit>=3.7", "build>=1"]
+
+[project.urls]
+Homepage = "https://github.com/cpoli/cybersecuritykit"
+Issues = "https://github.com/cpoli/cybersecuritykit/issues"
+Changelog = "https://github.com/cpoli/cybersecuritykit/blob/main/CHANGELOG.md"
+Documentation = "https://cpoli.github.io/cybersecuritykit/"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cybersecuritykit*"]
+# Tests live beside each subpackage; they stay in the sdist but not the wheel.
+exclude = ["cybersecuritykit.tests", "cybersecuritykit.*.tests"]
+
+[tool.setuptools.dynamic]
+version = {attr = "cybersecuritykit.__version__"}
+
+[tool.setuptools.package-data]
+cybersecuritykit = ["py.typed"]
+
+# include-package-data (on by default) would otherwise re-add each
+# subpackage's tests/ directory as package data of its parent.
+[tool.setuptools.exclude-package-data]
+"*" = ["tests/*", "tests/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "cybersecuritykit/classical/tests",
+    "cybersecuritykit/symmetric/tests",
+    "cybersecuritykit/pqc/tests",
+    "cybersecuritykit/protocols/tests",
+    "cybersecuritykit/auth/tests",
+    "cybersecuritykit/access/tests",
+    "cybersecuritykit/software/tests",
+    "cybersecuritykit/sidechannel/tests",
+    "cybersecuritykit/malware/tests",
+    "cybersecuritykit/network/tests",
+    "cybersecuritykit/detection/tests",
+    "cybersecuritykit/privacy/tests",
+    "cybersecuritykit/risk/tests",
+    "cybersecuritykit/tests",
+]
+addopts = "--strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["docs/source/gallery", "docs/build", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = [
+  "E741", # single-letter names (n, k, x, p, q): standard mathematical notation
+  "SIM108", # if/else vs ternary: kept as if/else around multi-line arithmetic
+]
+
+[tool.ruff.lint.per-file-ignores]
+"examples/*.py" = ["E402"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["cybersecuritykit"]
+exclude = ["/tests/"]
+
+[tool.coverage.run]
+branch = true
+source = ["cybersecuritykit"]
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100

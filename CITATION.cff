@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use cybersecuritykit in your research or teaching, please cite it as below."
+title: "cybersecuritykit: cybersecurity breakthroughs, explained through reproducible and simulated Python experiments"
+type: software
+version: 0.1.0
+# Add this release's own Zenodo version DOI (never the concept DOI) once
+# Zenodo has archived the first GitHub Release, as `doi:` with `date-released:`.
+license: MIT
+repository-code: "https://github.com/cpoli/cybersecuritykit"
+url: "https://cpoli.github.io/cybersecuritykit/"
+authors:
+  - given-names: "Charles"
+    family-names: "Poli"
+    email: "cpoli374@gmail.com"
+keywords:
+  - cybersecurity
+  - cryptography
+  - cryptanalysis
+  - education
+  - simulation
