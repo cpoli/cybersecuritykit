@@ -6,6 +6,9 @@ __all__: list[str] = []
 from cybersecuritykit.pqc.core.base import (  # noqa: E402
     GoppaCode,
     ISDResult,
+    LinearizationResult,
+    MatsumotoImaiKeyPair,
+    MatsumotoImaiPrivateKey,
     McElieceBreakResult,
     McElieceKeyPair,
     McEliecePrivateKey,
@@ -13,11 +16,18 @@ from cybersecuritykit.pqc.core.base import (  # noqa: E402
     NiederreiterKeyPair,
     NiederreiterPrivateKey,
     NiederreiterPublicKey,
+    OilVinegarKeyPair,
+    OilVinegarPrivateKey,
+    QuadraticMap,
+    RainbowBreakResult,
 )
 
 __all__ += [
     "GoppaCode",
     "ISDResult",
+    "LinearizationResult",
+    "MatsumotoImaiKeyPair",
+    "MatsumotoImaiPrivateKey",
     "McElieceBreakResult",
     "McElieceKeyPair",
     "McEliecePrivateKey",
@@ -25,5 +35,9 @@ __all__ += [
     "NiederreiterKeyPair",
     "NiederreiterPrivateKey",
     "NiederreiterPublicKey",
+    "OilVinegarKeyPair",
+    "OilVinegarPrivateKey",
+    "QuadraticMap",
+    "RainbowBreakResult",
 ]
 # --- end slice B ---

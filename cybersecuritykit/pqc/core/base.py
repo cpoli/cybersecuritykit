@@ -1,5 +1,6 @@
 """Frozen result dataclasses for :mod:`cybersecuritykit.pqc`."""
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 
 __all__: list[str] = []
@@ -9,6 +10,9 @@ __all__: list[str] = []
 __all__ += [
     "GoppaCode",
     "ISDResult",
+    "LinearizationResult",
+    "MatsumotoImaiKeyPair",
+    "MatsumotoImaiPrivateKey",
     "McElieceBreakResult",
     "McElieceKeyPair",
     "McEliecePrivateKey",
@@ -16,6 +20,10 @@ __all__ += [
     "NiederreiterKeyPair",
     "NiederreiterPrivateKey",
     "NiederreiterPublicKey",
+    "OilVinegarKeyPair",
+    "OilVinegarPrivateKey",
+    "QuadraticMap",
+    "RainbowBreakResult",
 ]
 
 Bits = tuple[int, ...]
@@ -197,6 +205,189 @@ class McElieceBreakResult:
     message: Bits
     error: Bits
     iterations: int
+
+
+@dataclass(frozen=True)
+class QuadraticMap:
+    """A system of quadratic polynomials over a prime field GF(q).
+
+    Polynomial ``k`` is ``sum_{i <= j} Q_k[i][j] x_i x_j + sum_i L_k[i] x_i + c_k``.
+
+    Attributes
+    ----------
+    q : int
+        The field size, a prime.
+    quadratic : tuple of tuple of tuple of int
+        One upper-triangular ``n x n`` matrix ``Q_k`` per polynomial (zero below the
+        diagonal; over GF(2) the diagonal is zero too, since ``x^2 = x``).
+    linear : tuple of tuple of int
+        One coefficient vector ``L_k`` per polynomial.
+    constant : tuple of int
+        The constant terms ``c_k``.
+    """
+
+    q: int
+    quadratic: tuple[tuple[tuple[int, ...], ...], ...]
+    linear: tuple[tuple[int, ...], ...]
+    constant: tuple[int, ...]
+
+    @property
+    def n_vars(self) -> int:
+        """Number of variables."""
+        return len(self.linear[0])
+
+    @property
+    def n_polys(self) -> int:
+        """Number of polynomials."""
+        return len(self.constant)
+
+    def evaluate(self, x: Sequence[int]) -> tuple[int, ...]:
+        """Evaluate every polynomial at ``x``, a vector of ``n_vars`` field elements.
+
+        Examples
+        --------
+        >>> from cybersecuritykit import pqc
+        >>> f = pqc.QuadraticMap(5, (((1, 2), (0, 0)),), ((0, 1),), (3,))
+        >>> f.evaluate((1, 1))  # 1 + 2 + 1 + 3
+        (2,)
+        """
+        if len(x) != self.n_vars:
+            raise ValueError(f"x must have length {self.n_vars}")
+        q = self.q
+        out = []
+        for quad, lin, c in zip(self.quadratic, self.linear, self.constant, strict=True):
+            total = c + sum(a * xi for a, xi in zip(lin, x, strict=True))
+            for i, row in enumerate(quad):
+                total += x[i] * sum(a * xj for a, xj in zip(row, x, strict=True))
+            out.append(total % q)
+        return tuple(out)
+
+
+@dataclass(frozen=True)
+class MatsumotoImaiPrivateKey:
+    """The secret affine maps and exponent of a Matsumoto-Imai key.
+
+    The public map is ``P = T o F o S`` with ``F(X) = X^(2^theta + 1)`` on GF(2^n).
+
+    Attributes
+    ----------
+    n : int
+        Number of variables, and degree of the extension field.
+    theta : int
+        The exponent parameter, with ``gcd(2^theta + 1, 2^n - 1) = 1``.
+    s_matrix, t_matrix : tuple of tuple of int
+        Invertible ``n x n`` matrices over GF(2).
+    s_offset, t_offset : tuple of int
+        Translation vectors: ``S(x) = A x + a`` and ``T(y) = B y + b``.
+    """
+
+    n: int
+    theta: int
+    s_matrix: BitMatrix
+    s_offset: Bits
+    t_matrix: BitMatrix
+    t_offset: Bits
+
+
+@dataclass(frozen=True)
+class MatsumotoImaiKeyPair:
+    """A Matsumoto-Imai public quadratic map and its private key.
+
+    Attributes
+    ----------
+    public : QuadraticMap
+    private : MatsumotoImaiPrivateKey
+    """
+
+    public: QuadraticMap
+    private: MatsumotoImaiPrivateKey
+
+
+@dataclass(frozen=True)
+class LinearizationResult:
+    """A Matsumoto-Imai plaintext recovered by Patarin's linearization equations.
+
+    Attributes
+    ----------
+    plaintext : tuple of int
+        The recovered plaintext bits.
+    relations : int
+        Dimension of the space of bilinear relations found from the pairs.
+    candidates : int
+        Plaintexts left after substituting the ciphertext into the relations.
+    pairs_used : int
+        Plaintext and ciphertext pairs computed with the public key.
+    """
+
+    plaintext: Bits
+    relations: int
+    candidates: int
+    pairs_used: int
+
+
+@dataclass(frozen=True)
+class OilVinegarPrivateKey:
+    """The secret layered central map and linear maps of a UOV or Rainbow key.
+
+    The public map is ``P = T o F o S``; UOV has one layer and ``T`` the identity.
+
+    Attributes
+    ----------
+    q : int
+        The field size, an odd prime.
+    layers : tuple of tuple of int
+        ``(v_l, o_l)`` per layer: layer ``l`` has ``o_l`` polynomials in the first
+        ``v_l + o_l`` variables, with no product of two of its own oil variables.
+    central : QuadraticMap
+        The central map ``F``.
+    s_matrix, t_matrix : tuple of tuple of int
+        Invertible matrices over GF(q) of size ``n`` and ``m``.
+    """
+
+    q: int
+    layers: tuple[tuple[int, int], ...]
+    central: QuadraticMap
+    s_matrix: tuple[tuple[int, ...], ...]
+    t_matrix: tuple[tuple[int, ...], ...]
+
+
+@dataclass(frozen=True)
+class OilVinegarKeyPair:
+    """A UOV or Rainbow public quadratic map and its private key.
+
+    Attributes
+    ----------
+    public : QuadraticMap
+    private : OilVinegarPrivateKey
+    """
+
+    public: QuadraticMap
+    private: OilVinegarPrivateKey
+
+
+@dataclass(frozen=True)
+class RainbowBreakResult:
+    """The secret oil subspace of a Rainbow key recovered from the public key.
+
+    Attributes
+    ----------
+    oil_vector : tuple of int
+        A non-zero vector of the last-layer oil space ``O2``.
+    oil_subspace : tuple of tuple of int
+        A basis of ``O2``.
+    w_subspace : tuple of tuple of int
+        A basis of ``W``, the space that the polar form maps ``O2`` into.
+    guesses : int
+        Random points ``x`` tried before ``ker D_x`` met ``O2``.
+    evaluations : int
+        Kernel vectors tested, over all guesses.
+    """
+
+    oil_vector: tuple[int, ...]
+    oil_subspace: tuple[tuple[int, ...], ...]
+    w_subspace: tuple[tuple[int, ...], ...]
+    guesses: int
+    evaluations: int
 
 
 # --- end slice B ---
