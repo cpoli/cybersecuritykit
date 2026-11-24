@@ -70,7 +70,7 @@ jobs:
           python -m venv /tmp/wheel-test
           /tmp/wheel-test/bin/python -m pip install dist/*.whl
           cd /tmp
-          /tmp/wheel-test/bin/python -c "import sys, cybersecuritykit as bk; assert bk.consensus.valid_pow(bk.consensus.mine(bk.structures.Block(difficulty=4)).block); assert 'matplotlib' not in sys.modules"
+          /tmp/wheel-test/bin/python -c "import sys, cybersecuritykit as csk; c = csk.classical.shift_encrypt('the quick brown fox jumps over the lazy dog and keeps running far away', 7); assert csk.classical.break_shift_cipher(c).shift == 7; assert 'matplotlib' not in sys.modules"
 
   typecheck:
     name: Type check (mypy)
