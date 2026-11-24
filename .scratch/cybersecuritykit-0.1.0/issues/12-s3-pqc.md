@@ -4,7 +4,7 @@
 
 **Blocked by:** 03 (symmetric)
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 Context: the spec (`../spec.md`); candidate breakthroughs in PLAN.md; conventions in CLAUDE.md.
 
@@ -20,3 +20,7 @@ Context: the spec (`../spec.md`); candidate breakthroughs in PLAN.md; convention
 - [x] CHANGELOG entry added (re-read the file first); PLAN.md progress note and ROADMAP R2 tick for this domain
 - [x] Any import from symmetric is recorded in CLAUDE.md's cross-domain list
 - [x] Lamport stays in blockchainkit and is cross-linked; Castryck-Decru only if a faithful toy isogeny model exists
+
+## Comments
+
+- 2026-11-24: Resolved on `pqc-integration`. It went ahead before 03 (symmetric) because pqc imports nothing from symmetric. Hashing uses stdlib `hashlib`, so CLAUDE.md's cross-domain list stays unchanged.
