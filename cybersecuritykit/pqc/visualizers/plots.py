@@ -24,6 +24,11 @@ from cybersecuritykit.pqc.core.base import (
 )
 
 # --- end slice A ---
+# isort: split
+# --- slice B: codes and multivariate ---
+from cybersecuritykit.pqc.core.base import QuadraticMap
+
+# --- end slice B ---
 
 __all__: list[str] = [
     # --- slice A ---
@@ -32,6 +37,11 @@ __all__: list[str] = [
     "plot_shor_distribution",
     "plot_signature_leakage",
     # --- end slice A ---
+    # --- slice B: codes and multivariate ---
+    "plot_binary_matrix",
+    "plot_isd_iterations",
+    "plot_quadratic_form",
+    # --- end slice B ---
     # --- slice C ---
     "plot_auth_path",
     "plot_few_time_security",
@@ -301,3 +311,92 @@ def plot_signature_leakage(
 
 
 # --- end slice A ---
+
+
+# --- slice B: codes and multivariate ---
+def plot_isd_iterations(
+    iterations: Sequence[int], probability: float, ax: Axes | None = None
+) -> Axes:
+    """Histogram of Prange iteration counts beside the geometric law they follow.
+
+    Each Prange guess succeeds independently with probability ``p``, so the iteration
+    count is geometric with mean ``1 / p`` (Prange, 1962).
+
+    Parameters
+    ----------
+    iterations : sequence of int
+        Observed iteration counts, such as ``ISDResult.iterations`` over many seeds.
+    probability : float
+        Success probability of one guess, from
+        :func:`~cybersecuritykit.pqc.prange_success_probability`.
+    ax : matplotlib.axes.Axes, optional
+        Axes to draw on; a new figure is created if omitted.
+
+    Returns
+    -------
+    matplotlib.axes.Axes
+    """
+    ax = _axes(ax)
+    top = max(iterations)
+    counts = Counter(iterations)
+    xs = range(1, top + 1)
+    ax.bar(xs, [counts[x] / len(iterations) for x in xs], color=_OBSERVED, label="observed")
+    expected = [probability * (1 - probability) ** (x - 1) for x in xs]
+    ax.plot(xs, expected, "o-", color=_HIGHLIGHT, label="geometric law")
+    ax.axvline(1 / probability, color=_REFERENCE, linestyle="--", label="mean 1/p")
+    ax.set_xlabel("iterations until success")
+    ax.set_ylabel("fraction of runs")
+    ax.legend()
+    return ax
+
+
+def plot_binary_matrix(matrix: Sequence[Sequence[int]], ax: Axes | None = None) -> Axes:
+    """Draw a binary matrix as black and white cells.
+
+    Parameters
+    ----------
+    matrix : sequence of sequence of int
+        Rows of 0 and 1 entries, such as a generator or parity-check matrix.
+    ax : matplotlib.axes.Axes, optional
+        Axes to draw on; a new figure is created if omitted.
+
+    Returns
+    -------
+    matplotlib.axes.Axes
+    """
+    ax = _axes(ax)
+    ax.imshow([list(row) for row in matrix], cmap="Greys", vmin=0, vmax=1)
+    ax.set_xlabel("column")
+    ax.set_ylabel("row")
+    return ax
+
+
+def plot_quadratic_form(public: QuadraticMap, index: int, ax: Axes | None = None) -> Axes:
+    """Heat map of the quadratic coefficients of one polynomial of a quadratic map.
+
+    In an oil and vinegar central map the oil-by-oil block is zero (Patarin, 1997);
+    after the secret change of variables the public polynomial is dense.
+
+    Parameters
+    ----------
+    public : QuadraticMap
+        The map whose polynomial to draw.
+    index : int
+        Which polynomial, ``0 <= index < public.n_polys``.
+    ax : matplotlib.axes.Axes, optional
+        Axes to draw on; a new figure is created if omitted.
+
+    Returns
+    -------
+    matplotlib.axes.Axes
+    """
+    ax = _axes(ax)
+    quad = public.quadratic[index]
+    ax.imshow([list(row) for row in quad], cmap="viridis", vmin=0, vmax=public.q - 1)
+    ax.set_title(f"quadratic part of polynomial {index} over GF({public.q})")
+    ax.set_xlabel("variable j")
+    ax.set_ylabel("variable i")
+    return ax
+
+
+# --- end slice B ---

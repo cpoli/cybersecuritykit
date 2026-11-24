@@ -121,6 +121,24 @@ napoleon_type_aliases = {
     "XMSSSignature": "cybersecuritykit.pqc.core.base.XMSSSignature",
     "XMSSSigned": "cybersecuritykit.pqc.core.base.XMSSSigned",
     # end pqc (slice C)
+    # pqc (slice B)
+    "GoppaCode": "cybersecuritykit.pqc.core.base.GoppaCode",
+    "ISDResult": "cybersecuritykit.pqc.core.base.ISDResult",
+    "LinearizationResult": "cybersecuritykit.pqc.core.base.LinearizationResult",
+    "MatsumotoImaiKeyPair": "cybersecuritykit.pqc.core.base.MatsumotoImaiKeyPair",
+    "MatsumotoImaiPrivateKey": "cybersecuritykit.pqc.core.base.MatsumotoImaiPrivateKey",
+    "McElieceBreakResult": "cybersecuritykit.pqc.core.base.McElieceBreakResult",
+    "McElieceKeyPair": "cybersecuritykit.pqc.core.base.McElieceKeyPair",
+    "McEliecePrivateKey": "cybersecuritykit.pqc.core.base.McEliecePrivateKey",
+    "McEliecePublicKey": "cybersecuritykit.pqc.core.base.McEliecePublicKey",
+    "NiederreiterKeyPair": "cybersecuritykit.pqc.core.base.NiederreiterKeyPair",
+    "NiederreiterPrivateKey": "cybersecuritykit.pqc.core.base.NiederreiterPrivateKey",
+    "NiederreiterPublicKey": "cybersecuritykit.pqc.core.base.NiederreiterPublicKey",
+    "OilVinegarKeyPair": "cybersecuritykit.pqc.core.base.OilVinegarKeyPair",
+    "OilVinegarPrivateKey": "cybersecuritykit.pqc.core.base.OilVinegarPrivateKey",
+    "QuadraticMap": "cybersecuritykit.pqc.core.base.QuadraticMap",
+    "RainbowBreakResult": "cybersecuritykit.pqc.core.base.RainbowBreakResult",
+    # end pqc (slice B)
 }
 
 autodoc_default_options = {

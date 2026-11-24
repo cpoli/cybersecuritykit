@@ -73,12 +73,30 @@ from cybersecuritykit.pqc.systems.shor import (
 # isort: split
 # --- end slice A ---
 
+# --- slice B: codes and multivariate ---
+# --- end slice B ---
 # --- slice C ---
 from cybersecuritykit.pqc.core.base import (
+    GoppaCode,
     HORSTForgery,
     HORSTKey,
     HORSTPublicKey,
     HORSTSignature,
+    ISDResult,
+    LinearizationResult,
+    MatsumotoImaiKeyPair,
+    MatsumotoImaiPrivateKey,
+    McElieceBreakResult,
+    McElieceKeyPair,
+    McEliecePrivateKey,
+    McEliecePublicKey,
+    NiederreiterKeyPair,
+    NiederreiterPrivateKey,
+    NiederreiterPublicKey,
+    OilVinegarKeyPair,
+    OilVinegarPrivateKey,
+    QuadraticMap,
+    RainbowBreakResult,
     SPHINCSKey,
     SPHINCSPublicKey,
     SPHINCSSignature,
@@ -92,6 +110,36 @@ from cybersecuritykit.pqc.core.base import (
     XMSSPublicKey,
     XMSSSignature,
     XMSSSigned,
+)
+from cybersecuritykit.pqc.systems.isd import (
+    prange_isd,
+    prange_success_probability,
+    syndrome,
+)
+from cybersecuritykit.pqc.systems.mceliece import (
+    break_mceliece,
+    break_niederreiter,
+    goppa_code,
+    goppa_decode,
+    mceliece_decrypt,
+    mceliece_encrypt,
+    mceliece_keygen,
+    niederreiter_decrypt,
+    niederreiter_encrypt,
+    niederreiter_keygen,
+)
+from cybersecuritykit.pqc.systems.multivariate import (
+    matsumoto_imai_decrypt,
+    matsumoto_imai_encrypt,
+    matsumoto_imai_keygen,
+    patarin_linearization,
+)
+from cybersecuritykit.pqc.systems.oil_vinegar import (
+    beullens_rainbow_attack,
+    oil_vinegar_sign,
+    oil_vinegar_verify,
+    rainbow_keygen,
+    uov_keygen,
 )
 from cybersecuritykit.pqc.systems.sphincs import (
     few_time_security,
@@ -176,6 +224,46 @@ __all__: list[str] = [
     "shor_distribution",
     "shor_factor",
     # --- end slice A ---
+    # --- slice B: codes and multivariate ---
+    "GoppaCode",
+    "ISDResult",
+    "LinearizationResult",
+    "MatsumotoImaiKeyPair",
+    "MatsumotoImaiPrivateKey",
+    "McElieceBreakResult",
+    "McElieceKeyPair",
+    "McEliecePrivateKey",
+    "McEliecePublicKey",
+    "NiederreiterKeyPair",
+    "NiederreiterPrivateKey",
+    "NiederreiterPublicKey",
+    "OilVinegarKeyPair",
+    "OilVinegarPrivateKey",
+    "QuadraticMap",
+    "RainbowBreakResult",
+    "beullens_rainbow_attack",
+    "break_mceliece",
+    "break_niederreiter",
+    "goppa_code",
+    "goppa_decode",
+    "matsumoto_imai_decrypt",
+    "matsumoto_imai_encrypt",
+    "matsumoto_imai_keygen",
+    "mceliece_decrypt",
+    "mceliece_encrypt",
+    "mceliece_keygen",
+    "niederreiter_decrypt",
+    "niederreiter_encrypt",
+    "niederreiter_keygen",
+    "oil_vinegar_sign",
+    "oil_vinegar_verify",
+    "patarin_linearization",
+    "prange_isd",
+    "prange_success_probability",
+    "rainbow_keygen",
+    "syndrome",
+    "uov_keygen",
+    # --- end slice B ---
     # --- slice C ---
     "HORSTForgery",
     "HORSTKey",
