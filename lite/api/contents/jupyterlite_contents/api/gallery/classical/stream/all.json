@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.991765Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.991765Z",
+      "mimetype": null,
+      "name": "plot_01_two_time_pad.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/stream/plot_01_two_time_pad.ipynb",
+      "size": 3890,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-11-24T06:22:49.498618Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-11-24T06:22:49.498693Z",
+  "mimetype": null,
+  "name": "stream",
+  "path": "jupyterlite_contents/api/gallery/classical/stream",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

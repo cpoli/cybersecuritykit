@@ -1,0 +1,68 @@
+
+
+.. _sphx_glr_api_gallery_classical_information_theory:
+
+Information theory
+------------------
+
+Shannon's perfect secrecy and unicity distance.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Claude Shannon defined a cipher as perfectly secret when seeing the ciphertext leaves the attacker&#x27;s beliefs unchanged: P(m \mid c) = P(m) for every message m. He proved this needs at least as many keys as messages. The one-time pad (blockchainkit) meets the bound; a shift cipher meets it for one letter but not for two.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/information_theory/images/thumb/sphx_glr_plot_01_perfect_secrecy_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/information_theory/plot_01_perfect_secrecy`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Perfect secrecy (Shannon, 1949)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="English is redundant: it carries about 1.5 bits per letter out of a possible \log_2 26 \approx 4.7. Shannon showed that once the ciphertext is long enough for that redundancy to exceed the key&#x27;s entropy, only one key gives sensible plaintext. That length is the unicity distance,">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/information_theory/images/thumb/sphx_glr_plot_02_unicity_distance_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/information_theory/plot_02_unicity_distance`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">How much ciphertext fixes the key (Shannon's unicity distance, 1949)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/information_theory/plot_01_perfect_secrecy
+   /api/gallery/classical/information_theory/plot_02_unicity_distance
+

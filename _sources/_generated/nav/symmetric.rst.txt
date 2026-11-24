@@ -1,0 +1,3 @@
+.. container:: subpkg-nav
+
+   :doc:`cybersecuritykit.symmetric hub </_generated/subpackages/symmetric>` · :doc:`History </history/symmetric_breakthroughs>` · :doc:`Examples </api/gallery/symmetric/index>` · :doc:`API reference </api/symmetric>`

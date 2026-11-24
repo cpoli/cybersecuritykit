@@ -1,0 +1,68 @@
+
+
+.. _sphx_glr_api_gallery_classical_polyalphabetic:
+
+Polyalphabetic ciphers
+----------------------
+
+Alberti's cipher disk and Bellaso's keyword cipher.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Leon Battista Alberti mounted a mixed alphabet on a disk inside a fixed plain alphabet. Turning the disk every few letters changes the substitution, so the same plaintext letter is written in different ways. It is the first polyalphabetic cipher.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/polyalphabetic/images/thumb/sphx_glr_plot_01_alberti_disk_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/polyalphabetic/plot_01_alberti_disk`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">The cipher disk turns the alphabet (Alberti, c. 1467)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Giovan Battista Bellaso replaced Alberti&#x27;s disk with a short keyword that anyone could remember: each keyword letter selects a shifted alphabet, and the keyword repeats along the message. The cipher was later credited to Blaise de Vigenere and called le chiffre indechiffrable.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/polyalphabetic/images/thumb/sphx_glr_plot_02_vigenere_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/polyalphabetic/plot_02_vigenere`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">A keyword picks the alphabets (Bellaso, 1553)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/polyalphabetic/plot_01_alberti_disk
+   /api/gallery/classical/polyalphabetic/plot_02_vigenere
+

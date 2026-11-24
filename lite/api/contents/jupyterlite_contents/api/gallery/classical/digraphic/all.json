@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.990409Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.990409Z",
+      "mimetype": null,
+      "name": "plot_02_hill.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/digraphic/plot_02_hill.ipynb",
+      "size": 3378,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.990228Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.990228Z",
+      "mimetype": null,
+      "name": "plot_01_playfair.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/digraphic/plot_01_playfair.ipynb",
+      "size": 4784,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-11-24T06:22:49.495551Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-11-24T06:22:49.495979Z",
+  "mimetype": null,
+  "name": "digraphic",
+  "path": "jupyterlite_contents/api/gallery/classical/digraphic",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

@@ -1,0 +1,3 @@
+.. container:: subpkg-nav
+
+   :doc:`cybersecuritykit.sidechannel hub </_generated/subpackages/sidechannel>` · :doc:`History </history/sidechannel_breakthroughs>` · :doc:`Examples </api/gallery/sidechannel/index>` · :doc:`API reference </api/sidechannel>`

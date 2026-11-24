@@ -1,0 +1,50 @@
+
+
+.. _sphx_glr_api_gallery_classical_frequency_analysis:
+
+Frequency analysis
+------------------
+
+al-Kindi's letter counting against the shift cipher.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="al-Kindi observed that in any long text of a language some letters are common and others rare, and that a substitution cipher moves those counts to other letters without changing them. Counting the ciphertext and matching the counts against the language reveals the key.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/frequency_analysis/images/thumb/sphx_glr_plot_01_al_kindi_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/frequency_analysis/plot_01_al_kindi`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Frequency analysis breaks the shift cipher (al-Kindi, c. 850)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/frequency_analysis/plot_01_al_kindi
+

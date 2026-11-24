@@ -1,0 +1,3 @@
+.. container:: subpkg-nav
+
+   :doc:`cybersecuritykit.auth hub </_generated/subpackages/auth>` · :doc:`History </history/auth_breakthroughs>` · :doc:`Examples </api/gallery/auth/index>` · :doc:`API reference </api/auth>`

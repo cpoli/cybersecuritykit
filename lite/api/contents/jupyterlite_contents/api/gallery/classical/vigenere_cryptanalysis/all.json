@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.992274Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.992274Z",
+      "mimetype": null,
+      "name": "plot_02_index_of_coincidence.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/vigenere_cryptanalysis/plot_02_index_of_coincidence.ipynb",
+      "size": 3518,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.992161Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.992161Z",
+      "mimetype": null,
+      "name": "plot_01_kasiski.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/vigenere_cryptanalysis/plot_01_kasiski.ipynb",
+      "size": 2946,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-11-24T06:22:49.499684Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-11-24T06:22:49.500007Z",
+  "mimetype": null,
+  "name": "vigenere_cryptanalysis",
+  "path": "jupyterlite_contents/api/gallery/classical/vigenere_cryptanalysis",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

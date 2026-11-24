@@ -1,0 +1,26 @@
+cybersecuritykit.network
+========================
+
+Packet filters and rule conflicts, simulated port scans, SYN floods and SYN cookies, ARP and DNS spoofing, and traceback, all on synthetic traffic.
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: History
+      :link: /history/network_breakthroughs
+      :link-type: doc
+
+      The breakthroughs behind this subpackage, linked to the implementation.
+
+   .. grid-item-card:: Examples
+      :link: /api/gallery/network/index
+      :link-type: doc
+
+      The runnable example gallery.
+
+   .. grid-item-card:: API reference
+      :link: /api/network
+      :link-type: doc
+
+      Every public class and function.
+

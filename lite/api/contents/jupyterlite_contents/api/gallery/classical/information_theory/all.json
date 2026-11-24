@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.991069Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.991069Z",
+      "mimetype": null,
+      "name": "plot_01_perfect_secrecy.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/information_theory/plot_01_perfect_secrecy.ipynb",
+      "size": 3527,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.991189Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.991189Z",
+      "mimetype": null,
+      "name": "plot_02_unicity_distance.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/information_theory/plot_02_unicity_distance.ipynb",
+      "size": 4315,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-11-24T06:22:49.497217Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-11-24T06:22:49.497501Z",
+  "mimetype": null,
+  "name": "information_theory",
+  "path": "jupyterlite_contents/api/gallery/classical/information_theory",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

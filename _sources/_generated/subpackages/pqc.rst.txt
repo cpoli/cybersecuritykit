@@ -1,0 +1,26 @@
+cybersecuritykit.pqc
+====================
+
+Shor's and Grover's threat models, learning with errors, toy Kyber-style encryption, McEliece, and Lamport and Merkle hash-based signatures.
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: History
+      :link: /history/pqc_breakthroughs
+      :link-type: doc
+
+      The breakthroughs behind this subpackage, linked to the implementation.
+
+   .. grid-item-card:: Examples
+      :link: /api/gallery/pqc/index
+      :link-type: doc
+
+      The runnable example gallery.
+
+   .. grid-item-card:: API reference
+      :link: /api/pqc
+      :link-type: doc
+
+      Every public class and function.
+

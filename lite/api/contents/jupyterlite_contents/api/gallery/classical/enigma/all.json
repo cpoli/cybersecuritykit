@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.990541Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.990541Z",
+      "mimetype": null,
+      "name": "plot_01_rejewski.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/enigma/plot_01_rejewski.ipynb",
+      "size": 3903,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.990669Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.990669Z",
+      "mimetype": null,
+      "name": "plot_02_bombe.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/enigma/plot_02_bombe.ipynb",
+      "size": 3827,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-11-24T06:22:49.496209Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-11-24T06:22:49.496472Z",
+  "mimetype": null,
+  "name": "enigma",
+  "path": "jupyterlite_contents/api/gallery/classical/enigma",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

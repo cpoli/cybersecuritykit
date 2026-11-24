@@ -1,0 +1,108 @@
+.. rubric:: Cryptography
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: cybersecuritykit.classical
+      :link: /_generated/subpackages/classical
+      :link-type: doc
+
+      Substitution and transposition ciphers, frequency analysis, Kasiski and the index of coincidence, rotor machines, and Shannon's perfect secrecy and unicity distance.
+
+   .. grid-item-card:: cybersecuritykit.symmetric
+      :link: /_generated/subpackages/symmetric
+      :link-type: doc
+
+      Feistel networks and toy DES and AES, differential and linear cryptanalysis, modes of operation, padding oracles, MACs and authenticated encryption.
+
+   .. grid-item-card:: cybersecuritykit.pqc
+      :link: /_generated/subpackages/pqc
+      :link-type: doc
+
+      Shor's and Grover's threat models, learning with errors, toy Kyber-style encryption, McEliece, and Lamport and Merkle hash-based signatures.
+
+
+.. rubric:: Protocols and identity
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: cybersecuritykit.protocols
+      :link: /_generated/subpackages/protocols
+      :link-type: doc
+
+      Needham-Schroeder and Lowe's attack, the Dolev-Yao attacker, Kerberos, BAN logic, and toy TLS handshakes with downgrade and replay attacks.
+
+   .. grid-item-card:: cybersecuritykit.auth
+      :link: /_generated/subpackages/auth
+      :link-type: doc
+
+      Password entropy and guessing, salted and slow hashing from crypt to Argon2, rainbow tables, HOTP and TOTP, and challenge-response.
+
+   .. grid-item-card:: cybersecuritykit.access
+      :link: /_generated/subpackages/access
+      :link-type: doc
+
+      Lampson's access matrix, Bell-LaPadula and Biba, Clark-Wilson, the HRU safety problem, role-based access control, and capability systems.
+
+
+.. rubric:: Systems
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: cybersecuritykit.software
+      :link: /_generated/subpackages/software
+      :link-type: doc
+
+      Stack smashing and return-oriented programming on a toy VM, canaries, W^X and ASLR, fuzzing, symbolic execution, and injection attacks.
+
+   .. grid-item-card:: cybersecuritykit.sidechannel
+      :link: /_generated/subpackages/sidechannel
+      :link-type: doc
+
+      Kocher's timing attack, simple and differential power analysis on synthetic traces, cache timing, fault attacks, and constant-time countermeasures.
+
+   .. grid-item-card:: cybersecuritykit.malware
+      :link: /_generated/subpackages/malware
+      :link-type: doc
+
+      Cohen's undecidability result, SI and SIR worm models fitted to Morris, Code Red and Slammer, scanning strategies, botnets, and patching and quarantine.
+
+
+.. rubric:: Networks
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: cybersecuritykit.network
+      :link: /_generated/subpackages/network
+      :link-type: doc
+
+      Packet filters and rule conflicts, simulated port scans, SYN floods and SYN cookies, ARP and DNS spoofing, and traceback, all on synthetic traffic.
+
+   .. grid-item-card:: cybersecuritykit.detection
+      :link: /_generated/subpackages/detection
+      :link-type: doc
+
+      Denning's IDS model, Aho-Corasick signature matching, anomaly scores, the base-rate fallacy, ROC curves, and alert correlation on synthetic logs.
+
+
+.. rubric:: Data and decisions
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: cybersecuritykit.privacy
+      :link: /_generated/subpackages/privacy
+      :link-type: doc
+
+      Re-identification by linkage, k-anonymity, l-diversity and t-closeness, randomized response, differential privacy and its composition, and membership inference.
+
+   .. grid-item-card:: cybersecuritykit.risk
+      :link: /_generated/subpackages/risk
+      :link-type: doc
+
+      Attack trees and graphs, CVSS scoring, annualized loss expectancy, the Gordon-Loeb investment model, and Stackelberg security games.
+
+

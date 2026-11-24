@@ -1,0 +1,3 @@
+.. container:: subpkg-nav
+
+   :doc:`cybersecuritykit.software hub </_generated/subpackages/software>` · :doc:`History </history/software_breakthroughs>` · :doc:`Examples </api/gallery/software/index>` · :doc:`API reference </api/software>`

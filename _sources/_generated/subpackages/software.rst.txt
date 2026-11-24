@@ -1,0 +1,26 @@
+cybersecuritykit.software
+=========================
+
+Stack smashing and return-oriented programming on a toy VM, canaries, W^X and ASLR, fuzzing, symbolic execution, and injection attacks.
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: History
+      :link: /history/software_breakthroughs
+      :link-type: doc
+
+      The breakthroughs behind this subpackage, linked to the implementation.
+
+   .. grid-item-card:: Examples
+      :link: /api/gallery/software/index
+      :link-type: doc
+
+      The runnable example gallery.
+
+   .. grid-item-card:: API reference
+      :link: /api/software
+      :link-type: doc
+
+      Every public class and function.
+

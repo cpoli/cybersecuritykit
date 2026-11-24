@@ -1,0 +1,50 @@
+
+
+.. _sphx_glr_api_gallery_classical_lorenz:
+
+Lorenz
+------
+
+Tutte's statistical attack on the Lorenz teleprinter cipher.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The Lorenz SZ40 added a keystream built from twelve pinwheels of coprime lengths to teleprinter traffic. Bill Tutte, given a keystream recovered from a depth, wrote out one impulse in rows and noticed repeats at a period of 41: the first chi wheel. Taking differences, \Delta x_i = x_i \oplus x_{i+1}, makes the irregular psi wheels mostly vanish, so the chi period shows through.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/lorenz/images/thumb/sphx_glr_plot_01_tutte_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/lorenz/plot_01_tutte`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Recovering a Lorenz wheel from statistics (Tutte, 1942)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/lorenz/plot_01_tutte
+

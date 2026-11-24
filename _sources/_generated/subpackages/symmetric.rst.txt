@@ -1,0 +1,26 @@
+cybersecuritykit.symmetric
+==========================
+
+Feistel networks and toy DES and AES, differential and linear cryptanalysis, modes of operation, padding oracles, MACs and authenticated encryption.
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: History
+      :link: /history/symmetric_breakthroughs
+      :link-type: doc
+
+      The breakthroughs behind this subpackage, linked to the implementation.
+
+   .. grid-item-card:: Examples
+      :link: /api/gallery/symmetric/index
+      :link-type: doc
+
+      The runnable example gallery.
+
+   .. grid-item-card:: API reference
+      :link: /api/symmetric
+      :link-type: doc
+
+      Every public class and function.
+

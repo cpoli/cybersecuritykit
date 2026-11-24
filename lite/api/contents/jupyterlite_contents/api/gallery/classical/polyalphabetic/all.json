@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.991529Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.991529Z",
+      "mimetype": null,
+      "name": "plot_01_alberti_disk.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/polyalphabetic/plot_01_alberti_disk.ipynb",
+      "size": 3807,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.991643Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.991643Z",
+      "mimetype": null,
+      "name": "plot_02_vigenere.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/polyalphabetic/plot_02_vigenere.ipynb",
+      "size": 3525,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-11-24T06:22:49.498031Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-11-24T06:22:49.498402Z",
+  "mimetype": null,
+  "name": "polyalphabetic",
+  "path": "jupyterlite_contents/api/gallery/classical/polyalphabetic",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

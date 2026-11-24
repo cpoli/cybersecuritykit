@@ -1,0 +1,29 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.990946Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.990946Z",
+      "mimetype": null,
+      "name": "plot_01_al_kindi.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/frequency_analysis/plot_01_al_kindi.ipynb",
+      "size": 3270,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-11-24T06:22:49.496933Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-11-24T06:22:49.496994Z",
+  "mimetype": null,
+  "name": "frequency_analysis",
+  "path": "jupyterlite_contents/api/gallery/classical/frequency_analysis",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

@@ -1,0 +1,26 @@
+cybersecuritykit.auth
+=====================
+
+Password entropy and guessing, salted and slow hashing from crypt to Argon2, rainbow tables, HOTP and TOTP, and challenge-response.
+
+.. grid:: 1 2 3 3
+   :gutter: 2
+
+   .. grid-item-card:: History
+      :link: /history/auth_breakthroughs
+      :link-type: doc
+
+      The breakthroughs behind this subpackage, linked to the implementation.
+
+   .. grid-item-card:: Examples
+      :link: /api/gallery/auth/index
+      :link-type: doc
+
+      The runnable example gallery.
+
+   .. grid-item-card:: API reference
+      :link: /api/auth
+      :link-type: doc
+
+      Every public class and function.
+

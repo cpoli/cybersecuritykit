@@ -1,0 +1,68 @@
+
+
+.. _sphx_glr_api_gallery_classical_digraphic:
+
+Digraphic ciphers
+-----------------
+
+Playfair's letter pairs and Hill's matrix cipher.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Charles Wheatstone&#x27;s cipher, promoted by Lord Playfair, encrypts two letters at a time with a 5 by 5 keyed square. Single-letter counts no longer map one to one onto cipher letters; an attacker has to count the 600 or so digraphs instead of 26 letters, which needs far more ciphertext.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/digraphic/images/thumb/sphx_glr_plot_01_playfair_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/digraphic/plot_01_playfair`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Encrypting letter pairs (Playfair, 1854)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Lester Hill encrypted blocks of n letters as vectors, c = K p \bmod 26, the first cipher built from linear algebra. The linearity is also its weakness: n blocks of known plaintext with an invertible matrix give the key as K = C P^{-1} \bmod 26.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/digraphic/images/thumb/sphx_glr_plot_02_hill_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/digraphic/plot_02_hill`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Matrix encryption and its known-plaintext break (Hill, 1929)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/digraphic/plot_01_playfair
+   /api/gallery/classical/digraphic/plot_02_hill
+

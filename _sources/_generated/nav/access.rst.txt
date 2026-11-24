@@ -1,0 +1,3 @@
+.. container:: subpkg-nav
+
+   :doc:`cybersecuritykit.access hub </_generated/subpackages/access>` · :doc:`History </history/access_breakthroughs>` · :doc:`Examples </api/gallery/access/index>` · :doc:`API reference </api/access>`

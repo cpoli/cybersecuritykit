@@ -1,0 +1,3 @@
+.. container:: subpkg-nav
+
+   :doc:`cybersecuritykit.protocols hub </_generated/subpackages/protocols>` · :doc:`History </history/protocols_breakthroughs>` · :doc:`Examples </api/gallery/protocols/index>` · :doc:`API reference </api/protocols>`

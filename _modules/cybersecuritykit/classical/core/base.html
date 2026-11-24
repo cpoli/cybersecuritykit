@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cybersecuritykit.classical.core.base &#8212; cybersecuritykit</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/jupyterlite_sphinx.css?v=f676e775" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=865bd79b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../../../../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../../../../_static/jupyterlite_sphinx.js?v=96e329c5"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/cybersecuritykit/classical/core/base';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script async="async" data-goatcounter="https://cpoli.goatcounter.com/count" src="https://gc.zgo.at/count.js"></script>
+    <link rel="canonical" href="https://cpoli.github.io/cybersecuritykit/_modules/cybersecuritykit/classical/core/base.html" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../../_static/searchtools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/cybersecuritykit_logo_transparent.png" class="logo__image only-light" alt="cybersecuritykit logo"/>
+    <img src="../../../../_static/cybersecuritykit_logo_transparent.png" class="logo__image only-dark pst-js-only" alt="cybersecuritykit logo"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../subpackages/index.html">
+    Subpackages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../history/index.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../exercises/index.html">
+    Exercises
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../scope.html">
+    Scope and model boundaries
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cpoli/cybersecuritykit" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://cpoli.github.io/" title="Charles Poli" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-user fa-lg" aria-hidden="true"></i><span class="visually-hidden">Charles Poli</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../subpackages/index.html">
+    Subpackages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../history/index.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../exercises/index.html">
+    Exercises
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../scope.html">
+    Scope and model boundaries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cpoli/cybersecuritykit" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://cpoli.github.io/" title="Charles Poli" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-user fa-lg" aria-hidden="true"></i><span class="visually-hidden">Charles Poli</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">cybersecuritykit.classical.core.base</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for cybersecuritykit.classical.core.base</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Frozen result dataclasses for :mod:`cybersecuritykit.classical`."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mapping</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">MappingProxyType</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"ADFGVXBreakResult"</span><span class="p">,</span>
+    <span class="s2">"BombeResult"</span><span class="p">,</span>
+    <span class="s2">"CoincidenceProfile"</span><span class="p">,</span>
+    <span class="s2">"CribDragHit"</span><span class="p">,</span>
+    <span class="s2">"CribMenu"</span><span class="p">,</span>
+    <span class="s2">"EnigmaSettings"</span><span class="p">,</span>
+    <span class="s2">"HillBreakResult"</span><span class="p">,</span>
+    <span class="s2">"HillClimbResult"</span><span class="p">,</span>
+    <span class="s2">"HomophonicResult"</span><span class="p">,</span>
+    <span class="s2">"KasiskiResult"</span><span class="p">,</span>
+    <span class="s2">"LorenzWheels"</span><span class="p">,</span>
+    <span class="s2">"PeriodTest"</span><span class="p">,</span>
+    <span class="s2">"PlayfairBreakResult"</span><span class="p">,</span>
+    <span class="s2">"RejewskiCharacteristic"</span><span class="p">,</span>
+    <span class="s2">"SecrecyResult"</span><span class="p">,</span>
+    <span class="s2">"ShiftBreakResult"</span><span class="p">,</span>
+    <span class="s2">"SpuriousKeyCount"</span><span class="p">,</span>
+    <span class="s2">"UnicityResult"</span><span class="p">,</span>
+    <span class="s2">"VigenereBreakResult"</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_freeze</span><span class="p">(</span><span class="n">result</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="o">*</span><span class="n">names</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Replace dict fields of a frozen result with read-only views of copies."""</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">MappingProxyType</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">name</span><span class="p">))))</span>
+
+
+<div class="viewcode-block" id="ShiftBreakResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.ShiftBreakResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ShiftBreakResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Outcome of breaking a shift cipher by frequency analysis.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    shift : int</span>
+<span class="sd">        The recovered key.</span>
+<span class="sd">    plaintext : str</span>
+<span class="sd">        The ciphertext decrypted with ``shift``.</span>
+<span class="sd">    chi_squared : tuple of float</span>
+<span class="sd">        The chi-squared score of each of the 26 shifts; the key minimizes it.</span>
+<span class="sd">    """</span>
+
+    <span class="n">shift</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">plaintext</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">chi_squared</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="KasiskiResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.KasiskiResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">KasiskiResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Repeated fragments of a ciphertext and the keyword length they point to.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    repeats : mapping of str to tuple of int</span>
+<span class="sd">        Each fragment seen more than once, mapped to the positions where it starts.</span>
+<span class="sd">    factor_counts : mapping of int to int</span>
+<span class="sd">        For each candidate period, how many gaps between consecutive repeats it divides.</span>
+<span class="sd">    likely_period : int</span>
+<span class="sd">        The largest candidate period counted at least 80% as often as the most common one.</span>
+<span class="sd">    """</span>
+
+    <span class="n">repeats</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span>
+    <span class="n">factor_counts</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+    <span class="n">likely_period</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_freeze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"repeats"</span><span class="p">,</span> <span class="s2">"factor_counts"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="CoincidenceProfile">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.CoincidenceProfile">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CoincidenceProfile</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Mean index of coincidence of the columns for each candidate period.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    periods : tuple of int</span>
+<span class="sd">        The candidate periods, from 1.</span>
+<span class="sd">    mean_ic : tuple of float</span>
+<span class="sd">        For each period, the mean index of coincidence of the columns it defines.</span>
+<span class="sd">    best_period : int</span>
+<span class="sd">        The smallest period whose mean is within 90% of the largest; multiples of</span>
+<span class="sd">        the true period score as high as the period itself.</span>
+<span class="sd">    """</span>
+
+    <span class="n">periods</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">mean_ic</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">best_period</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="VigenereBreakResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.VigenereBreakResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">VigenereBreakResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A keyword and plaintext recovered from a Vigenère ciphertext.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    key : str</span>
+<span class="sd">        The recovered keyword.</span>
+<span class="sd">    plaintext : str</span>
+<span class="sd">        The ciphertext decrypted with ``key``.</span>
+<span class="sd">    tested : int</span>
+<span class="sd">        Candidate shifts scored: 26 per column.</span>
+<span class="sd">    """</span>
+
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">plaintext</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">tested</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="CribDragHit">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.CribDragHit">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CribDragHit</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A crib position in a two-time pad that yields printable text in the other message.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    offset : int</span>
+<span class="sd">        Byte offset at which the crib was placed.</span>
+<span class="sd">    fragment : bytes</span>
+<span class="sd">        The bytes of the other plaintext that the crib implies at ``offset``.</span>
+<span class="sd">    """</span>
+
+    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">fragment</span><span class="p">:</span> <span class="nb">bytes</span></div>
+
+
+
+<div class="viewcode-block" id="HillBreakResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.HillBreakResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HillBreakResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A Hill key recovered from matching plaintext and ciphertext.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    key : tuple of tuple of int</span>
+<span class="sd">        The recovered key matrix, rows of integers mod 26.</span>
+<span class="sd">    blocks : tuple of int</span>
+<span class="sd">        Indices of the plaintext blocks whose matrix was invertible and used.</span>
+<span class="sd">    tested : int</span>
+<span class="sd">        Choices of blocks tried, the last one included.</span>
+<span class="sd">    """</span>
+
+    <span class="n">key</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">blocks</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">tested</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="EnigmaSettings">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.EnigmaSettings">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">EnigmaSettings</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""The wiring of an Enigma I for a day: rotor order, reflector and plugboard.</span>
+
+<span class="sd">    The start positions are not part of it, since operators changed them for</span>
+<span class="sd">    every message and the attacks search over them.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    rotors : tuple of str</span>
+<span class="sd">        Three different rotor names from ``ROTORS``, left to right.</span>
+<span class="sd">    reflector : str, optional</span>
+<span class="sd">        A reflector name from ``REFLECTORS``.</span>
+<span class="sd">    plugboard : str, optional</span>
+<span class="sd">        Letter pairs swapped before and after the rotors, as in ``"AB CD"``.</span>
+<span class="sd">    """</span>
+
+    <span class="n">rotors</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">reflector</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"B"</span>
+    <span class="n">plugboard</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span></div>
+
+
+
+<div class="viewcode-block" id="RejewskiCharacteristic">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.RejewskiCharacteristic">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RejewskiCharacteristic</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Cycle lengths of the products of the Enigma's first six permutations.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ad, be, cf : tuple of int</span>
+<span class="sd">        Cycle lengths, longest first, of the permutation products that Rejewski</span>
+<span class="sd">        called AD, BE and CF.</span>
+<span class="sd">    """</span>
+
+    <span class="n">ad</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">be</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">cf</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="CribMenu">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.CribMenu">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CribMenu</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""The letter graph a bombe is wired from.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    edges : tuple of tuple</span>
+<span class="sd">        ``(plain, cipher, step)`` for each letter of the crib.</span>
+<span class="sd">    loops : int</span>
+<span class="sd">        Independent cycles of the graph (edges minus letters plus components);</span>
+<span class="sd">        each loop is a constraint that prunes wrong rotor starts.</span>
+<span class="sd">    """</span>
+
+    <span class="n">edges</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">loops</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="BombeResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.BombeResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BombeResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Rotor starts that survive a bombe run.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    positions : tuple of str</span>
+<span class="sd">        Start positions consistent with the crib.</span>
+<span class="sd">    tested : int</span>
+<span class="sd">        Number of start positions tried.</span>
+<span class="sd">    """</span>
+
+    <span class="n">positions</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">tested</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="LorenzWheels">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.LorenzWheels">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LorenzWheels</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Cam patterns of a Lorenz SZ40 model.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    chi : tuple of tuple of int</span>
+<span class="sd">        Five chi wheels of 41, 31, 29, 26 and 23 cams, one per teleprinter impulse.</span>
+<span class="sd">    psi : tuple of tuple of int</span>
+<span class="sd">        Five psi wheels of 43, 47, 51, 53 and 59 cams.</span>
+<span class="sd">    motor : tuple of int</span>
+<span class="sd">        One motor wheel of 61 cams; where it shows 1 the psi wheels move.</span>
+<span class="sd">    """</span>
+
+    <span class="n">chi</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">psi</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">motor</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="PeriodTest">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.PeriodTest">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PeriodTest</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""How often a bit stream's delta agrees with itself at each shift.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    periods : tuple of int</span>
+<span class="sd">        Shifts tried.</span>
+<span class="sd">    agreement : tuple of float</span>
+<span class="sd">        Fraction of positions where the delta stream equals itself shifted.</span>
+<span class="sd">    best_period : int</span>
+<span class="sd">        The shift with the highest agreement.</span>
+<span class="sd">    """</span>
+
+    <span class="n">periods</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">agreement</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">best_period</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="SecrecyResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.SecrecyResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SecrecyResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""What an eavesdropper learns about the message from one ciphertext.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    prior : mapping of str to float</span>
+<span class="sd">        Probability of each message before the ciphertext is seen.</span>
+<span class="sd">    posterior : mapping of str to float</span>
+<span class="sd">        Probability of each message given the ciphertext.</span>
+<span class="sd">    perfect : bool</span>
+<span class="sd">        Whether the posterior equals the prior, Shannon's perfect secrecy.</span>
+<span class="sd">    """</span>
+
+    <span class="n">prior</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+    <span class="n">posterior</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+    <span class="n">perfect</span><span class="p">:</span> <span class="nb">bool</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_freeze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"prior"</span><span class="p">,</span> <span class="s2">"posterior"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="UnicityResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.UnicityResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UnicityResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Shannon's estimate of how much ciphertext fixes the key.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    key_entropy : float</span>
+<span class="sd">        Bits of uncertainty in the key, ``log2`` of the key space.</span>
+<span class="sd">    redundancy : float</span>
+<span class="sd">        Bits per letter by which the language falls short of random letters.</span>
+<span class="sd">    distance : float</span>
+<span class="sd">        Letters of ciphertext beyond which one key is expected to remain.</span>
+<span class="sd">    """</span>
+
+    <span class="n">key_entropy</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">redundancy</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">distance</span><span class="p">:</span> <span class="nb">float</span></div>
+
+
+
+<div class="viewcode-block" id="HillClimbResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.HillClimbResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HillClimbResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Best substitution key found by hill climbing.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    key : str</span>
+<span class="sd">        Encryption key: the cipher letter for each of A-Z.</span>
+<span class="sd">    plaintext : str</span>
+<span class="sd">        The ciphertext decrypted with ``key``.</span>
+<span class="sd">    score : float</span>
+<span class="sd">        Bigram log-likelihood of ``plaintext``.</span>
+<span class="sd">    history : tuple of float</span>
+<span class="sd">        Best score so far after every accepted swap, across all restarts.</span>
+<span class="sd">    tested : int</span>
+<span class="sd">        Candidate keys scored.</span>
+<span class="sd">    """</span>
+
+    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">plaintext</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">history</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">tested</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="HomophonicResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.HomophonicResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HomophonicResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Best symbol-to-letter assignment found for a homophonic ciphertext.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mapping : mapping of int to str</span>
+<span class="sd">        Letter assigned to each cipher symbol.</span>
+<span class="sd">    plaintext : str</span>
+<span class="sd">        The ciphertext read through ``mapping``.</span>
+<span class="sd">    score : float</span>
+<span class="sd">        Minus :math:`N` times the Kullback-Leibler divergence of the bigrams of</span>
+<span class="sd">        ``plaintext`` from English; at most 0, and higher is more English-like.</span>
+<span class="sd">    tested : int</span>
+<span class="sd">        Candidate assignments scored.</span>
+<span class="sd">    """</span>
+
+    <span class="n">mapping</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+    <span class="n">plaintext</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">tested</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_freeze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"mapping"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="PlayfairBreakResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.PlayfairBreakResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PlayfairBreakResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Best Playfair key square found by simulated annealing.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    square : tuple of str</span>
+<span class="sd">        The five rows of the recovered square. Any cyclic shift of its rows</span>
+<span class="sd">        and columns encrypts the same way.</span>
+<span class="sd">    plaintext : str</span>
+<span class="sd">        The ciphertext decrypted with ``square``, padding letters included.</span>
+<span class="sd">    score : float</span>
+<span class="sd">        Bigram log-likelihood of ``plaintext``.</span>
+<span class="sd">    tested : int</span>
+<span class="sd">        Candidate squares scored.</span>
+<span class="sd">    """</span>
+
+    <span class="n">square</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">plaintext</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">tested</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="ADFGVXBreakResult">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.ADFGVXBreakResult">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ADFGVXBreakResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Column order and plaintext recovered from an ADFGVX ciphertext.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    order : tuple of int</span>
+<span class="sd">        The columns in the order they were read out, as the keyword sorts them.</span>
+<span class="sd">    plaintext : str</span>
+<span class="sd">        The text, with each coordinate pair solved as a substitution letter.</span>
+<span class="sd">        Digits cannot be told from letters this way, so they come out as letters.</span>
+<span class="sd">    tested : int</span>
+<span class="sd">        Column orders scored plus substitution keys scored.</span>
+<span class="sd">    """</span>
+
+    <span class="n">order</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">plaintext</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">tested</span><span class="p">:</span> <span class="nb">int</span></div>
+
+
+
+<div class="viewcode-block" id="SpuriousKeyCount">
+<a class="viewcode-back" href="../../../../api/classical.html#cybersecuritykit.classical.core.base.SpuriousKeyCount">[docs]</a>
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SpuriousKeyCount</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""How many shift keys give English-looking text as the ciphertext grows.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lengths : tuple of int</span>
+<span class="sd">        Prefix lengths of the ciphertext, from 1.</span>
+<span class="sd">    counts : tuple of int</span>
+<span class="sd">        For each length, the keys whose decryption has the fewest letter pairs</span>
+<span class="sd">        unseen in English; all but one are spurious.</span>
+<span class="sd">    unique_from : int or None</span>
+<span class="sd">        The shortest length from which exactly one key survives to the end, or</span>
+<span class="sd">        ``None`` if more than one survives the whole ciphertext.</span>
+<span class="sd">    """</span>
+
+    <span class="n">lengths</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">counts</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="n">unique_from</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Charles Poli.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

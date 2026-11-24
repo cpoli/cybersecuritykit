@@ -1,0 +1,50 @@
+
+
+.. _sphx_glr_api_gallery_classical_stream:
+
+Stream ciphers
+--------------
+
+Vernam's teleprinter cipher and the reused key.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Gilbert Vernam&#x27;s teleprinter combined each character of a message with a character of a key tape, c_i = m_i \oplus k_i. With a random tape used once this is the one-time pad, taught in blockchainkit. Here the tape is used twice: XORing the two ciphertexts cancels the key and leaves m_1 \oplus m_2, which a guessed word (a crib) unpicks.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/stream/images/thumb/sphx_glr_plot_01_two_time_pad_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/stream/plot_01_two_time_pad`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Vernam's cipher and the two-time pad (Vernam, 1917)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/stream/plot_01_two_time_pad
+

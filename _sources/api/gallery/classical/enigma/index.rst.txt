@@ -1,0 +1,68 @@
+
+
+.. _sphx_glr_api_gallery_classical_enigma:
+
+Enigma
+------
+
+Rejewski's characteristics and Turing's bombe.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Enigma operators sent their three-letter message key twice at the start of each message. Marian Rejewski saw that the first and fourth letters, second and fifth, third and sixth, define permutations AD, BE and CF, and that the lengths of their cycles do not depend on the plugboard at all: conjugating by a permutation preserves cycle structure. A catalogue of cycle lengths for each rotor start then narrows the key.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/enigma/images/thumb/sphx_glr_plot_01_rejewski_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/enigma/plot_01_rejewski`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Characteristics that ignore the plugboard (Rejewski, 1932)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Bletchley Park often guessed a word of plaintext, a crib, such as WETTERVORHERSAGE (weather forecast). Because Enigma never encrypts a letter to itself, a crib can only sit where no letter meets its own image. Alan Turing&#x27;s bombe then tested every rotor start against the crib, using loops in the crib&#x27;s menu to reject wrong settings quickly.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/enigma/images/thumb/sphx_glr_plot_02_bombe_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/enigma/plot_02_bombe`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Searching rotor starts from a crib (Turing's bombe, 1940)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/enigma/plot_01_rejewski
+   /api/gallery/classical/enigma/plot_02_bombe
+

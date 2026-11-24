@@ -1,0 +1,68 @@
+
+
+.. _sphx_glr_api_gallery_classical_substitution_solvers:
+
+Substitution solvers
+--------------------
+
+Hill climbing and annealing against substitution ciphers.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="A simple substitution has 26! \approx 4 \times 10^{26} keys, too many to try. Thomas Jakobsen&#x27;s fast method starts from the frequency-matched key and keeps swapping pairs of key letters whenever the swap makes the decryption score better on English bigrams. Computers made this local search, far too slow by hand, routine.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/substitution_solvers/images/thumb/sphx_glr_plot_01_hill_climbing_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/substitution_solvers/plot_01_hill_climbing`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Hill climbing a substitution key (Jakobsen, 1995)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="A homophonic cipher gives common letters several symbols, so every symbol appears about equally often and letter counting fails. The Zodiac killer&#x27;s 340-symbol cipher of 1969 resisted for 51 years until David Oranchak, Sam Blake and Jarl Van Eycke solved it in December 2020 with AZdecrypt, a simulated annealing solver scoring candidate plaintexts against language statistics.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/substitution_solvers/images/thumb/sphx_glr_plot_02_zodiac_homophonic_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/substitution_solvers/plot_02_zodiac_homophonic`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Annealing a homophonic cipher (the Zodiac 340, 2020)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/substitution_solvers/plot_01_hill_climbing
+   /api/gallery/classical/substitution_solvers/plot_02_zodiac_homophonic
+

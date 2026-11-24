@@ -1,0 +1,82 @@
+
+:orphan:
+
+.. _sphx_glr_sg_execution_times:
+
+
+Computation times
+=================
+**00:07.410** total execution time for 16 files **from all galleries**:
+
+.. container::
+
+  .. raw:: html
+
+    <style scoped>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" class="init">
+    $(document).ready( function () {
+        $('table.sg-datatable').DataTable({order: [[1, 'desc']]});
+    } );
+    </script>
+
+  .. list-table::
+   :header-rows: 1
+   :class: table table-striped sg-datatable
+
+   * - Example
+     - Time
+     - Mem (MB)
+   * - :ref:`sphx_glr_api_gallery_classical_substitution_solvers_plot_02_zodiac_homophonic.py` (``../../examples/classical/substitution_solvers/plot_02_zodiac_homophonic.py``)
+     - 00:04.199
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_digraphic_plot_01_playfair.py` (``../../examples/classical/digraphic/plot_01_playfair.py``)
+     - 00:01.586
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_fractionation_plot_01_adfgvx.py` (``../../examples/classical/fractionation/plot_01_adfgvx.py``)
+     - 00:00.472
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_frequency_analysis_plot_01_al_kindi.py` (``../../examples/classical/frequency_analysis/plot_01_al_kindi.py``)
+     - 00:00.188
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_information_theory_plot_02_unicity_distance.py` (``../../examples/classical/information_theory/plot_02_unicity_distance.py``)
+     - 00:00.174
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_substitution_solvers_plot_01_hill_climbing.py` (``../../examples/classical/substitution_solvers/plot_01_hill_climbing.py``)
+     - 00:00.155
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_polyalphabetic_plot_01_alberti_disk.py` (``../../examples/classical/polyalphabetic/plot_01_alberti_disk.py``)
+     - 00:00.113
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_polyalphabetic_plot_02_vigenere.py` (``../../examples/classical/polyalphabetic/plot_02_vigenere.py``)
+     - 00:00.110
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_enigma_plot_01_rejewski.py` (``../../examples/classical/enigma/plot_01_rejewski.py``)
+     - 00:00.090
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_information_theory_plot_01_perfect_secrecy.py` (``../../examples/classical/information_theory/plot_01_perfect_secrecy.py``)
+     - 00:00.064
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_enigma_plot_02_bombe.py` (``../../examples/classical/enigma/plot_02_bombe.py``)
+     - 00:00.063
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_lorenz_plot_01_tutte.py` (``../../examples/classical/lorenz/plot_01_tutte.py``)
+     - 00:00.051
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_digraphic_plot_02_hill.py` (``../../examples/classical/digraphic/plot_02_hill.py``)
+     - 00:00.051
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_vigenere_cryptanalysis_plot_02_index_of_coincidence.py` (``../../examples/classical/vigenere_cryptanalysis/plot_02_index_of_coincidence.py``)
+     - 00:00.038
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_stream_plot_01_two_time_pad.py` (``../../examples/classical/stream/plot_01_two_time_pad.py``)
+     - 00:00.033
+     - 0.0
+   * - :ref:`sphx_glr_api_gallery_classical_vigenere_cryptanalysis_plot_01_kasiski.py` (``../../examples/classical/vigenere_cryptanalysis/plot_01_kasiski.py``)
+     - 00:00.021
+     - 0.0

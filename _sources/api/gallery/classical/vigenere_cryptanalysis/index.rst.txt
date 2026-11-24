@@ -1,0 +1,68 @@
+
+
+.. _sphx_glr_api_gallery_classical_vigenere_cryptanalysis:
+
+Breaking the Vigenere cipher
+----------------------------
+
+Kasiski's repeats and Friedman's index of coincidence.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Friedrich Kasiski noticed that when the same plaintext fragment meets the same part of a repeating keyword, it produces the same ciphertext fragment. The distances between repeats are therefore multiples of the keyword length, and their most common factor is the length itself.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/vigenere_cryptanalysis/images/thumb/sphx_glr_plot_01_kasiski_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/vigenere_cryptanalysis/plot_01_kasiski`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Repeated fragments give the key length (Kasiski, 1863)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="William Friedman measured how often two letters drawn from a text are equal. English gives about 0.066, random letters 1/26 \approx 0.038. Split a Vigenere ciphertext into m columns: when m is the key length each column is a shift cipher and its index jumps back to English. Each column then falls to frequency analysis.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/vigenere_cryptanalysis/images/thumb/sphx_glr_plot_02_index_of_coincidence_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/vigenere_cryptanalysis/plot_02_index_of_coincidence`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">The index of coincidence (Friedman, 1922)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/vigenere_cryptanalysis/plot_01_kasiski
+   /api/gallery/classical/vigenere_cryptanalysis/plot_02_index_of_coincidence
+

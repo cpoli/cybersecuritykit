@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Classical ciphers and their cryptanalysis: breakthroughs" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cpoli.github.io/cybersecuritykit/history/classical_breakthroughs.html" />
+<meta property="og:site_name" content="cybersecuritykit" />
+<meta property="og:description" content="cybersecuritykit.classical hub · History · Examples · API reference “The enemy knows the system being used.” – Claude Shannon, Communication Theory of Secrecy Systems, 1949 For most of its history ..." />
+<meta property="og:image" content="https://cpoli.github.io/cybersecuritykit/_static/images/cybersecuritykit_logo.png" />
+<meta property="og:image:alt" content="cybersecuritykit" />
+<meta name="description" content="cybersecuritykit.classical hub · History · Examples · API reference “The enemy knows the system being used.” – Claude Shannon, Communication Theory of Secrecy Systems, 1949 For most of its history ..." />
+
+    <title>Classical ciphers and their cryptanalysis: breakthroughs &#8212; cybersecuritykit</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=75c7c72ae941e8b558d8" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Vibur" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyterlite_sphinx.css?v=f676e775" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=865bd79b" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=75c7c72ae941e8b558d8"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8" />
+
+    <script src="../_static/documentation_options.js?v=38b66d78"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../_static/jupyterlite_sphinx.js?v=96e329c5"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'history/classical_breakthroughs';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script async="async" data-goatcounter="https://cpoli.goatcounter.com/count" src="https://gc.zgo.at/count.js"></script>
+    <link rel="canonical" href="https://cpoli.github.io/cybersecuritykit/history/classical_breakthroughs.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Block ciphers, modes and their attacks: breakthroughs" href="symmetric_breakthroughs.html" />
+    <link rel="prev" title="History" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation" aria-expanded="false" aria-controls="pst-primary-sidebar-modal">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cybersecuritykit_logo_transparent.png" class="logo__image only-light" alt="cybersecuritykit logo"/>
+    <img src="../_static/cybersecuritykit_logo_transparent.png" class="logo__image only-dark pst-js-only" alt="cybersecuritykit logo"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../subpackages/index.html">
+    Subpackages
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../exercises/index.html">
+    Exercises
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../scope.html">
+    Scope and model boundaries
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cpoli/cybersecuritykit" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://cpoli.github.io/" title="Charles Poli" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-user fa-lg" aria-hidden="true"></i><span class="visually-hidden">Charles Poli</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page" aria-expanded="false" aria-controls="pst-secondary-sidebar-modal">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal" tabindex="-1"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../subpackages/index.html">
+    Subpackages
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    History
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../exercises/index.html">
+    Exercises
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scope.html">
+    Scope and model boundaries
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/cpoli/cybersecuritykit" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://cpoli.github.io/" title="Charles Poli" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-user fa-lg" aria-hidden="true"></i><span class="visually-hidden">Charles Poli</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Classical ciphers and their cryptanalysis: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="symmetric_breakthroughs.html">Block ciphers, modes and their attacks: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pqc_breakthroughs.html">Post-quantum cryptography: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocols_breakthroughs.html">Security protocols: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth_breakthroughs.html">Authentication: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="access_breakthroughs.html">Access control: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software_breakthroughs.html">Software security: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sidechannel_breakthroughs.html">Side channels: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="malware_breakthroughs.html">Malware as epidemics: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="network_breakthroughs.html">Network security: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detection_breakthroughs.html">Intrusion detection: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="privacy_breakthroughs.html">Data privacy: breakthroughs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="risk_breakthroughs.html">Risk and economics: breakthroughs</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">History</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Classical ciphers and their cryptanalysis: breakthroughs</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="classical-ciphers-and-their-cryptanalysis-breakthroughs">
+<h1>Classical ciphers and their cryptanalysis: breakthroughs<a class="headerlink" href="#classical-ciphers-and-their-cryptanalysis-breakthroughs" title="Link to this heading">#</a></h1>
+<div class="subpkg-nav docutils container">
+<p><a class="reference internal" href="../_generated/subpackages/classical.html"><span class="doc">cybersecuritykit.classical hub</span></a> · <a class="reference internal" href="#"><span class="doc">History</span></a> · <a class="reference internal" href="../api/gallery/classical/index.html"><span class="doc">Examples</span></a> · <a class="reference internal" href="../api/classical.html"><span class="doc">API reference</span></a></p>
+</div>
+<blockquote class="epigraph">
+<div><p>“The enemy knows the system being used.”
+– Claude Shannon, <em>Communication Theory of Secrecy Systems</em>, 1949</p>
+</div></blockquote>
+<p>For most of its history cryptography was a contest between clerks who
+scrambled letters by hand and analysts who unscrambled them without the key.
+Each cipher on this page was invented to defeat the previous attack, and each
+fell to a new idea: counting letters, finding the key length, exploiting a
+machine’s structure, or measuring how much the ciphertext gives away.</p>
+<p>This chronology traces the ideas behind <a class="reference internal" href="../api/classical.html#module-cybersecuritykit.classical" title="cybersecuritykit.classical"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cybersecuritykit.classical</span></code></a>,
+from al-Kindi’s frequency analysis to the 2020 solution of the Zodiac 340.
+Every cipher acts on the 26 letters of <code class="docutils literal notranslate"><span class="pre">cybersecuritykit.constants.ALPHABET</span></code>,
+written as numbers <span class="math notranslate nohighlight">\(0, \dots, 25\)</span>, and <span class="math notranslate nohighlight">\(a \bmod 26\)</span> is
+<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">26</span></code>. Each entry states the problem, gives the mechanism and its key
+equation, and links the code and a gallery example that reproduce it. The
+texts and keys are small and the searches bounded, so every example runs in
+seconds. Topics shared with blockchainkit, the one-time pad and perfect
+secrecy, are taught there in full and only summarized here.</p>
+<nav class="contents local" id="timeline">
+<p class="topic-title">Timeline</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#c-850-al-kindi-s-frequency-analysis" id="id1">c. 850 – al-Kindi’s frequency analysis</a></p></li>
+<li><p><a class="reference internal" href="#c-1467-alberti-s-cipher-disk" id="id2">c. 1467 – Alberti’s cipher disk</a></p></li>
+<li><p><a class="reference internal" href="#bellaso-s-keyword-cipher" id="id3">1553 – Bellaso’s keyword cipher</a></p></li>
+<li><p><a class="reference internal" href="#wheatstone-s-playfair-cipher" id="id4">1854 – Wheatstone’s Playfair cipher</a></p></li>
+<li><p><a class="reference internal" href="#kasiski-s-examination" id="id5">1863 – Kasiski’s examination</a></p></li>
+<li><p><a class="reference internal" href="#vernam-s-cipher-and-the-two-time-pad" id="id6">1917 – Vernam’s cipher and the two-time pad</a></p></li>
+<li><p><a class="reference internal" href="#adfgvx-and-painvin-s-break" id="id7">1918 – ADFGVX and Painvin’s break</a></p></li>
+<li><p><a class="reference internal" href="#friedman-s-index-of-coincidence" id="id8">1922 – Friedman’s index of coincidence</a></p></li>
+<li><p><a class="reference internal" href="#hill-s-matrix-cipher-and-its-known-plaintext-break" id="id9">1929 – Hill’s matrix cipher and its known-plaintext break</a></p></li>
+<li><p><a class="reference internal" href="#rejewski-s-characteristics-of-enigma" id="id10">1932 – Rejewski’s characteristics of Enigma</a></p></li>
+<li><p><a class="reference internal" href="#turing-s-bombe" id="id11">1940 – Turing’s bombe</a></p></li>
+<li><p><a class="reference internal" href="#tutte-s-break-of-the-lorenz-cipher" id="id12">1942 – Tutte’s break of the Lorenz cipher</a></p></li>
+<li><p><a class="reference internal" href="#shannon-s-perfect-secrecy" id="id13">1949 – Shannon’s perfect secrecy</a></p></li>
+<li><p><a class="reference internal" href="#shannon-s-unicity-distance" id="id14">1949 – Shannon’s unicity distance</a></p></li>
+<li><p><a class="reference internal" href="#jakobsen-s-hill-climbing" id="id15">1995 – Jakobsen’s hill climbing</a></p></li>
+<li><p><a class="reference internal" href="#the-zodiac-340-solved" id="id16">2020 – The Zodiac 340 solved</a></p></li>
+</ul>
+</nav>
+<section id="c-850-al-kindi-s-frequency-analysis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">c. 850 – al-Kindi’s frequency analysis</a><a class="headerlink" href="#c-850-al-kindi-s-frequency-analysis" title="Link to this heading">#</a></h2>
+<p>A <em>substitution cipher</em> replaces each plaintext letter by a fixed ciphertext
+letter. The simplest is the shift (Caesar) cipher, which moves every letter
+<span class="math notranslate nohighlight">\(k\)</span> places along the alphabet. The Baghdad philosopher al-Kindi, in his
+<em>Manuscript on Deciphering Cryptographic Messages</em>, observed that a
+substitution leaves the letter counts of the language intact: the most common
+ciphertext letter stands for the most common plaintext letter. He told the
+reader to count the letters of a long ordinary text, count those of the
+ciphertext, and match them.</p>
+<p>For a shift cipher there are only 26 keys, so the modern form tries each
+shift <span class="math notranslate nohighlight">\(k\)</span> and keeps the decryption whose letter counts <span class="math notranslate nohighlight">\(O_i\)</span> are
+closest to the English expectations <span class="math notranslate nohighlight">\(E_i\)</span>, measured by Pearson’s
+statistic:</p>
+<div class="math notranslate nohighlight">
+\[c_i = (p_i + k) \bmod 26, \qquad
+\chi^2(k) = \sum_{i=0}^{25} \frac{(O_i - E_i)^2}{E_i}.\]</div>
+<p>The correct shift gives a <span class="math notranslate nohighlight">\(\chi^2\)</span> many times smaller than any other.
+Frequency analysis made every monoalphabetic cipher insecure, however mixed
+its alphabet, and it remained the analyst’s first tool for a thousand years.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.frequency.break_shift_cipher" title="cybersecuritykit.classical.systems.frequency.break_shift_cipher"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.frequency.break_shift_cipher()</span></code></a>
+scores all 26 shifts with
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.frequency.chi_squared" title="cybersecuritykit.classical.systems.frequency.chi_squared"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.frequency.chi_squared()</span></code></a>; the English
+letter table is Lewand’s, where al-Kindi matched ranks by hand.</p>
+<p><em>References:</em> I. A. Al-Kadi, “Origins of cryptology: the Arab contributions”,
+<em>Cryptologia</em> 16(2), 97–126 (1992). <a class="reference external" href="https://doi.org/10.1080/0161-119291866801">DOI</a>.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="al-Kindi observed that in any long text of a language some letters are common and others rare, and that a substitution cipher moves those counts to other letters without changing them. Counting the ciphertext and matching the counts against the language reveals the key."><img alt="" src="../_images/sphx_glr_plot_01_al_kindi_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/frequency_analysis/plot_01_al_kindi.html"><span class="doc">Frequency analysis breaks the shift cipher (al-Kindi, c. 850)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Frequency analysis breaks the shift cipher (al-Kindi, c. 850)</div>
+</div></div></section>
+<section id="c-1467-alberti-s-cipher-disk">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">c. 1467 – Alberti’s cipher disk</a><a class="headerlink" href="#c-1467-alberti-s-cipher-disk" title="Link to this heading">#</a></h2>
+<p>Frequency analysis works because one plaintext letter always becomes the same
+ciphertext letter. Leon Battista Alberti, the Florentine architect, broke that
+link in <em>De componendis cifris</em>. His disk had a fixed outer ring with the
+plain alphabet and a turning inner ring with a mixed alphabet. After every few
+letters the clerk turned the inner ring one place, so the substitution itself
+changed through the message. This was the first <em>polyalphabetic</em> cipher.</p>
+<p>With a mixed alphabet <span class="math notranslate nohighlight">\(\sigma\)</span> on the inner ring, a starting offset
+<span class="math notranslate nohighlight">\(s\)</span> and a turn every <span class="math notranslate nohighlight">\(d\)</span> letters, the <span class="math notranslate nohighlight">\(j\)</span>-th letter is
+enciphered as</p>
+<div class="math notranslate nohighlight">
+\[c_j = \sigma\bigl((p_j + s + \lfloor j / d \rfloor) \bmod 26\bigr).\]</div>
+<p>A common letter like E is now spread over many ciphertext letters, and the
+single-letter counts flatten out.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.alberti.alberti_encrypt" title="cybersecuritykit.classical.systems.alberti.alberti_encrypt"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.alberti.alberti_encrypt()</span></code></a>
+turns the disk one step every <code class="docutils literal notranslate"><span class="pre">period</span></code> letters; Alberti’s own disk had 20
+Latin letters and signalled turns with capital letters inside the text.</p>
+<p><em>References:</em> L. B. Alberti, <em>De componendis cifris</em> (Rome, c. 1467). D. Kahn,
+<em>The Codebreakers</em> (New York: Macmillan, 1967), ch. 4.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Leon Battista Alberti mounted a mixed alphabet on a disk inside a fixed plain alphabet. Turning the disk every few letters changes the substitution, so the same plaintext letter is written in different ways. It is the first polyalphabetic cipher."><img alt="" src="../_images/sphx_glr_plot_01_alberti_disk_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/polyalphabetic/plot_01_alberti_disk.html"><span class="doc">The cipher disk turns the alphabet (Alberti, c. 1467)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">The cipher disk turns the alphabet (Alberti, c. 1467)</div>
+</div></div></section>
+<section id="bellaso-s-keyword-cipher">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">1553 – Bellaso’s keyword cipher</a><a class="headerlink" href="#bellaso-s-keyword-cipher" title="Link to this heading">#</a></h2>
+<p>Alberti’s disk changes alphabet on a fixed schedule. Giovan Battista Bellaso
+let a memorable keyword choose the alphabets instead: each keyword letter
+names a shift, and the keyword is repeated along the message. The scheme was
+later misattributed to Blaise de Vigenère and carries his name. For three
+centuries it was called <em>le chiffre indéchiffrable</em>.</p>
+<p>With a keyword <span class="math notranslate nohighlight">\(k_0 k_1 \dots k_{n-1}\)</span> of length <span class="math notranslate nohighlight">\(n\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[c_j = (p_j + k_{j \bmod n}) \bmod 26, \qquad
+p_j = (c_j - k_{j \bmod n}) \bmod 26.\]</div>
+<p>Every letter of the plaintext is shifted by one of <span class="math notranslate nohighlight">\(n\)</span> amounts in turn,
+so the ciphertext is <span class="math notranslate nohighlight">\(n\)</span> interleaved shift ciphers. The cipher is strong
+only as long as the analyst cannot find <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.vigenere.vigenere_encrypt" title="cybersecuritykit.classical.systems.vigenere.vigenere_encrypt"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.vigenere.vigenere_encrypt()</span></code></a>
+repeats the keyword over the letters only; Bellaso’s tables used a 22-letter
+alphabet and reciprocal pairs of letters.</p>
+<p><em>References:</em> G. B. Bellaso, <em>La cifra del Sig. Giovan Battista Bellaso</em>
+(Venice, 1553). D. Kahn, <em>The Codebreakers</em> (1967), ch. 4.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Giovan Battista Bellaso replaced Alberti&#x27;s disk with a short keyword that anyone could remember: each keyword letter selects a shifted alphabet, and the keyword repeats along the message. The cipher was later credited to Blaise de Vigenere and called le chiffre indechiffrable."><img alt="" src="../_images/sphx_glr_plot_02_vigenere_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/polyalphabetic/plot_02_vigenere.html"><span class="doc">A keyword picks the alphabets (Bellaso, 1553)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">A keyword picks the alphabets (Bellaso, 1553)</div>
+</div></div></section>
+<section id="wheatstone-s-playfair-cipher">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">1854 – Wheatstone’s Playfair cipher</a><a class="headerlink" href="#wheatstone-s-playfair-cipher" title="Link to this heading">#</a></h2>
+<p>Charles Wheatstone looked for a cipher a soldier could use by hand that hid
+single-letter frequencies. His answer enciphers <em>pairs</em> of letters. The key
+fills a 5 × 5 square (I and J share a cell), the plaintext is split into
+digraphs with an X between doubled letters, and each pair is replaced by
+three rules: letters in the same row move one cell right, letters in the same
+column move one cell down, and otherwise each takes the letter in its own row
+and the other’s column. Lyon Playfair promoted it to the British government,
+and it served in the Boer War and the First World War.</p>
+<p>For a pair at cells <span class="math notranslate nohighlight">\((r_1, s_1)\)</span> and <span class="math notranslate nohighlight">\((r_2, s_2)\)</span> with
+<span class="math notranslate nohighlight">\(r_1 \ne r_2\)</span> and <span class="math notranslate nohighlight">\(s_1 \ne s_2\)</span>, the rectangle rule is</p>
+<div class="math notranslate nohighlight">
+\[(r_1, s_1), (r_2, s_2) \;\mapsto\; (r_1, s_2), (r_2, s_1).\]</div>
+<p>There are <span class="math notranslate nohighlight">\(25 \times 24 = 600\)</span> digraphs rather than 26 letters, so the
+statistics are far flatter. They are not flat enough: a pair AB and its
+reverse BA always encipher to reversed pairs, and common English digraphs
+still show through in long messages.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.playfair.playfair_encrypt" title="cybersecuritykit.classical.systems.playfair.playfair_encrypt"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.playfair.playfair_encrypt()</span></code></a>
+builds the square with
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.playfair.playfair_square" title="cybersecuritykit.classical.systems.playfair.playfair_square"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.playfair.playfair_square()</span></code></a> and pads
+an odd message with X.
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.playfair.break_playfair" title="cybersecuritykit.classical.systems.playfair.break_playfair"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.playfair.break_playfair()</span></code></a> recovers
+the square by simulated annealing on English letter pairs, after Cowan
+(2008); the historical attacks worked by hand from probable words.</p>
+<p><em>References:</em> D. Kahn, <em>The Codebreakers</em> (1967), ch. 6.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Charles Wheatstone&#x27;s cipher, promoted by Lord Playfair, encrypts two letters at a time with a 5 by 5 keyed square. Single-letter counts no longer map one to one onto cipher letters; an attacker has to count the 600 or so digraphs instead of 26 letters, which needs far more ciphertext."><img alt="" src="../_images/sphx_glr_plot_01_playfair_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/digraphic/plot_01_playfair.html"><span class="doc">Encrypting letter pairs (Playfair, 1854)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Encrypting letter pairs (Playfair, 1854)</div>
+</div></div></section>
+<section id="kasiski-s-examination">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">1863 – Kasiski’s examination</a><a class="headerlink" href="#kasiski-s-examination" title="Link to this heading">#</a></h2>
+<p>The keyword cipher falls once its period is known, because each column of
+letters taken every <span class="math notranslate nohighlight">\(n\)</span> places is a shift cipher. Friedrich Kasiski, a
+retired Prussian infantry officer, published the way to find <span class="math notranslate nohighlight">\(n\)</span>.
+Charles Babbage had found the same attack earlier but never published it.</p>
+<p>When a fragment of plaintext such as THE recurs at a distance that is a
+multiple of the keyword length, the same keyword letters lie over it, and the
+ciphertext repeats too. Collect the distances <span class="math notranslate nohighlight">\(d_1, d_2, \dots\)</span> between
+repeated ciphertext trigrams; the key length divides most of them:</p>
+<div class="math notranslate nohighlight">
+\[n \mid d_i \quad\text{for most } i, \qquad
+n \approx \text{the factor that divides the most } d_i.\]</div>
+<p>Chance repeats add stray factors, so the examination counts how many
+distances each candidate factor divides and keeps the largest well-supported
+one.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.kasiski.kasiski_examination" title="cybersecuritykit.classical.systems.kasiski.kasiski_examination"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.kasiski.kasiski_examination()</span></code></a>
+counts factors of the gaps between repeated fragments up to <code class="docutils literal notranslate"><span class="pre">max_period</span></code>.</p>
+<p><em>References:</em> F. W. Kasiski, <em>Die Geheimschriften und die Dechiffrir-Kunst</em>
+(Berlin: E. S. Mittler und Sohn, 1863).</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Friedrich Kasiski noticed that when the same plaintext fragment meets the same part of a repeating keyword, it produces the same ciphertext fragment. The distances between repeats are therefore multiples of the keyword length, and their most common factor is the length itself."><img alt="" src="../_images/sphx_glr_plot_01_kasiski_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/vigenere_cryptanalysis/plot_01_kasiski.html"><span class="doc">Repeated fragments give the key length (Kasiski, 1863)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Repeated fragments give the key length (Kasiski, 1863)</div>
+</div></div></section>
+<section id="vernam-s-cipher-and-the-two-time-pad">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">1917 – Vernam’s cipher and the two-time pad</a><a class="headerlink" href="#vernam-s-cipher-and-the-two-time-pad" title="Link to this heading">#</a></h2>
+<p>Gilbert Vernam of AT&amp;T built a teleprinter that combined each 5-bit character
+of a message with a character from a punched key tape, using exclusive or.
+Joseph Mauborgne added the rule that the tape must be random and used only
+once, giving the one-time pad. The pad itself, and Shannon’s proof that it
+is unbreakable, are taught in <a class="reference external" href="https://cpoli.github.io/blockchainkit/history/crypto_breakthroughs.html#the-one-time-pad-and-perfect-secrecy">blockchainkit’s one-time pad entry</a>.</p>
+<p>This entry is about the failure. If the same key <span class="math notranslate nohighlight">\(k\)</span> encrypts two
+messages, it cancels:</p>
+<div class="math notranslate nohighlight">
+\[c_1 \oplus c_2 = (m_1 \oplus k) \oplus (m_2 \oplus k) = m_1 \oplus m_2.\]</div>
+<p>The analyst now holds the exclusive or of two plaintexts. <em>Crib dragging</em>
+slides a guessed word, such as “ THE “, along <span class="math notranslate nohighlight">\(m_1 \oplus m_2\)</span>; where the
+guess is right in one message, the result is readable text from the other.
+Soviet reuse of pad pages let the American Venona project read thousands of
+messages from 1946.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.vernam.two_time_pad" title="cybersecuritykit.classical.systems.vernam.two_time_pad"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.vernam.two_time_pad()</span></code></a>
+returns <span class="math notranslate nohighlight">\(c_1 \oplus c_2\)</span> and
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.vernam.crib_drag" title="cybersecuritykit.classical.systems.vernam.crib_drag"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.vernam.crib_drag()</span></code></a> keeps the offsets
+where the crib yields printable letters; it works on bytes rather than
+Baudot code.</p>
+<p><em>References:</em> G. S. Vernam, “Cipher printing telegraph systems for secret wire
+and radio telegraphic communications”, <em>Journal of the American Institute of
+Electrical Engineers</em> 45, 109–115 (1926).</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Gilbert Vernam&#x27;s teleprinter combined each character of a message with a character of a key tape, c_i = m_i \oplus k_i. With a random tape used once this is the one-time pad, taught in blockchainkit. Here the tape is used twice: XORing the two ciphertexts cancels the key and leaves m_1 \oplus m_2, which a guessed word (a crib) unpicks."><img alt="" src="../_images/sphx_glr_plot_01_two_time_pad_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/stream/plot_01_two_time_pad.html"><span class="doc">Vernam’s cipher and the two-time pad (Vernam, 1917)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Vernam's cipher and the two-time pad (Vernam, 1917)</div>
+</div></div></section>
+<section id="adfgvx-and-painvin-s-break">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">1918 – ADFGVX and Painvin’s break</a><a class="headerlink" href="#adfgvx-and-painvin-s-break" title="Link to this heading">#</a></h2>
+<p>On 5 March 1918, before its spring offensive, the German army introduced
+ADFGX, a field cipher that combined two old ideas; on 1 June it added a sixth
+coordinate letter, V, to make ADFGVX. A 6 × 6 Polybius square replaced each
+letter or digit with two coordinates from the letters A, D, F, G, V, X (chosen
+because they are distinct in Morse). The coordinate stream was then written in rows
+under a keyword and read off column by column in the keyword’s alphabetical
+order. Splitting a letter into two halves is <em>fractionation</em>; separating the
+halves by transposition destroys both the letter counts and the digraph
+counts.</p>
+<p>With square coordinates <span class="math notranslate nohighlight">\((r, s)\)</span> and a column permutation <span class="math notranslate nohighlight">\(\pi\)</span>
+from the keyword,</p>
+<div class="math notranslate nohighlight">
+\[p \mapsto (r, s), \qquad
+c = \text{read columns of } [r_1 s_1 r_2 s_2 \dots] \text{ in order } \pi.\]</div>
+<p>Georges Painvin of the French Bureau du Chiffre worked out the system and
+broke a key on 2 June 1918 from two messages with matching openings. The
+messages he read warned of the attack on Compiègne, which the French were
+ready to meet.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.adfgvx.adfgvx_encrypt" title="cybersecuritykit.classical.systems.adfgvx.adfgvx_encrypt"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.adfgvx.adfgvx_encrypt()</span></code></a>
+reads the columns in the keyword’s alphabetical order, ties broken left to
+right; the square and keyword are fixed by the caller, where the German
+system changed both daily.
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.adfgvx.break_adfgvx" title="cybersecuritykit.classical.systems.adfgvx.break_adfgvx"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.adfgvx.break_adfgvx()</span></code></a> tries every
+column order of a known keyword length, keeps the one whose coordinate pairs
+coincide most, and solves the remaining substitution by hill climbing;
+Painvin instead aligned several same-key messages by hand.</p>
+<p><em>References:</em> D. Kahn, <em>The Codebreakers</em> (1967), ch. 9.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="The German army&#x27;s ADFGVX cipher split each character into two coordinates in a 6 by 6 square, written with the letters A, D, F, G, V and X, then transposed the coordinates by a keyword. A single character&#x27;s two halves end up far apart. Georges Painvin broke it in June 1918 from messages with similar beginnings."><img alt="" src="../_images/sphx_glr_plot_01_adfgvx_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/fractionation/plot_01_adfgvx.html"><span class="doc">Fractionation and transposition (ADFGVX, 1918)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Fractionation and transposition (ADFGVX, 1918)</div>
+</div></div></section>
+<section id="friedman-s-index-of-coincidence">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">1922 – Friedman’s index of coincidence</a><a class="headerlink" href="#friedman-s-index-of-coincidence" title="Link to this heading">#</a></h2>
+<p>Kasiski’s method needs repeats, and short messages may have none. William
+Friedman, at the Riverbank Laboratories, found a statistic that measures how
+English-like a set of letters is without knowing the key. Pick two letters at
+random from a text; the <em>index of coincidence</em> is the probability that they
+agree:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{IC} = \sum_{i=0}^{25} \frac{n_i (n_i - 1)}{N (N - 1)}, \qquad
+\mathrm{IC}_\text{English} \approx 0.066, \quad
+\mathrm{IC}_\text{random} = 1/26 \approx 0.038.\]</div>
+<p>A shift cipher does not change the IC, because it only relabels the counts.
+Split a keyword ciphertext into <span class="math notranslate nohighlight">\(n\)</span> columns: at the true period every
+column is a shift cipher and has the English IC, and at a wrong period the
+columns mix alphabets and fall towards random. Once the period is found, each
+column is broken with frequency analysis. Friedman’s pamphlet turned
+cryptanalysis into applied statistics.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.coincidence.coincidence_profile" title="cybersecuritykit.classical.systems.coincidence.coincidence_profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.coincidence.coincidence_profile()</span></code></a>
+averages the IC of the columns for each trial period and
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.coincidence.break_vigenere" title="cybersecuritykit.classical.systems.coincidence.break_vigenere"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.coincidence.break_vigenere()</span></code></a> solves
+the columns by <span class="math notranslate nohighlight">\(\chi^2\)</span>.</p>
+<p><em>References:</em> W. F. Friedman, <em>The Index of Coincidence and Its Applications
+in Cryptography</em>, Riverbank Publication No. 22 (Geneva, IL: Riverbank
+Laboratories, 1922).</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="William Friedman measured how often two letters drawn from a text are equal. English gives about 0.066, random letters 1/26 \approx 0.038. Split a Vigenere ciphertext into m columns: when m is the key length each column is a shift cipher and its index jumps back to English. Each column then falls to frequency analysis."><img alt="" src="../_images/sphx_glr_plot_02_index_of_coincidence_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/vigenere_cryptanalysis/plot_02_index_of_coincidence.html"><span class="doc">The index of coincidence (Friedman, 1922)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">The index of coincidence (Friedman, 1922)</div>
+</div></div></section>
+<section id="hill-s-matrix-cipher-and-its-known-plaintext-break">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">1929 – Hill’s matrix cipher and its known-plaintext break</a><a class="headerlink" href="#hill-s-matrix-cipher-and-its-known-plaintext-break" title="Link to this heading">#</a></h2>
+<p>Lester Hill, a mathematician at Hunter College, made encryption an algebraic
+operation. A block of <span class="math notranslate nohighlight">\(n\)</span> letters becomes a column vector, and the key
+is an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix <span class="math notranslate nohighlight">\(K\)</span> that is invertible modulo 26 (its
+determinant shares no factor with 26):</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{c} = K \mathbf{p} \bmod 26, \qquad
+\mathbf{p} = K^{-1} \mathbf{c} \bmod 26.\]</div>
+<p>Every ciphertext letter depends on every letter of its block, so frequency
+analysis of single letters fails. Linearity is also the weakness. Given
+<span class="math notranslate nohighlight">\(n\)</span> plaintext blocks forming an invertible matrix <span class="math notranslate nohighlight">\(P\)</span> and their
+ciphertexts <span class="math notranslate nohighlight">\(C\)</span>, the analyst solves <span class="math notranslate nohighlight">\(K = C P^{-1} \bmod 26\)</span>
+directly. A known-plaintext attack needs only <span class="math notranslate nohighlight">\(n^2\)</span> letters.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.hill.hill_known_plaintext" title="cybersecuritykit.classical.systems.hill.hill_known_plaintext"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.hill.hill_known_plaintext()</span></code></a>
+picks the first invertible set of complete blocks and solves for the key;
+Hill also patented a mechanical device for 6 × 6 keys, which is not modelled.</p>
+<p><em>References:</em> L. S. Hill, “Cryptography in an algebraic alphabet”, <em>The
+American Mathematical Monthly</em> 36(6), 306–312 (1929).</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Lester Hill encrypted blocks of n letters as vectors, c = K p \bmod 26, the first cipher built from linear algebra. The linearity is also its weakness: n blocks of known plaintext with an invertible matrix give the key as K = C P^{-1} \bmod 26."><img alt="" src="../_images/sphx_glr_plot_02_hill_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/digraphic/plot_02_hill.html"><span class="doc">Matrix encryption and its known-plaintext break (Hill, 1929)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Matrix encryption and its known-plaintext break (Hill, 1929)</div>
+</div></div></section>
+<section id="rejewski-s-characteristics-of-enigma">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">1932 – Rejewski’s characteristics of Enigma</a><a class="headerlink" href="#rejewski-s-characteristics-of-enigma" title="Link to this heading">#</a></h2>
+<p>The Enigma I machine passed each letter through a plugboard, three rotors, a
+reflector and back, and stepped the rotors at every key press, so its
+substitution changed with every letter and its key space was enormous. Marian
+Rejewski of the Polish Cipher Bureau attacked it with permutation theory. In
+1932 German operators enciphered each message key twice at the start of a
+message. Writing <span class="math notranslate nohighlight">\(A, \dots, F\)</span> for the machine’s permutations at the
+first six positions, the first and fourth letters of every message encode the
+same unknown, so the products</p>
+<div class="math notranslate nohighlight">
+\[AD, \quad BE, \quad CF\]</div>
+<p>are known from a day’s traffic. Rejewski proved that the plugboard
+<span class="math notranslate nohighlight">\(S\)</span> only conjugates these products, <span class="math notranslate nohighlight">\(AD = S\,(\cdot)\,S^{-1}\)</span>, and
+conjugation keeps the lengths of the cycles. The cycle lengths, the
+<em>characteristic</em>, depend on the rotor order and start alone. The Poles built a
+catalogue of characteristics for every rotor start and looked up the day’s
+setting.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.enigma.rejewski_characteristic" title="cybersecuritykit.classical.systems.enigma.rejewski_characteristic"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.enigma.rejewski_characteristic()</span></code></a>
+returns the cycle lengths of the three products for a rotor start;
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.enigma.enigma_encrypt" title="cybersecuritykit.classical.systems.enigma.enigma_encrypt"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.enigma.enigma_encrypt()</span></code></a> uses the
+Enigma I wirings with double stepping but leaves all ring settings at A.</p>
+<p><em>References:</em> M. Rejewski, “An application of the theory of permutations in
+breaking the Enigma cipher”, <em>Applicationes Mathematicae</em> 16(4), 543–559
+(1980). <a class="reference external" href="https://doi.org/10.4064/am-16-4-543-559">DOI</a>.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Enigma operators sent their three-letter message key twice at the start of each message. Marian Rejewski saw that the first and fourth letters, second and fifth, third and sixth, define permutations AD, BE and CF, and that the lengths of their cycles do not depend on the plugboard at all: conjugating by a permutation preserves cycle structure. A catalogue of cycle lengths for each rotor start then narrows the key."><img alt="" src="../_images/sphx_glr_plot_01_rejewski_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/enigma/plot_01_rejewski.html"><span class="doc">Characteristics that ignore the plugboard (Rejewski, 1932)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Characteristics that ignore the plugboard (Rejewski, 1932)</div>
+</div></div></section>
+<section id="turing-s-bombe">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">1940 – Turing’s bombe</a><a class="headerlink" href="#turing-s-bombe" title="Link to this heading">#</a></h2>
+<p>In May 1940 the Germans stopped doubling the message key, and Rejewski’s
+characteristics vanished. Alan Turing at Bletchley Park replaced them with
+<em>cribs</em>: guessed plaintext such as WETTERVORHERSAGE (weather forecast) in a
+routine report. Because the reflector makes Enigma reciprocal, no letter ever
+enciphers to itself, so a crib can only sit at offsets where no letter of it
+matches the ciphertext under it.</p>
+<p>The crib’s letter pairs form a <em>menu</em>: a graph whose edges join plaintext and
+ciphertext letters at each position. A loop in the menu is a strong test. If
+the machine at positions <span class="math notranslate nohighlight">\(i_1, \dots, i_k\)</span> sends
+<span class="math notranslate nohighlight">\(a_1 \to a_2 \to \dots \to a_1\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[E_{i_k} \cdots E_{i_2} E_{i_1}(a_1) = a_1,\]</div>
+<p>which a wrong rotor start almost never satisfies. The bombe, first installed
+in March 1940 and improved with Welchman’s diagonal board, ran through the
+17,576 rotor starts of each rotor order at machine speed and stopped only on
+starts consistent with the menu.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.bombe.bombe_search" title="cybersecuritykit.classical.systems.bombe.bombe_search"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.bombe.bombe_search()</span></code></a>
+tests every rotor start against the crib for one rotor order;
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.bombe.crib_menu" title="cybersecuritykit.classical.systems.bombe.crib_menu"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.bombe.crib_menu()</span></code></a> builds the menu and
+its loops. There is no plugboard in the search, which the real bombe had to
+deduce through its electrical loops.</p>
+<p><em>References:</em> A. M. Turing, <em>Treatise on the Enigma</em> (“Prof’s Book”, 1940),
+National Archives HW 25/3. D. Kahn, <em>Seizing the Enigma</em> (Boston: Houghton
+Mifflin, 1991).</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Bletchley Park often guessed a word of plaintext, a crib, such as WETTERVORHERSAGE (weather forecast). Because Enigma never encrypts a letter to itself, a crib can only sit where no letter meets its own image. Alan Turing&#x27;s bombe then tested every rotor start against the crib, using loops in the crib&#x27;s menu to reject wrong settings quickly."><img alt="" src="../_images/sphx_glr_plot_02_bombe_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/enigma/plot_02_bombe.html"><span class="doc">Searching rotor starts from a crib (Turing’s bombe, 1940)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Searching rotor starts from a crib (Turing's bombe, 1940)</div>
+</div></div></section>
+<section id="tutte-s-break-of-the-lorenz-cipher">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">1942 – Tutte’s break of the Lorenz cipher</a><a class="headerlink" href="#tutte-s-break-of-the-lorenz-cipher" title="Link to this heading">#</a></h2>
+<p>German high command sent teleprinter traffic through the Lorenz SZ40, called
+Tunny at Bletchley. It added two key streams to each 5-bit character: one
+from five regularly stepping <em>chi</em> wheels and one from five <em>psi</em> wheels that
+moved only when a motor wheel allowed. Nobody at Bletchley had seen the
+machine. In 1942 William Tutte, a chemistry graduate, reconstructed it from a
+single 4,000-character key stream that John Tiltman had recovered from a
+repeated message.</p>
+<p>Tutte wrote the first impulse of the key in rows of a trial width and
+looked for repeats down the columns. Rows of 25 showed a pattern pointing to a
+period of 574, which is <span class="math notranslate nohighlight">\(14 \times 41\)</span>, and rows of 41 showed it
+clearly. The statistical methods that followed later in 1942 used the <em>delta</em>
+of the stream, each bit added to the next. The psi wheels stand still for
+long runs, so their delta is mostly zero, and the delta of the key mostly
+equals the delta of the chi wheel. In rows of trial width <span class="math notranslate nohighlight">\(w\)</span>, the
+delta bits in each column agree more often than chance when <span class="math notranslate nohighlight">\(w\)</span> is a
+multiple of the chi wheel’s period:</p>
+<div class="math notranslate nohighlight">
+\[\Delta k_j = k_j \oplus k_{j+1}, \qquad
+\Pr[\Delta k_j = \Delta k_{j+w}] &gt; \tfrac12
+\text{ when } w \text{ is a multiple of the period}.\]</div>
+<p>From the period of 41 for the first wheel Tutte worked out the whole
+logical structure of the machine, which led to the Colossus computers.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.lorenz.tutte_period_test" title="cybersecuritykit.classical.systems.lorenz.tutte_period_test"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.lorenz.tutte_period_test()</span></code></a>
+scores each trial width by column agreement of the delta stream;
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.lorenz.lorenz_keystream" title="cybersecuritykit.classical.systems.lorenz.lorenz_keystream"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.lorenz.lorenz_keystream()</span></code></a> uses the
+real wheel sizes but a single motor wheel and seeded random wheel patterns.</p>
+<p><em>References:</em> W. T. Tutte, “Fish and I” (lecture, University of Waterloo,
+1998). J. Good, D. Michie and G. Timms, <em>General Report on Tunny</em> (1945),
+National Archives HW 25/4.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="The Lorenz SZ40 added a keystream built from twelve pinwheels of coprime lengths to teleprinter traffic. Bill Tutte, given a keystream recovered from a depth, wrote out one impulse in rows and noticed repeats at a period of 41: the first chi wheel. Taking differences, \Delta x_i = x_i \oplus x_{i+1}, makes the irregular psi wheels mostly vanish, so the chi period shows through."><img alt="" src="../_images/sphx_glr_plot_01_tutte_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/lorenz/plot_01_tutte.html"><span class="doc">Recovering a Lorenz wheel from statistics (Tutte, 1942)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Recovering a Lorenz wheel from statistics (Tutte, 1942)</div>
+</div></div></section>
+<section id="shannon-s-perfect-secrecy">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">1949 – Shannon’s perfect secrecy</a><a class="headerlink" href="#shannon-s-perfect-secrecy" title="Link to this heading">#</a></h2>
+<p>Claude Shannon’s wartime report, published in 1949, asked what it means for a
+cipher to be unbreakable. He modelled the analyst as someone with a prior
+distribution over messages who updates it on seeing the ciphertext. A cipher
+has <em>perfect secrecy</em> when the posterior equals the prior:</p>
+<div class="math notranslate nohighlight">
+\[\Pr[M = m \mid C = c] = \Pr[M = m] \quad \text{for all } m, c.\]</div>
+<p>A shift cipher used on a single letter with a uniform key is perfectly
+secret: every plaintext letter is equally consistent with the ciphertext
+letter. Used on a whole word, it is not, because only 26 of the possible
+plaintexts remain and Bayes’s rule concentrates the posterior on the
+English-looking one. Shannon proved that perfect secrecy needs at least as
+many keys as messages; the one-time pad meets the bound. The pad’s proof is
+covered in <a class="reference external" href="https://cpoli.github.io/blockchainkit/history/crypto_breakthroughs.html#the-one-time-pad-and-perfect-secrecy">blockchainkit’s one-time pad entry</a>.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.shannon.shift_cipher_posterior" title="cybersecuritykit.classical.systems.shannon.shift_cipher_posterior"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.shannon.shift_cipher_posterior()</span></code></a>
+applies Bayes’s rule to a small prior over words and
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.shannon.one_time_pad_posterior" title="cybersecuritykit.classical.systems.shannon.one_time_pad_posterior"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.shannon.one_time_pad_posterior()</span></code></a>
+shows the posterior unchanged; the priors are explicit dictionaries rather
+than a language model.</p>
+<p><em>References:</em> C. E. Shannon, “Communication theory of secrecy systems”, <em>Bell
+System Technical Journal</em> 28(4), 656–715 (1949). <a class="reference external" href="https://doi.org/10.1002/j.1538-7305.1949.tb00928.x">DOI</a>.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Claude Shannon defined a cipher as perfectly secret when seeing the ciphertext leaves the attacker&#x27;s beliefs unchanged: P(m \mid c) = P(m) for every message m. He proved this needs at least as many keys as messages. The one-time pad (blockchainkit) meets the bound; a shift cipher meets it for one letter but not for two."><img alt="" src="../_images/sphx_glr_plot_01_perfect_secrecy_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/information_theory/plot_01_perfect_secrecy.html"><span class="doc">Perfect secrecy (Shannon, 1949)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Perfect secrecy (Shannon, 1949)</div>
+</div></div></section>
+<section id="shannon-s-unicity-distance">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">1949 – Shannon’s unicity distance</a><a class="headerlink" href="#shannon-s-unicity-distance" title="Link to this heading">#</a></h2>
+<p>Most ciphers are not perfectly secret, and the same paper asked how much
+ciphertext an analyst needs before only one key is plausible. English is
+redundant: it uses about 1.5 bits per letter of the <span class="math notranslate nohighlight">\(\log_2 26 \approx
+4.7\)</span> available, so most letter strings are not English. Each ciphertext
+letter rules out a share of the keys, and the key is fixed once the total
+redundancy exceeds the key’s entropy:</p>
+<div class="math notranslate nohighlight">
+\[U = \frac{H(K)}{D}, \qquad D = \log_2 26 - H_\text{letter}.\]</div>
+<p>A simple substitution has <span class="math notranslate nohighlight">\(26!\)</span> keys, <span class="math notranslate nohighlight">\(H(K) \approx 88.4\)</span> bits,
+and with <span class="math notranslate nohighlight">\(D \approx 3.2\)</span> bits per letter its unicity distance is about
+28 letters. A shift cipher’s is under two letters. Shannon’s formula explains
+why long messages on one key were always the analyst’s best hope.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.shannon.unicity_distance" title="cybersecuritykit.classical.systems.shannon.unicity_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.shannon.unicity_distance()</span></code></a>
+takes the key-space size and an assumed letter entropy (default 1.5 bits),
+treating redundancy as a constant rather than estimating it from text.
+<a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.shannon.spurious_shift_keys" title="cybersecuritykit.classical.systems.shannon.spurious_shift_keys"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.shannon.spurious_shift_keys()</span></code></a> counts
+the surviving shift keys on a real ciphertext, using a simple test (fewest
+letter pairs missing from an English sample) in place of a reader.</p>
+<p><em>References:</em> C. E. Shannon, “Communication theory of secrecy systems”, <em>Bell
+System Technical Journal</em> 28(4), 656–715 (1949). <a class="reference external" href="https://doi.org/10.1002/j.1538-7305.1949.tb00928.x">DOI</a>.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="English is redundant: it carries about 1.5 bits per letter out of a possible \log_2 26 \approx 4.7. Shannon showed that once the ciphertext is long enough for that redundancy to exceed the key&#x27;s entropy, only one key gives sensible plaintext. That length is the unicity distance,"><img alt="" src="../_images/sphx_glr_plot_02_unicity_distance_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/information_theory/plot_02_unicity_distance.html"><span class="doc">How much ciphertext fixes the key (Shannon’s unicity distance, 1949)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">How much ciphertext fixes the key (Shannon's unicity distance, 1949)</div>
+</div></div></section>
+<section id="jakobsen-s-hill-climbing">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">1995 – Jakobsen’s hill climbing</a><a class="headerlink" href="#jakobsen-s-hill-climbing" title="Link to this heading">#</a></h2>
+<p>A general substitution cipher has <span class="math notranslate nohighlight">\(26! \approx 4 \times 10^{26}\)</span> keys,
+far too many to try. Thomas Jakobsen showed that a computer does not need to:
+start from the key that matches ciphertext letter frequencies to English
+ones, try swapping pairs of key letters in a fixed order (adjacent pairs
+first, then pairs further apart), and keep a swap whenever the decryption
+scores better. The score is the log-likelihood of the decryption’s bigrams
+under English statistics,</p>
+<div class="math notranslate nohighlight">
+\[S(\kappa) = \sum_j \log P\bigl(x_{j+1} \mid x_j\bigr), \qquad
+x = \kappa^{-1}(c),\]</div>
+<p>and the climb stops when no swap improves it. Jakobsen’s fast version updates the bigram counts instead
+of re-decrypting, and solves a few hundred letters of ciphertext in moments.
+Hill climbing replaced hand methods for nearly every classical cipher.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.hillclimb.hill_climb_substitution" title="cybersecuritykit.classical.systems.hillclimb.hill_climb_substitution"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.hillclimb.hill_climb_substitution()</span></code></a>
+follows Jakobsen’s swap order from the frequency-matched key, adds restarts
+from seeded random keys to escape poor local maxima, and rescores each
+candidate in full rather than updating counts; the bigram table comes from a
+short original corpus in <a class="reference internal" href="../api/classical.html#module-cybersecuritykit.classical.utils.english" title="cybersecuritykit.classical.utils.english"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cybersecuritykit.classical.utils.english</span></code></a>
+rather than a large reference text.</p>
+<p><em>References:</em> T. Jakobsen, “A fast method for cryptanalysis of substitution
+ciphers”, <em>Cryptologia</em> 19(3), 265–274 (1995). <a class="reference external" href="https://doi.org/10.1080/0161-119591883944">DOI</a>.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="A simple substitution has 26! \approx 4 \times 10^{26} keys, too many to try. Thomas Jakobsen&#x27;s fast method starts from the frequency-matched key and keeps swapping pairs of key letters whenever the swap makes the decryption score better on English bigrams. Computers made this local search, far too slow by hand, routine."><img alt="" src="../_images/sphx_glr_plot_01_hill_climbing_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/substitution_solvers/plot_01_hill_climbing.html"><span class="doc">Hill climbing a substitution key (Jakobsen, 1995)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Hill climbing a substitution key (Jakobsen, 1995)</div>
+</div></div></section>
+<section id="the-zodiac-340-solved">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">2020 – The Zodiac 340 solved</a><a class="headerlink" href="#the-zodiac-340-solved" title="Link to this heading">#</a></h2>
+<p>A <em>homophonic</em> cipher gives common letters several symbols, so that single
+symbol counts come out nearly flat and al-Kindi’s method fails. The Zodiac
+Killer’s 340-symbol cipher of 1969 resisted analysts for 51 years. In December
+2020 David Oranchak, Sam Blake and Jarl Van Eycke solved it with Van Eycke’s
+AZdecrypt, a hill-climbing and annealing solver, once Blake’s survey of
+transpositions found the diagonal reading order the writer had used.</p>
+<p>The solver assigns each symbol a letter, scores the decryption by English
+n-gram statistics as in the 1995 entry, and changes one symbol at a time.
+<em>Simulated annealing</em> accepts a worse key with probability</p>
+<div class="math notranslate nohighlight">
+\[\Pr[\text{accept}] = \exp\bigl((S_\text{new} - S_\text{old}) / T\bigr),
+\qquad T \to 0,\]</div>
+<p>so early in the search it can leave a local maximum. The symbols still have to
+follow English letter pairs, and that is enough to recover the mapping.</p>
+<p><em>Implementation:</em> <a class="reference internal" href="../api/classical.html#cybersecuritykit.classical.systems.homophonic.solve_homophonic" title="cybersecuritykit.classical.systems.homophonic.solve_homophonic"><code class="xref py py-func docutils literal notranslate"><span class="pre">cybersecuritykit.classical.systems.homophonic.solve_homophonic()</span></code></a>
+anneals a symbol-to-letter mapping scored by bigrams from the toy corpus; it
+has no transposition step, and on a long seeded text it reads most, not all,
+of the plaintext.</p>
+<p><em>References:</em> D. Oranchak, S. Blake and J. Van Eycke, “The solution of the
+Zodiac Killer’s 340-character cipher”, <em>Cryptologia</em> (2024). <a class="reference external" href="https://doi.org/10.1080/01611194.2023.2245401">DOI</a>.</p>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="A homophonic cipher gives common letters several symbols, so every symbol appears about equally often and letter counting fails. The Zodiac killer&#x27;s 340-symbol cipher of 1969 resisted for 51 years until David Oranchak, Sam Blake and Jarl Van Eycke solved it in December 2020 with AZdecrypt, a simulated annealing solver scoring candidate plaintexts against language statistics."><img alt="" src="../_images/sphx_glr_plot_02_zodiac_homophonic_thumb.png" />
+<p><a class="reference internal" href="../api/gallery/classical/substitution_solvers/plot_02_zodiac_homophonic.html"><span class="doc">Annealing a homophonic cipher (the Zodiac 340, 2020)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Annealing a homophonic cipher (the Zodiac 340, 2020)</div>
+</div></div></section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">History</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="symmetric_breakthroughs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Block ciphers, modes and their attacks: breakthroughs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal" tabindex="-1"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-850-al-kindi-s-frequency-analysis">c. 850 – al-Kindi’s frequency analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-1467-alberti-s-cipher-disk">c. 1467 – Alberti’s cipher disk</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bellaso-s-keyword-cipher">1553 – Bellaso’s keyword cipher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wheatstone-s-playfair-cipher">1854 – Wheatstone’s Playfair cipher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kasiski-s-examination">1863 – Kasiski’s examination</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vernam-s-cipher-and-the-two-time-pad">1917 – Vernam’s cipher and the two-time pad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adfgvx-and-painvin-s-break">1918 – ADFGVX and Painvin’s break</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#friedman-s-index-of-coincidence">1922 – Friedman’s index of coincidence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hill-s-matrix-cipher-and-its-known-plaintext-break">1929 – Hill’s matrix cipher and its known-plaintext break</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rejewski-s-characteristics-of-enigma">1932 – Rejewski’s characteristics of Enigma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turing-s-bombe">1940 – Turing’s bombe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutte-s-break-of-the-lorenz-cipher">1942 – Tutte’s break of the Lorenz cipher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shannon-s-perfect-secrecy">1949 – Shannon’s perfect secrecy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shannon-s-unicity-distance">1949 – Shannon’s unicity distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jakobsen-s-hill-climbing">1995 – Jakobsen’s hill climbing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-zodiac-340-solved">2020 – The Zodiac 340 solved</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/history/classical_breakthroughs.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=75c7c72ae941e8b558d8"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=75c7c72ae941e8b558d8"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Charles Poli.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.1.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.24.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

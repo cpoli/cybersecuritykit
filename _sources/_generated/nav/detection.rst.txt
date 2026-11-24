@@ -1,0 +1,3 @@
+.. container:: subpkg-nav
+
+   :doc:`cybersecuritykit.detection hub </_generated/subpackages/detection>` · :doc:`History </history/detection_breakthroughs>` · :doc:`Examples </api/gallery/detection/index>` · :doc:`API reference </api/detection>`

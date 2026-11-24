@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.992026Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.992026Z",
+      "mimetype": null,
+      "name": "plot_02_zodiac_homophonic.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/substitution_solvers/plot_02_zodiac_homophonic.ipynb",
+      "size": 4688,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-11-24T06:22:47.991878Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-11-24T06:22:47.991878Z",
+      "mimetype": null,
+      "name": "plot_01_hill_climbing.ipynb",
+      "path": "jupyterlite_contents/api/gallery/classical/substitution_solvers/plot_01_hill_climbing.ipynb",
+      "size": 4220,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-11-24T06:22:49.498921Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-11-24T06:22:49.499432Z",
+  "mimetype": null,
+  "name": "substitution_solvers",
+  "path": "jupyterlite_contents/api/gallery/classical/substitution_solvers",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

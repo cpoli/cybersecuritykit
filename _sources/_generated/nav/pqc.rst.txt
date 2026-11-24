@@ -1,0 +1,3 @@
+.. container:: subpkg-nav
+
+   :doc:`cybersecuritykit.pqc hub </_generated/subpackages/pqc>` · :doc:`History </history/pqc_breakthroughs>` · :doc:`Examples </api/gallery/pqc/index>` · :doc:`API reference </api/pqc>`

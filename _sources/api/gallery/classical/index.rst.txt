@@ -1,0 +1,568 @@
+:orphan:
+
+cybersecuritykit.classical
+==========================
+
+Gallery examples for :mod:`cybersecuritykit.classical`. Each one reproduces a breakthrough from
+:doc:`the history page </history/classical_breakthroughs>`, on toy keys, simulated
+systems or synthetic data.
+
+Each script is self-contained: download it as a Python file or a notebook, or run
+it in the browser with JupyterLite.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Digraphic ciphers
+-----------------
+
+Playfair's letter pairs and Hill's matrix cipher.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Charles Wheatstone&#x27;s cipher, promoted by Lord Playfair, encrypts two letters at a time with a 5 by 5 keyed square. Single-letter counts no longer map one to one onto cipher letters; an attacker has to count the 600 or so digraphs instead of 26 letters, which needs far more ciphertext.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/digraphic/images/thumb/sphx_glr_plot_01_playfair_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/digraphic/plot_01_playfair`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Encrypting letter pairs (Playfair, 1854)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Lester Hill encrypted blocks of n letters as vectors, c = K p \bmod 26, the first cipher built from linear algebra. The linearity is also its weakness: n blocks of known plaintext with an invertible matrix give the key as K = C P^{-1} \bmod 26.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/digraphic/images/thumb/sphx_glr_plot_02_hill_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/digraphic/plot_02_hill`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Matrix encryption and its known-plaintext break (Hill, 1929)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Enigma
+------
+
+Rejewski's characteristics and Turing's bombe.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Enigma operators sent their three-letter message key twice at the start of each message. Marian Rejewski saw that the first and fourth letters, second and fifth, third and sixth, define permutations AD, BE and CF, and that the lengths of their cycles do not depend on the plugboard at all: conjugating by a permutation preserves cycle structure. A catalogue of cycle lengths for each rotor start then narrows the key.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/enigma/images/thumb/sphx_glr_plot_01_rejewski_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/enigma/plot_01_rejewski`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Characteristics that ignore the plugboard (Rejewski, 1932)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Bletchley Park often guessed a word of plaintext, a crib, such as WETTERVORHERSAGE (weather forecast). Because Enigma never encrypts a letter to itself, a crib can only sit where no letter meets its own image. Alan Turing&#x27;s bombe then tested every rotor start against the crib, using loops in the crib&#x27;s menu to reject wrong settings quickly.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/enigma/images/thumb/sphx_glr_plot_02_bombe_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/enigma/plot_02_bombe`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Searching rotor starts from a crib (Turing's bombe, 1940)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Fractionation
+-------------
+
+The ADFGVX cipher of 1918.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The German army&#x27;s ADFGVX cipher split each character into two coordinates in a 6 by 6 square, written with the letters A, D, F, G, V and X, then transposed the coordinates by a keyword. A single character&#x27;s two halves end up far apart. Georges Painvin broke it in June 1918 from messages with similar beginnings.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/fractionation/images/thumb/sphx_glr_plot_01_adfgvx_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/fractionation/plot_01_adfgvx`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Fractionation and transposition (ADFGVX, 1918)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Frequency analysis
+------------------
+
+al-Kindi's letter counting against the shift cipher.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="al-Kindi observed that in any long text of a language some letters are common and others rare, and that a substitution cipher moves those counts to other letters without changing them. Counting the ciphertext and matching the counts against the language reveals the key.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/frequency_analysis/images/thumb/sphx_glr_plot_01_al_kindi_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/frequency_analysis/plot_01_al_kindi`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Frequency analysis breaks the shift cipher (al-Kindi, c. 850)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Information theory
+------------------
+
+Shannon's perfect secrecy and unicity distance.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Claude Shannon defined a cipher as perfectly secret when seeing the ciphertext leaves the attacker&#x27;s beliefs unchanged: P(m \mid c) = P(m) for every message m. He proved this needs at least as many keys as messages. The one-time pad (blockchainkit) meets the bound; a shift cipher meets it for one letter but not for two.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/information_theory/images/thumb/sphx_glr_plot_01_perfect_secrecy_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/information_theory/plot_01_perfect_secrecy`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Perfect secrecy (Shannon, 1949)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="English is redundant: it carries about 1.5 bits per letter out of a possible \log_2 26 \approx 4.7. Shannon showed that once the ciphertext is long enough for that redundancy to exceed the key&#x27;s entropy, only one key gives sensible plaintext. That length is the unicity distance,">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/information_theory/images/thumb/sphx_glr_plot_02_unicity_distance_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/information_theory/plot_02_unicity_distance`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">How much ciphertext fixes the key (Shannon's unicity distance, 1949)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Lorenz
+------
+
+Tutte's statistical attack on the Lorenz teleprinter cipher.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The Lorenz SZ40 added a keystream built from twelve pinwheels of coprime lengths to teleprinter traffic. Bill Tutte, given a keystream recovered from a depth, wrote out one impulse in rows and noticed repeats at a period of 41: the first chi wheel. Taking differences, \Delta x_i = x_i \oplus x_{i+1}, makes the irregular psi wheels mostly vanish, so the chi period shows through.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/lorenz/images/thumb/sphx_glr_plot_01_tutte_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/lorenz/plot_01_tutte`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Recovering a Lorenz wheel from statistics (Tutte, 1942)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Polyalphabetic ciphers
+----------------------
+
+Alberti's cipher disk and Bellaso's keyword cipher.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Leon Battista Alberti mounted a mixed alphabet on a disk inside a fixed plain alphabet. Turning the disk every few letters changes the substitution, so the same plaintext letter is written in different ways. It is the first polyalphabetic cipher.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/polyalphabetic/images/thumb/sphx_glr_plot_01_alberti_disk_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/polyalphabetic/plot_01_alberti_disk`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">The cipher disk turns the alphabet (Alberti, c. 1467)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Giovan Battista Bellaso replaced Alberti&#x27;s disk with a short keyword that anyone could remember: each keyword letter selects a shifted alphabet, and the keyword repeats along the message. The cipher was later credited to Blaise de Vigenere and called le chiffre indechiffrable.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/polyalphabetic/images/thumb/sphx_glr_plot_02_vigenere_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/polyalphabetic/plot_02_vigenere`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">A keyword picks the alphabets (Bellaso, 1553)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Stream ciphers
+--------------
+
+Vernam's teleprinter cipher and the reused key.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Gilbert Vernam&#x27;s teleprinter combined each character of a message with a character of a key tape, c_i = m_i \oplus k_i. With a random tape used once this is the one-time pad, taught in blockchainkit. Here the tape is used twice: XORing the two ciphertexts cancels the key and leaves m_1 \oplus m_2, which a guessed word (a crib) unpicks.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/stream/images/thumb/sphx_glr_plot_01_two_time_pad_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/stream/plot_01_two_time_pad`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Vernam's cipher and the two-time pad (Vernam, 1917)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Substitution solvers
+--------------------
+
+Hill climbing and annealing against substitution ciphers.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="A simple substitution has 26! \approx 4 \times 10^{26} keys, too many to try. Thomas Jakobsen&#x27;s fast method starts from the frequency-matched key and keeps swapping pairs of key letters whenever the swap makes the decryption score better on English bigrams. Computers made this local search, far too slow by hand, routine.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/substitution_solvers/images/thumb/sphx_glr_plot_01_hill_climbing_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/substitution_solvers/plot_01_hill_climbing`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Hill climbing a substitution key (Jakobsen, 1995)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="A homophonic cipher gives common letters several symbols, so every symbol appears about equally often and letter counting fails. The Zodiac killer&#x27;s 340-symbol cipher of 1969 resisted for 51 years until David Oranchak, Sam Blake and Jarl Van Eycke solved it in December 2020 with AZdecrypt, a simulated annealing solver scoring candidate plaintexts against language statistics.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/substitution_solvers/images/thumb/sphx_glr_plot_02_zodiac_homophonic_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/substitution_solvers/plot_02_zodiac_homophonic`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Annealing a homophonic cipher (the Zodiac 340, 2020)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Breaking the Vigenere cipher
+----------------------------
+
+Kasiski's repeats and Friedman's index of coincidence.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Friedrich Kasiski noticed that when the same plaintext fragment meets the same part of a repeating keyword, it produces the same ciphertext fragment. The distances between repeats are therefore multiples of the keyword length, and their most common factor is the length itself.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/vigenere_cryptanalysis/images/thumb/sphx_glr_plot_01_kasiski_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/vigenere_cryptanalysis/plot_01_kasiski`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Repeated fragments give the key length (Kasiski, 1863)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="William Friedman measured how often two letters drawn from a text are equal. English gives about 0.066, random letters 1/26 \approx 0.038. Split a Vigenere ciphertext into m columns: when m is the key length each column is a shift cipher and its index jumps back to English. Each column then falls to frequency analysis.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/vigenere_cryptanalysis/images/thumb/sphx_glr_plot_02_index_of_coincidence_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/vigenere_cryptanalysis/plot_02_index_of_coincidence`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">The index of coincidence (Friedman, 1922)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+   :includehidden:
+
+
+   /api/gallery/classical/digraphic/index.rst
+   /api/gallery/classical/enigma/index.rst
+   /api/gallery/classical/fractionation/index.rst
+   /api/gallery/classical/frequency_analysis/index.rst
+   /api/gallery/classical/information_theory/index.rst
+   /api/gallery/classical/lorenz/index.rst
+   /api/gallery/classical/polyalphabetic/index.rst
+   /api/gallery/classical/stream/index.rst
+   /api/gallery/classical/substitution_solvers/index.rst
+   /api/gallery/classical/vigenere_cryptanalysis/index.rst
+
+
+.. only:: html
+
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
+
+    .. container:: sphx-glr-download sphx-glr-download-python
+
+      :download:`Download all examples in Python source code: classical_python.zip </api/gallery/classical/classical_python.zip>`
+
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download all examples in Jupyter notebooks: classical_jupyter.zip </api/gallery/classical/classical_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

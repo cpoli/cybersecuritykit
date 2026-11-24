@@ -1,0 +1,50 @@
+
+
+.. _sphx_glr_api_gallery_classical_fractionation:
+
+Fractionation
+-------------
+
+The ADFGVX cipher of 1918.
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="The German army&#x27;s ADFGVX cipher split each character into two coordinates in a 6 by 6 square, written with the letters A, D, F, G, V and X, then transposed the coordinates by a keyword. A single character&#x27;s two halves end up far apart. Georges Painvin broke it in June 1918 from messages with similar beginnings.">
+
+.. only:: html
+
+  .. image:: /api/gallery/classical/fractionation/images/thumb/sphx_glr_plot_01_adfgvx_thumb.png
+    :alt:
+
+  :doc:`/api/gallery/classical/fractionation/plot_01_adfgvx`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Fractionation and transposition (ADFGVX, 1918)</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /api/gallery/classical/fractionation/plot_01_adfgvx
+
