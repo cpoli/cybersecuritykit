@@ -26,6 +26,7 @@ from fractions import Fraction
 from cybersecuritykit import _validation
 from cybersecuritykit.constants import DEFAULT_SEED
 from cybersecuritykit.pqc.core.base import ShorResult
+from cybersecuritykit.pqc.utils import prime_field
 
 __all__ = ["shor_distribution", "shor_factor"]
 
@@ -110,13 +111,6 @@ def shor_distribution(n: int, base: int, qubits: int) -> tuple[float, ...]:
     return tuple(probabilities)
 
 
-def _prime_power(n: int) -> bool:
-    p = next(d for d in range(2, n + 1) if n % d == 0)
-    while n % p == 0:
-        n //= p
-    return n == 1
-
-
 def shor_factor(
     n: int,
     seed: int = DEFAULT_SEED,
@@ -163,7 +157,7 @@ def shor_factor(
     (4, (3, 5))
     """
     _validation.integer(n, "n", minimum=3)
-    if n % 2 == 0 or n > MAX_N or _prime_power(n):
+    if n % 2 == 0 or n > MAX_N or prime_field.prime_power_base(n) is not None:
         raise ValueError(f"n must be an odd composite below {MAX_N + 1} that is not a prime power")
     _validation.integer(shots, "shots", minimum=1)
     _validation.seed(seed)

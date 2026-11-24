@@ -25,7 +25,6 @@ import hashlib
 import math
 import random
 from collections.abc import Sequence
-from functools import lru_cache
 
 from cybersecuritykit import _validation
 from cybersecuritykit.constants import DEFAULT_SEED
@@ -39,14 +38,7 @@ from cybersecuritykit.pqc.core.base import (
     SPHINCSSignature,
     XMSSSignature,
 )
-from cybersecuritykit.pqc.systems.winternitz import _check_hash_length, _check_width
-from cybersecuritykit.pqc.systems.xmss import (
-    _check_height,
-    _message_digest,
-    _tree,
-    _tree_root,
-    _tree_sign,
-)
+from cybersecuritykit.pqc.utils import hash_trees
 from cybersecuritykit.pqc.utils.hash_trees import (
     auth_path,
     build_tree,
@@ -85,7 +77,6 @@ def _horst_leaf_address(address: bytes, index: int) -> bytes:
     return address + b"horst" + index.to_bytes(4, "big")
 
 
-@lru_cache(maxsize=64)
 def _horst_tree(
     secret_seed: bytes, public_seed: bytes, address: bytes, a: int
 ) -> tuple[tuple[bytes, ...], ...]:
@@ -129,7 +120,7 @@ def horst_keygen(seed: int = DEFAULT_SEED, *, k: int = 8, a: int = 6, n: int = 1
     """
     _validation.seed(seed)
     _check_horst(k, a)
-    _check_hash_length(n)
+    hash_trees.check_hash_length(n)
     rng = random.Random(seed)
     secret_seed, public_seed = rng.randbytes(n), rng.randbytes(n)
     return _horst_key(secret_seed, public_seed, b"", k, a)
@@ -363,13 +354,14 @@ def sphincs_keygen(
     _validation.integer(layers, "layers", 1)
     if layers > MAX_LAYERS:
         raise ValueError(f"layers must be at most {MAX_LAYERS}")
-    _check_height(height)
+    hash_trees.check_height(height)
     _check_horst(k, a)
-    _check_hash_length(n)
-    _check_width(w)
+    hash_trees.check_hash_length(n)
+    hash_trees.check_width(w)
     rng = random.Random(seed)
     secret_seed, prf_key, public_seed = rng.randbytes(n), rng.randbytes(n), rng.randbytes(n)
-    root = _tree(secret_seed, public_seed, _tree_address(layers - 1, 0), height, w)[-1][0]
+    top = _tree_address(layers - 1, 0)
+    root = hash_trees.tree_levels(secret_seed, public_seed, top, height, w)[-1][0]
     public = SPHINCSPublicKey(root, public_seed, layers, height, w, k, a)
     return SPHINCSKey(secret_seed, prf_key, public)
 
@@ -398,9 +390,12 @@ def sphincs_sign(key: SPHINCSKey, message: bytes) -> SPHINCSSignature:
     layers: list[XMSSSignature] = []
     for layer in range(public.layers):
         tree, leaf = _tree_address(layer, position >> h), position % 2**h
-        digest = _message_digest(seed, tree, leaf, signed)
-        layers.append(_tree_sign(key.secret_seed, seed, tree, h, public.w, leaf, digest))
-        signed, position = _tree(key.secret_seed, seed, tree, h, public.w)[-1][0], position >> h
+        levels = hash_trees.tree_levels(key.secret_seed, seed, tree, h, public.w)
+        digest = hash_trees.leaf_digest(seed, tree, leaf, signed)
+        layers.append(
+            hash_trees.tree_sign(key.secret_seed, seed, tree, levels, public.w, leaf, digest)
+        )
+        signed, position = levels[-1][0], position >> h
     return SPHINCSSignature(randomizer, index, horst, tuple(layers))
 
 
@@ -426,9 +421,7 @@ def sphincs_verify(public: SPHINCSPublicKey, message: bytes, signature: SPHINCSS
         tree, leaf = _tree_address(layer, position >> h), position % 2**h
         if signed is None or tree_signature.index != leaf or len(tree_signature.auth_path) != h:
             return False
-        digest = _message_digest(seed, tree, leaf, signed)
-        signed, position = (
-            _tree_root(seed, tree, h, public.w, digest, tree_signature),
-            position >> h,
-        )
+        digest = hash_trees.leaf_digest(seed, tree, leaf, signed)
+        signed = hash_trees.tree_root(seed, tree, public.w, digest, tree_signature)
+        position >>= h
     return signed == public.root

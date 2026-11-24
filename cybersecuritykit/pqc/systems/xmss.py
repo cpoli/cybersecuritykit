@@ -16,97 +16,19 @@ instead of using a tree-traversal algorithm.
 
 import random
 from collections.abc import Sequence
-from functools import lru_cache
 
 from cybersecuritykit import _validation
 from cybersecuritykit.constants import DEFAULT_SEED
 from cybersecuritykit.pqc.core.base import (
-    WinternitzPublicKey,
     XMSSForgery,
     XMSSKey,
     XMSSPublicKey,
     XMSSSignature,
     XMSSSigned,
 )
-from cybersecuritykit.pqc.systems.winternitz import (
-    _check_hash_length,
-    _check_width,
-    _forge_chains,
-    _wots_key,
-    _wots_public,
-    _wots_sign,
-    winternitz_digest,
-)
-from cybersecuritykit.pqc.utils.hash_trees import (
-    auth_path,
-    build_tree,
-    root_from_path,
-    tweak_hash,
-)
+from cybersecuritykit.pqc.utils import hash_trees
 
 __all__ = ["xmss_forge", "xmss_keygen", "xmss_sign", "xmss_verify"]
-
-MAX_HEIGHT = 10
-"""Tallest tree allowed: :math:`2^{10}` leaves keep key generation to seconds."""
-
-
-def _check_height(height: int) -> None:
-    _validation.integer(height, "height", 1)
-    if height > MAX_HEIGHT:
-        raise ValueError(f"height must be at most {MAX_HEIGHT}")
-
-
-def _leaf_address(tree: bytes, index: int) -> bytes:
-    return tree + b"leaf" + index.to_bytes(4, "big")
-
-
-def _leaf(public: WinternitzPublicKey) -> bytes:
-    """Compress a Winternitz public key into one tree leaf."""
-    return tweak_hash(public.public_seed, public.address + b"pk", b"".join(public.chains))
-
-
-def _message_digest(public_seed: bytes, tree: bytes, index: int, message: bytes) -> bytes:
-    """The value leaf ``index`` signs for ``message``, as its Winternitz key would hash it."""
-    address = _leaf_address(tree, index)
-    return winternitz_digest(WinternitzPublicKey((), public_seed, address, 0), message)
-
-
-@lru_cache(maxsize=64)
-def _tree(
-    secret_seed: bytes, public_seed: bytes, tree: bytes, height: int, w: int
-) -> tuple[tuple[bytes, ...], ...]:
-    """Every level of the tree of one-time keys at address ``tree``."""
-    leaves = [
-        _leaf(_wots_key(secret_seed, public_seed, _leaf_address(tree, i), w).public)
-        for i in range(2**height)
-    ]
-    return build_tree(public_seed, tree, leaves)
-
-
-def _tree_sign(
-    secret_seed: bytes,
-    public_seed: bytes,
-    tree: bytes,
-    height: int,
-    w: int,
-    index: int,
-    digest: bytes,
-) -> XMSSSignature:
-    """Sign ``digest`` with leaf ``index`` of a tree and attach its authentication path."""
-    key = _wots_key(secret_seed, public_seed, _leaf_address(tree, index), w)
-    path = auth_path(_tree(secret_seed, public_seed, tree, height, w), index)
-    return XMSSSignature(index, _wots_sign(key, digest), path)
-
-
-def _tree_root(
-    public_seed: bytes, tree: bytes, height: int, w: int, digest: bytes, signature: XMSSSignature
-) -> bytes | None:
-    """The root a signature leads to; ``None`` if it is malformed."""
-    public = _wots_public(public_seed, _leaf_address(tree, signature.index), w, digest,
-                          signature.wots)  # fmt: skip
-    if public is None:
-        return None
-    return root_from_path(public_seed, tree, _leaf(public), signature.index, signature.auth_path)
 
 
 def _well_placed(signature: XMSSSignature, height: int) -> bool:
@@ -148,12 +70,12 @@ def xmss_keygen(seed: int = DEFAULT_SEED, *, height: int = 4, n: int = 16, w: in
     (0, 16)
     """
     _validation.seed(seed)
-    _check_height(height)
-    _check_hash_length(n)
-    _check_width(w)
+    hash_trees.check_height(height)
+    hash_trees.check_hash_length(n)
+    hash_trees.check_width(w)
     rng = random.Random(seed)
     secret_seed, public_seed = rng.randbytes(n), rng.randbytes(n)
-    root = _tree(secret_seed, public_seed, b"", height, w)[-1][0]
+    root = hash_trees.tree_levels(secret_seed, public_seed, b"", height, w)[-1][0]
     return XMSSKey(secret_seed, XMSSPublicKey(root, public_seed, height, w), 0)
 
 
@@ -182,8 +104,9 @@ def xmss_sign(key: XMSSKey, message: bytes) -> XMSSSigned:
     if index >= 2**public.height:
         raise ValueError("the key is spent: every one-time leaf has signed")
     seed = public.public_seed
-    digest = _message_digest(seed, b"", index, message)
-    signature = _tree_sign(key.secret_seed, seed, b"", public.height, public.w, index, digest)
+    levels = hash_trees.tree_levels(key.secret_seed, seed, b"", public.height, public.w)
+    digest = hash_trees.leaf_digest(seed, b"", index, message)
+    signature = hash_trees.tree_sign(key.secret_seed, seed, b"", levels, public.w, index, digest)
     return XMSSSigned(signature, XMSSKey(key.secret_seed, public, index + 1))
 
 
@@ -202,8 +125,8 @@ def xmss_verify(public: XMSSPublicKey, message: bytes, signature: XMSSSignature)
     if not _well_placed(signature, public.height):
         return False
     seed = public.public_seed
-    digest = _message_digest(seed, b"", signature.index, message)
-    return _tree_root(seed, b"", public.height, public.w, digest, signature) == public.root
+    digest = hash_trees.leaf_digest(seed, b"", signature.index, message)
+    return hash_trees.tree_root(seed, b"", public.w, digest, signature) == public.root
 
 
 def xmss_forge(
@@ -259,10 +182,11 @@ def xmss_forge(
     seen = by_leaf[index]
     seed = public.public_seed
     first_message, first = seen[0]
-    digest = _message_digest(seed, b"", index, first_message)
-    leaf_key = _wots_public(seed, _leaf_address(b"", index), public.w, digest, first.wots)
+    digest = hash_trees.leaf_digest(seed, b"", index, first_message)
+    address = hash_trees.leaf_address(b"", index)
+    leaf_key = hash_trees.wots_public(seed, address, public.w, digest, first.wots)
     assert leaf_key is not None  # first verified above
-    result = _forge_chains(leaf_key, [(m, s.wots) for m, s in seen], max_tries)
+    result = hash_trees.forge_chains(leaf_key, [(m, s.wots) for m, s in seen], max_tries)
     if result.signature is None:
         return XMSSForgery(None, None, result.tested)
     signature = XMSSSignature(index, result.signature, first.auth_path)

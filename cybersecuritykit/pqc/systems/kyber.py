@@ -27,12 +27,13 @@ from cybersecuritykit.constants import DEFAULT_SEED
 from cybersecuritykit.pqc.core.base import (
     KyberCiphertext,
     KyberEncapsulation,
+    KyberFailureRate,
     KyberKeyPair,
     KyberPublicKey,
 )
-from cybersecuritykit.pqc.utils.rings import Poly, add, multiply, power_of_two
+from cybersecuritykit.pqc.utils.rings import Poly, add, centered, poly_dot, power_of_two
 
-__all__ = ["kyber_decapsulate", "kyber_encapsulate", "kyber_keygen"]
+__all__ = ["kyber_decapsulate", "kyber_encapsulate", "kyber_failure_rate", "kyber_keygen"]
 
 Q = 3329
 """The Kyber prime."""
@@ -75,13 +76,6 @@ def _matrix(rho: bytes, k: int, n: int) -> tuple[Vector, ...]:
     return tuple(tuple(_sample_uniform(rho + bytes([j, i]), n) for j in range(k)) for i in range(k))
 
 
-def _dot(a: Vector, b: Vector) -> Poly:
-    total = (0,) * len(a[0])
-    for x, y in zip(a, b, strict=True):
-        total = add(total, multiply(x, y, Q, -1), Q)
-    return total
-
-
 def _compress(p: Poly, d: int) -> Poly:
     return tuple(((x << d) * 2 + Q) // (2 * Q) % (1 << d) for x in p)
 
@@ -102,31 +96,62 @@ def _ciphertext_bytes(ciphertext: KyberCiphertext) -> bytes:
     return _encode((*ciphertext.u, ciphertext.v))
 
 
-def _encrypt(public: KyberPublicKey, message: bytes, coins: bytes) -> KyberCiphertext:
-    """K-PKE.Encrypt: the passively secure Module-LWE encryption."""
+def _encrypt(
+    public: KyberPublicKey, message: bytes, coins: bytes, eta: int | None = None
+) -> KyberCiphertext:
+    """K-PKE.Encrypt: the passively secure Module-LWE encryption.
+
+    ``eta`` replaces both noise parameters, for :func:`kyber_failure_rate` only.
+    """
     k, n = public.k, public.n
     eta1, eta2, du, dv = _parameters(k)
+    if eta is not None:
+        eta1 = eta2 = eta
     a = _matrix(public.rho, k, n)
     r = tuple(_cbd(coins, i, eta1, n) for i in range(k))
     e1 = tuple(_cbd(coins, k + i, eta2, n) for i in range(k))
     e2 = _cbd(coins, 2 * k, eta2, n)
     columns = tuple(tuple(a[j][i] for j in range(k)) for i in range(k))
-    u = tuple(add(_dot(col, r), e, Q) for col, e in zip(columns, e1, strict=True))
+    u = tuple(add(poly_dot(col, r, Q, -1), e, Q) for col, e in zip(columns, e1, strict=True))
     bits = [(byte >> j) & 1 for byte in message for j in range(8)]
     m = tuple((Q + 1) // 2 * b for b in bits)
-    v = add(add(_dot(public.t, r), e2, Q), m, Q)
+    v = add(add(poly_dot(public.t, r, Q, -1), e2, Q), m, Q)
     return KyberCiphertext(tuple(_compress(p, du) for p in u), _compress(v, dv))
+
+
+def _noisy_message(keypair: KyberKeyPair, ciphertext: KyberCiphertext) -> Poly:
+    r""":math:`w = v - s^T u`: the message times :math:`\lceil q/2 \rfloor`, plus noise."""
+    _, _, du, dv = _parameters(keypair.public.k)
+    u = tuple(_decompress(p, du) for p in ciphertext.u)
+    return tuple(
+        (x - y) % Q
+        for x, y in zip(_decompress(ciphertext.v, dv), poly_dot(keypair.s, u, Q, -1), strict=True)
+    )
 
 
 def _decrypt(keypair: KyberKeyPair, ciphertext: KyberCiphertext) -> bytes:
     """K-PKE.Decrypt: round :math:`v - s^T u` to the nearest multiple of :math:`q/2`."""
-    _, _, du, dv = _parameters(keypair.public.k)
-    u = tuple(_decompress(p, du) for p in ciphertext.u)
-    w = tuple(
-        (x - y) % Q for x, y in zip(_decompress(ciphertext.v, dv), _dot(keypair.s, u), strict=True)
-    )
-    bits = _compress(w, 1)
+    bits = _compress(_noisy_message(keypair, ciphertext), 1)
     return bytes(sum(bits[8 * i + j] << j for j in range(8)) for i in range(len(bits) // 8))
+
+
+def _keypair(k: int, n: int, d: bytes, z: bytes, eta: int | None = None) -> KyberKeyPair:
+    r"""K-PKE.KeyGen from the 32-byte seed ``d``; ``eta`` replaces :math:`\eta_1`."""
+    digest = hashlib.sha3_512(d + bytes([k])).digest()
+    rho, sigma = digest[:32], digest[32:]
+    eta1 = _parameters(k)[0] if eta is None else eta
+    a = _matrix(rho, k, n)
+    s = tuple(_cbd(sigma, i, eta1, n) for i in range(k))
+    e = tuple(_cbd(sigma, k + i, eta1, n) for i in range(k))
+    t = tuple(add(poly_dot(row, s, Q, -1), ei, Q) for row, ei in zip(a, e, strict=True))
+    return KyberKeyPair(KyberPublicKey(k, n, t, rho), s, z)
+
+
+def _check_shape(k: int, n: int) -> None:
+    _validation.integer(k, "k", minimum=2)
+    if k > 4:
+        raise ValueError("k must be 2, 3 or 4")
+    power_of_two(n, "n", minimum=8)
 
 
 def kyber_keygen(k: int = 2, n: int = 16, seed: int = DEFAULT_SEED) -> KyberKeyPair:
@@ -158,21 +183,11 @@ def kyber_keygen(k: int = 2, n: int = 16, seed: int = DEFAULT_SEED) -> KyberKeyP
     >>> len(keys.public.t), len(keys.public.t[0])
     (2, 16)
     """
-    _validation.integer(k, "k", minimum=2)
-    if k > 4:
-        raise ValueError("k must be 2, 3 or 4")
-    power_of_two(n, "n", minimum=8)
+    _check_shape(k, n)
     _validation.seed(seed)
     rng = random.Random(seed)
     d, z = rng.randbytes(32), rng.randbytes(32)
-    digest = hashlib.sha3_512(d + bytes([k])).digest()
-    rho, sigma = digest[:32], digest[32:]
-    eta1 = _parameters(k)[0]
-    a = _matrix(rho, k, n)
-    s = tuple(_cbd(sigma, i, eta1, n) for i in range(k))
-    e = tuple(_cbd(sigma, k + i, eta1, n) for i in range(k))
-    t = tuple(add(_dot(row, s), ei, Q) for row, ei in zip(a, e, strict=True))
-    return KyberKeyPair(KyberPublicKey(k, n, t, rho), s, z)
+    return _keypair(k, n, d, z)
 
 
 def kyber_encapsulate(public: KyberPublicKey, seed: int = DEFAULT_SEED) -> KyberEncapsulation:
@@ -259,3 +274,91 @@ def kyber_decapsulate(keypair: KyberKeyPair, ciphertext: KyberCiphertext) -> byt
     if _encrypt(public, message, digest[32:]) == ciphertext:
         return digest[:32]
     return hashlib.shake_256(keypair.z + _ciphertext_bytes(ciphertext)).digest(32)
+
+
+def kyber_failure_rate(
+    k: int = 2,
+    n: int = 16,
+    eta: int | None = None,
+    trials: int = 100,
+    seed: int = DEFAULT_SEED,
+) -> KyberFailureRate:
+    r"""Measure how often the Kyber-like encryption decrypts to the wrong message.
+
+    Decryption computes :math:`w = v - s^T u = \lceil q/2 \rfloor m + d` with
+    the noise :math:`d = e^T r - s^T e_1 + e_2` plus the compression errors, and
+    a bit flips when :math:`|d_i| > q/4`. Each trial draws a fresh key pair,
+    message and coins and counts the bits that flip. The real parameters make a
+    failure so rare (about :math:`2^{-139}` for ML-KEM-512) that no simulation
+    sees one; raising ``eta`` widens the noise until failures are measurable,
+    which is why the standard fixes :math:`\eta` and the compression together.
+
+    Parameters
+    ----------
+    k : int, optional
+        Module rank 2, 3 or 4; it fixes the compression :math:`(d_u, d_v)`.
+    n : int, optional
+        Ring degree, a power of two from 8.
+    eta : int, optional
+        Replaces :math:`\eta_1` and :math:`\eta_2` in every noise draw;
+        ``None`` keeps the standard values for ``k``.
+    trials : int, optional
+        Key pairs and messages to try.
+    seed : int, optional
+        Seed of every trial's key and message randomness.
+
+    Returns
+    -------
+    KyberFailureRate
+
+    Raises
+    ------
+    ValueError
+        A bad ``k`` or ``n``, ``eta`` below 1, or no trials.
+
+    Examples
+    --------
+    >>> from cybersecuritykit import pqc
+    >>> pqc.kyber_failure_rate(trials=20, seed=1).failures
+    0
+    >>> pqc.kyber_failure_rate(n=64, eta=32, trials=50, seed=1).failures > 0
+    True
+    """
+    _check_shape(k, n)
+    if eta is not None:
+        _validation.integer(eta, "eta", minimum=1)
+    _validation.integer(trials, "trials", minimum=1)
+    _validation.seed(seed)
+    eta1, eta2, du, dv = _parameters(k)
+    if eta is not None:
+        eta1 = eta2 = eta
+    rng = random.Random(seed)
+    failures = bit_errors = largest = 0
+    for _ in range(trials):
+        keypair = _keypair(k, n, rng.randbytes(32), b"", eta)
+        message = rng.randbytes(n // 8)
+        ciphertext = _encrypt(keypair.public, message, rng.randbytes(32), eta)
+        bits = [(byte >> j) & 1 for byte in message for j in range(8)]
+        noise = [
+            centered(w - (Q + 1) // 2 * b, Q)
+            for w, b in zip(_noisy_message(keypair, ciphertext), bits, strict=True)
+        ]
+        largest = max(largest, *(abs(d) for d in noise))
+        decrypted = _decrypt(keypair, ciphertext)
+        flipped = sum(bin(x ^ y).count("1") for x, y in zip(message, decrypted, strict=True))
+        bit_errors += flipped
+        failures += flipped > 0
+    return KyberFailureRate(
+        k,
+        n,
+        eta1,
+        eta2,
+        du,
+        dv,
+        trials,
+        failures,
+        bit_errors,
+        failures / trials,
+        bit_errors / (trials * n),
+        largest,
+    )

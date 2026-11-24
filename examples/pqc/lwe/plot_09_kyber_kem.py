@@ -76,6 +76,35 @@ fig.tight_layout()
 plt.show()
 
 # %%
+# Measuring the decryption-failure rate
+# -------------------------------------
+# A message bit flips when the noise :math:`e^T r - s^T e_1 + e_2`, plus the
+# compression error, passes :math:`q/4 = 832`. With Kyber's own noise
+# (:math:`\eta_1 = 3`, :math:`\eta_2 = 2`) that never happens in a simulation:
+# FIPS 203 bounds it near :math:`2^{-139}`. Widening the noise at degree 64
+# makes the rate measurable, 50 seeded keys and messages per width.
+
+standard = pqc.kyber_failure_rate(2, 64, trials=50, seed=1)
+print(standard.failures, "failures; largest noise", standard.largest_noise, "of 832")
+assert standard.failures == 0 and standard.largest_noise < 832
+
+etas = [8, 16, 24, 32, 40]
+measured = [pqc.kyber_failure_rate(2, 64, eta=eta, trials=50, seed=1) for eta in etas]
+print({r.eta1: (r.failures, r.largest_noise) for r in measured})
+assert measured[0].failures == 0 and measured[-1].rate > 0.2
+
+fig, ax = plt.subplots()
+ax.plot(etas, [r.rate for r in measured], "o-", color="#dc2626", label="message failure rate")
+ax.plot(etas, [r.bit_rate for r in measured], "s--", color="#2563eb", label="bit error rate")
+ax.set_xlabel(r"noise width $\eta_1 = \eta_2$")
+ax.set_ylabel("rate over 50 trials")
+ax.set_title(r"Kyber-like decryption failures, $k = 2$, $n = 64$, $q = 3329$")
+ax.legend(loc="upper left")
+fig.tight_layout()
+
+plt.show()
+
+# %%
 # Exercise
 # --------
 # Suppose decapsulation raised an error on a failed re-encryption check

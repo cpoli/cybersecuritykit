@@ -23,6 +23,7 @@ import random
 from collections.abc import Sequence
 
 from cybersecuritykit import _validation
+from cybersecuritykit.constants import DEFAULT_SEED
 from cybersecuritykit.pqc.core.base import (
     GoppaCode,
     ISDResult,
@@ -39,6 +40,7 @@ from cybersecuritykit.pqc.utils import binary
 from cybersecuritykit.pqc.utils.galois import (
     MODULI,
     Poly,
+    check_degree,
     gf_inv,
     gf_mul,
     gf_pow,
@@ -65,14 +67,7 @@ __all__ = [
 ]
 
 
-def _check_field(m: int, t: int) -> None:
-    _validation.integer(m, "m", minimum=2)
-    if m not in MODULI:
-        raise ValueError(f"m must be at most {max(MODULI)}")
-    _validation.integer(t, "t", minimum=1)
-
-
-def goppa_code(m: int, t: int, *, seed: int, n: int | None = None) -> GoppaCode:
+def goppa_code(m: int, t: int, seed: int = DEFAULT_SEED, n: int | None = None) -> GoppaCode:
     """Draw a random binary Goppa code of length ``n`` correcting ``t`` errors.
 
     Parameters
@@ -81,7 +76,7 @@ def goppa_code(m: int, t: int, *, seed: int, n: int | None = None) -> GoppaCode:
         Extension degree, ``2 <= m <= 12``; the support lies in GF(2^m).
     t : int
         Degree of the Goppa polynomial, at least 2.
-    seed : int
+    seed : int, optional
         Seed for the support order and the polynomial.
     n : int, optional
         Code length, ``m t < n <= 2^m``; defaults to ``2^m``.
@@ -98,7 +93,8 @@ def goppa_code(m: int, t: int, *, seed: int, n: int | None = None) -> GoppaCode:
     >>> code.n, code.k
     (16, 8)
     """
-    _check_field(m, t)
+    check_degree(m, "m")
+    _validation.integer(t, "t", minimum=1)
     _validation.seed(seed)
     size = 2**m
     if n is None:
@@ -194,7 +190,7 @@ def _hide(rows: list[int], n: int, rng: random.Random) -> tuple[list[int], list[
     return scrambler, permutation, binary.permute_columns(mixed, permutation)
 
 
-def mceliece_keygen(m: int, t: int, *, seed: int) -> McElieceKeyPair:
+def mceliece_keygen(m: int, t: int, seed: int = DEFAULT_SEED) -> McElieceKeyPair:
     """Generate a toy McEliece key pair on a Goppa code of length ``2^m``.
 
     Examples
@@ -204,7 +200,8 @@ def mceliece_keygen(m: int, t: int, *, seed: int) -> McElieceKeyPair:
     >>> len(keys.public.generator), len(keys.public.generator[0])
     (8, 16)
     """
-    _check_field(m, t)
+    check_degree(m, "m")
+    _validation.integer(t, "t", minimum=1)
     _validation.seed(seed)
     rng = random.Random(seed)
     code = goppa_code(m, t, seed=rng.getrandbits(64))
@@ -216,7 +213,7 @@ def mceliece_keygen(m: int, t: int, *, seed: int) -> McElieceKeyPair:
 
 
 def mceliece_encrypt(
-    public: McEliecePublicKey, message: Sequence[int], *, seed: int
+    public: McEliecePublicKey, message: Sequence[int], seed: int = DEFAULT_SEED
 ) -> tuple[int, ...]:
     """Encrypt ``k`` message bits as ``m G' + e`` with a random error of weight ``t``.
 
@@ -259,8 +256,7 @@ def mceliece_decrypt(private: McEliecePrivateKey, ciphertext: Sequence[int]) -> 
 def break_mceliece(
     public: McEliecePublicKey,
     ciphertext: Sequence[int],
-    *,
-    seed: int,
+    seed: int = DEFAULT_SEED,
     max_iterations: int = 100_000,
 ) -> McElieceBreakResult:
     """Recover a McEliece plaintext from the public key with Prange's decoder.
@@ -293,7 +289,7 @@ def break_mceliece(
     return McElieceBreakResult(binary.unpack(x, len(rows)), found.error, found.iterations)
 
 
-def niederreiter_keygen(m: int, t: int, *, seed: int) -> NiederreiterKeyPair:
+def niederreiter_keygen(m: int, t: int, seed: int = DEFAULT_SEED) -> NiederreiterKeyPair:
     """Generate a toy Niederreiter key pair on a Goppa code of length ``2^m``.
 
     Examples
@@ -303,7 +299,8 @@ def niederreiter_keygen(m: int, t: int, *, seed: int) -> NiederreiterKeyPair:
     >>> len(keys.public.parity_check), len(keys.public.parity_check[0])
     (8, 16)
     """
-    _check_field(m, t)
+    check_degree(m, "m")
+    _validation.integer(t, "t", minimum=1)
     _validation.seed(seed)
     rng = random.Random(seed)
     code = goppa_code(m, t, seed=rng.getrandbits(64))
@@ -354,8 +351,7 @@ def niederreiter_decrypt(
 def break_niederreiter(
     public: NiederreiterPublicKey,
     ciphertext: Sequence[int],
-    *,
-    seed: int,
+    seed: int = DEFAULT_SEED,
     max_iterations: int = 100_000,
 ) -> ISDResult:
     """Recover a Niederreiter plaintext from the public key with Prange's decoder.

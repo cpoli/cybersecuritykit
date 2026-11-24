@@ -6,9 +6,12 @@ A polynomial is a list of field elements, constant term first, with no trailing 
 (the zero polynomial is ``[]``).
 """
 
+from cybersecuritykit import _validation
+
 __all__ = [
     "MODULI",
     "Poly",
+    "check_degree",
     "gf_inv",
     "gf_mul",
     "gf_pow",
@@ -38,6 +41,13 @@ MODULI = {
 }
 
 Poly = list[int]
+
+
+def check_degree(m: int, name: str) -> None:
+    """Validate the degree ``m`` of a field GF(2^m) with a polynomial in ``MODULI``."""
+    _validation.integer(m, name, minimum=2)
+    if m not in MODULI:
+        raise ValueError(f"{name} must be at most {max(MODULI)}")
 
 
 def gf_mul(a: int, b: int, m: int) -> int:

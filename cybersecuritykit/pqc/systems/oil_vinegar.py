@@ -28,6 +28,7 @@ import random
 from collections.abc import Sequence
 
 from cybersecuritykit import _validation
+from cybersecuritykit.constants import DEFAULT_SEED
 from cybersecuritykit.pqc.core.base import (
     OilVinegarKeyPair,
     OilVinegarPrivateKey,
@@ -44,12 +45,6 @@ __all__ = [
     "rainbow_keygen",
     "uov_keygen",
 ]
-
-
-def _check_field(q: int) -> None:
-    _validation.integer(q, "q")
-    if q % 2 == 0 or not prime_field.is_prime(q):
-        raise ValueError("q must be an odd prime")
 
 
 def _central_map(
@@ -76,8 +71,7 @@ def _keygen(q: int, layers: list[tuple[int, int]], mix: bool, seed: int) -> OilV
     m = sum(o for _, o in layers)
     central = _central_map(q, layers, n, rng)
     s = prime_field.random_invertible(n, q, rng)
-    identity = [[int(i == j) for j in range(m)] for i in range(m)]
-    t = prime_field.random_invertible(m, q, rng) if mix else identity
+    t = prime_field.random_invertible(m, q, rng) if mix else prime_field.identity(m)
 
     def public(x: list[int]) -> list[int]:
         return prime_field.mat_vec(t, list(central.evaluate(prime_field.mat_vec(s, x, q))), q)
@@ -92,7 +86,7 @@ def _keygen(q: int, layers: list[tuple[int, int]], mix: bool, seed: int) -> OilV
     return OilVinegarKeyPair(interpolate(public, n, q), private)
 
 
-def uov_keygen(q: int, *, vinegar: int, oil: int, seed: int) -> OilVinegarKeyPair:
+def uov_keygen(q: int, *, vinegar: int, oil: int, seed: int = DEFAULT_SEED) -> OilVinegarKeyPair:
     """Generate a toy unbalanced oil and vinegar key over GF(q).
 
     Parameters
@@ -103,7 +97,7 @@ def uov_keygen(q: int, *, vinegar: int, oil: int, seed: int) -> OilVinegarKeyPai
         Numbers of vinegar and oil variables; the key has ``oil`` polynomials in
         ``vinegar + oil`` variables (Kipnis, Patarin and Goubin recommend
         ``vinegar >= 2 oil``).
-    seed : int
+    seed : int, optional
         Seed for the central map and ``S``.
 
     Examples
@@ -114,13 +108,16 @@ def uov_keygen(q: int, *, vinegar: int, oil: int, seed: int) -> OilVinegarKeyPai
     >>> pqc.oil_vinegar_verify(keys.public, b"hello", signature)
     True
     """
-    _check_field(q)
+    _validation.integer(q, "q")
+    prime_field.check_prime(q, "q", odd=True)
     _validation.integer(vinegar, "vinegar", minimum=1)
     _validation.integer(oil, "oil", minimum=1)
     return _keygen(q, [(vinegar, oil)], False, seed)
 
 
-def rainbow_keygen(q: int, v1: int, o1: int, o2: int, *, seed: int) -> OilVinegarKeyPair:
+def rainbow_keygen(
+    q: int, v1: int, o1: int, o2: int, seed: int = DEFAULT_SEED
+) -> OilVinegarKeyPair:
     """Generate a toy two-layer Rainbow key over GF(q).
 
     Layer 1 has ``o1`` polynomials in the first ``v1 + o1`` variables; layer 2 has
@@ -135,7 +132,8 @@ def rainbow_keygen(q: int, v1: int, o1: int, o2: int, *, seed: int) -> OilVinega
     >>> pqc.oil_vinegar_verify(keys.public, b"hello", signature)
     True
     """
-    _check_field(q)
+    _validation.integer(q, "q")
+    prime_field.check_prime(q, "q", odd=True)
     _validation.integer(v1, "v1", minimum=1)
     _validation.integer(o1, "o1", minimum=1)
     _validation.integer(o2, "o2", minimum=1)
@@ -149,7 +147,7 @@ def _digest(message: bytes, m: int, q: int) -> list[int]:
 
 
 def oil_vinegar_sign(
-    private: OilVinegarPrivateKey, message: bytes, *, seed: int
+    private: OilVinegarPrivateKey, message: bytes, seed: int = DEFAULT_SEED
 ) -> tuple[int, ...]:
     """Sign by inverting the central map one layer at a time.
 
@@ -207,7 +205,7 @@ def _row_space(a: Sequence[Sequence[int]], q: int) -> list[list[int]]:
 
 
 def beullens_rainbow_attack(
-    public: QuadraticMap, o2: int, *, seed: int, max_guesses: int = 1000
+    public: QuadraticMap, o2: int, seed: int = DEFAULT_SEED, max_guesses: int = 1000
 ) -> RainbowBreakResult:
     """Recover the last-layer oil space ``O2`` of a toy Rainbow public key.
 
@@ -217,7 +215,7 @@ def beullens_rainbow_attack(
         A Rainbow public key over an odd prime field.
     o2 : int
         Size of the last layer.
-    seed : int
+    seed : int, optional
         Seed for the random points ``x``.
     max_guesses : int, optional
         How many points ``x`` to try.

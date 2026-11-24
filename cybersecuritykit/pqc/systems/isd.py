@@ -14,6 +14,7 @@ import random
 from collections.abc import Sequence
 
 from cybersecuritykit import _validation
+from cybersecuritykit.constants import DEFAULT_SEED
 from cybersecuritykit.pqc.core.base import ISDResult
 from cybersecuritykit.pqc.utils import binary
 
@@ -67,8 +68,7 @@ def prange_isd(
     parity_check: Sequence[Sequence[int]],
     target: Sequence[int],
     t: int,
-    *,
-    seed: int,
+    seed: int = DEFAULT_SEED,
     max_iterations: int = 100_000,
 ) -> ISDResult:
     """Find an error of weight at most ``t`` with syndrome ``target`` by Prange's method.
@@ -81,7 +81,7 @@ def prange_isd(
         The syndrome, ``r`` bits.
     t : int
         The largest error weight accepted.
-    seed : int
+    seed : int, optional
         Seed for the random choice of column sets.
     max_iterations : int, optional
         How many column sets to try, singular ones included.

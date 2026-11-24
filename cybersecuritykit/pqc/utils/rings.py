@@ -70,6 +70,32 @@ def uniform(rng: random.Random, n: int, q: int) -> Poly:
     return tuple(rng.randrange(q) for _ in range(n))
 
 
+def ternary(rng: random.Random, n: int, ones: int | None = None, minus: int | None = None) -> Poly:
+    """``n`` coefficients in ``{-1, 0, 1}``.
+
+    Uniform and independent by default; with ``ones`` and ``minus`` given, exactly
+    that many 1s and -1s in a random order, as NTRU's fixed-weight polynomials.
+    """
+    if ones is None or minus is None:
+        return tuple(rng.choice((-1, 0, 1)) for _ in range(n))
+    coefficients = [1] * ones + [-1] * minus + [0] * (n - ones - minus)
+    rng.shuffle(coefficients)
+    return tuple(coefficients)
+
+
+def dot(u: Sequence[int], v: Sequence[int]) -> int:
+    """The integer inner product of two vectors of equal length."""
+    return sum(x * y for x, y in zip(u, v, strict=True))
+
+
+def poly_dot(a: Sequence[Sequence[int]], b: Sequence[Sequence[int]], q: int, sign: int) -> Poly:
+    """Inner product of two vectors of polynomials, with products as in :func:`multiply`."""
+    total: Poly = (0,) * len(a[0])
+    for x, y in zip(a, b, strict=True):
+        total = add(total, multiply(x, y, q, sign), q)
+    return total
+
+
 def binomial(rng: random.Random, n: int, eta: int) -> Poly:
     """``n`` coefficients from the centered binomial distribution of Kyber, in ``[-eta, eta]``."""
     return tuple(

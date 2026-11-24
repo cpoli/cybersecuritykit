@@ -8,7 +8,7 @@ from hypothesis import strategies as st
 
 import cybersecuritykit as csk
 
-pq = csk.pqc
+pqc = csk.pqc
 
 
 def _gram_schmidt(basis):
@@ -48,20 +48,20 @@ def _coordinates(basis, vector):
 
 def test_lll_reduces_the_wikipedia_example():
     # Wikipedia, "Lenstra-Lenstra-Lovász lattice basis reduction algorithm", delta = 3/4.
-    result = pq.lll_reduce([[1, 1, 1], [-1, 0, 2], [3, 5, 6]])
+    result = pqc.lll_reduce([[1, 1, 1], [-1, 0, 2], [3, 5, 6]])
     assert result.basis == ((0, 1, 0), (1, 0, 1), (-1, 0, 2))
     assert result.swaps >= 1
 
 
 def test_lll_finds_a_short_basis_of_a_skewed_lattice():
     # 21*55 - 34*34 = -1, so the lattice is Z^2 and LLL must find two unit-length vectors.
-    result = pq.lll_reduce([[21, 34], [34, 55]])
+    result = pqc.lll_reduce([[21, 34], [34, 55]])
     assert sorted(sum(x * x for x in row) for row in result.basis) == [1, 1]
 
 
 def test_lll_records_gram_schmidt_norms_before_and_after():
     basis = [[1, 1, 1], [-1, 0, 2], [3, 5, 6]]
-    result = pq.lll_reduce(basis)
+    result = pqc.lll_reduce(basis)
     before = [float(sum(x * x for x in v)) ** 0.5 for v in _gram_schmidt(basis)]
     after = [float(sum(x * x for x in v)) ** 0.5 for v in _gram_schmidt(result.basis)]
     assert result.norms_before == pytest.approx(before)
@@ -69,7 +69,7 @@ def test_lll_records_gram_schmidt_norms_before_and_after():
 
 
 def test_an_already_reduced_basis_is_left_alone():
-    result = pq.lll_reduce([[1, 0], [0, 1]])
+    result = pqc.lll_reduce([[1, 0], [0, 1]])
     assert result.basis == ((1, 0), (0, 1)) and result.swaps == 0
 
 
@@ -85,9 +85,9 @@ small_bases = st.integers(2, 4).flatmap(
 def test_lll_output_is_size_reduced_lovasz_and_spans_the_same_lattice(basis, delta):
     if _determinant_squared(basis) == 0:
         with pytest.raises(ValueError):
-            pq.lll_reduce(basis, delta)
+            pqc.lll_reduce(basis, delta)
         return
-    result = pq.lll_reduce(basis, delta)
+    result = pqc.lll_reduce(basis, delta)
     assert _determinant_squared(result.basis) == _determinant_squared(basis)
     star = _gram_schmidt(result.basis)
     norms = [sum(x * x for x in v) for v in star]
@@ -104,15 +104,15 @@ def test_lll_output_is_size_reduced_lovasz_and_spans_the_same_lattice(basis, del
 @pytest.mark.parametrize(
     ("call", "error"),
     [
-        (lambda: pq.lll_reduce([]), ValueError),
-        (lambda: pq.lll_reduce([[1, 2], [3]]), ValueError),
-        (lambda: pq.lll_reduce([[1, 2], [2, 4]]), ValueError),
-        (lambda: pq.lll_reduce([[1, 2, 3], [4, 5, 6], [5, 7, 9]]), ValueError),
-        (lambda: pq.lll_reduce([[1, 0], [0, 1], [1, 1]]), ValueError),
-        (lambda: pq.lll_reduce([[1.5, 2], [3, 4]]), TypeError),
-        (lambda: pq.lll_reduce([[1, 0], [0, 1]], delta=0.2), ValueError),
-        (lambda: pq.lll_reduce([[1, 0], [0, 1]], delta=1.0), ValueError),
-        (lambda: pq.lll_reduce([[1, 0], [0, 1]], delta="x"), TypeError),
+        (lambda: pqc.lll_reduce([]), ValueError),
+        (lambda: pqc.lll_reduce([[1, 2], [3]]), ValueError),
+        (lambda: pqc.lll_reduce([[1, 2], [2, 4]]), ValueError),
+        (lambda: pqc.lll_reduce([[1, 2, 3], [4, 5, 6], [5, 7, 9]]), ValueError),
+        (lambda: pqc.lll_reduce([[1, 0], [0, 1], [1, 1]]), ValueError),
+        (lambda: pqc.lll_reduce([[1.5, 2], [3, 4]]), TypeError),
+        (lambda: pqc.lll_reduce([[1, 0], [0, 1]], delta=0.2), ValueError),
+        (lambda: pqc.lll_reduce([[1, 0], [0, 1]], delta=1.0), ValueError),
+        (lambda: pqc.lll_reduce([[1, 0], [0, 1]], delta="x"), TypeError),
     ],
 )
 def test_lll_rejects_bad_input(call, error):

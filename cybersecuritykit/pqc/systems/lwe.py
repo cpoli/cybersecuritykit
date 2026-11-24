@@ -9,6 +9,11 @@ quantum algorithm, as approximating short vectors in every lattice. The
 samples form a public key: a bit is encrypted by summing a random subset of
 them and adding :math:`\\lfloor q/2 \\rfloor` for a 1.
 
+:func:`lwe_lattice_attack` follows the primal attack: Kannan's embedding
+(R. Kannan, "Minkowski's convex body theorem and integer programming",
+*Mathematics of Operations Research* 12, 415-440, 1987) turns the error into a
+short lattice vector, and LLL finds it while the dimension is small.
+
 The errors here come from the centered binomial distribution of Kyber rather
 than Regev's discrete Gaussian; both keep each :math:`e_i` small.
 """
@@ -18,10 +23,18 @@ from collections.abc import Sequence
 
 from cybersecuritykit import _validation
 from cybersecuritykit.constants import DEFAULT_SEED
-from cybersecuritykit.pqc.core.base import LWEAttackResult, LWECiphertext, LWEKeyPair, LWEPublicKey
-from cybersecuritykit.pqc.utils.rings import binomial, centered, int_vector, uniform
+from cybersecuritykit.pqc.core.base import (
+    LWEAttackResult,
+    LWECiphertext,
+    LWEKeyPair,
+    LWELatticeAttackResult,
+    LWEPublicKey,
+)
+from cybersecuritykit.pqc.systems.lattice import lll_reduce
+from cybersecuritykit.pqc.utils import prime_field
+from cybersecuritykit.pqc.utils.rings import binomial, centered, dot, int_vector, uniform
 
-__all__ = ["lwe_decrypt", "lwe_encrypt", "lwe_gaussian_attack", "lwe_keygen"]
+__all__ = ["lwe_decrypt", "lwe_encrypt", "lwe_gaussian_attack", "lwe_keygen", "lwe_lattice_attack"]
 
 
 def lwe_keygen(n: int, m: int, q: int, eta: int = 2, seed: int = DEFAULT_SEED) -> LWEKeyPair:
@@ -61,10 +74,7 @@ def lwe_keygen(n: int, m: int, q: int, eta: int = 2, seed: int = DEFAULT_SEED) -
     a = tuple(uniform(rng, n, q) for _ in range(m))
     secret = uniform(rng, n, q)
     errors = binomial(rng, m, eta)
-    b = tuple(
-        (sum(x * s for x, s in zip(row, secret, strict=True)) + e) % q
-        for row, e in zip(a, errors, strict=True)
-    )
+    b = tuple((dot(row, secret) + e) % q for row, e in zip(a, errors, strict=True))
     return LWEKeyPair(LWEPublicKey(n, q, a, b), secret)
 
 
@@ -170,9 +180,7 @@ def lwe_decrypt(keypair: LWEKeyPair, ciphertext: LWECiphertext) -> int:
     if len(ciphertext.u) != keypair.public.n:
         raise ValueError("ciphertext has the wrong dimension")
     q = keypair.public.q
-    d = centered(
-        ciphertext.v - sum(u * s for u, s in zip(ciphertext.u, keypair.secret, strict=True)), q
-    )
+    d = centered(ciphertext.v - dot(ciphertext.u, keypair.secret), q)
     return int(abs(d) > q // 4)
 
 
@@ -208,8 +216,7 @@ def lwe_gaussian_attack(public: LWEPublicKey) -> LWEAttackResult:
     """
     _public(public)
     n, q = public.n, public.q
-    if any(q % d == 0 for d in range(2, int(q**0.5) + 1)):
-        raise ValueError("q must be prime")
+    prime_field.check_prime(q, "q")
     rows = [[x % q for x in a] + [b % q] for a, b in zip(public.a, public.b, strict=True)]
     for col in range(n):
         pivot = next((r for r in range(col, len(rows)) if rows[r][col]), None)
@@ -223,8 +230,80 @@ def lwe_gaussian_attack(public: LWEPublicKey) -> LWEAttackResult:
                 factor = row[col]
                 rows[r] = [(x - factor * y) % q for x, y in zip(row, rows[col], strict=True)]
     secret = tuple(row[n] for row in rows[:n])
-    consistent = sum(
-        (sum(x * s for x, s in zip(a, secret, strict=True)) - b) % q == 0
-        for a, b in zip(public.a, public.b, strict=True)
-    )
+    consistent = sum((dot(a, secret) - b) % q == 0 for a, b in zip(public.a, public.b, strict=True))
     return LWEAttackResult(secret, consistent)
+
+
+def lwe_lattice_attack(public: LWEPublicKey) -> LWELatticeAttackResult:
+    r"""Recover the secret of noisy LWE samples with Kannan's embedding and LLL.
+
+    The vectors :math:`A s \bmod q` form the :math:`q`-ary lattice
+    :math:`L(A)`, and :math:`b = A s + e` lies a short step :math:`e` from it.
+    Writing :math:`A = (A_1; A_2)` with :math:`A_1` the first :math:`n` rows,
+    :math:`L(A)` has the basis :math:`\begin{pmatrix} I & C^T \\ 0 & qI
+    \end{pmatrix}` with :math:`C = A_2 A_1^{-1}`. Appending the row
+    :math:`(b, 1)` and a zero last column embeds the closest vector problem in
+    a shortest vector problem:
+
+    .. math::
+
+        (b, 1) - (A s \bmod q, 0) = (e, 1)
+
+    is unusually short, so LLL tends to put :math:`\pm(e, 1)` in the reduced
+    basis. The shortest reduced row with last coordinate :math:`\pm 1` is
+    read as :math:`(e, 1)`, and :math:`s = A_1^{-1}(b_1 - e_1)`. This works
+    only while the dimension :math:`m + 1` is small: LLL's approximation factor
+    grows like :math:`2^{m/2}`, and real parameters put :math:`e` far beyond
+    what any reduction finds.
+
+    Parameters
+    ----------
+    public : LWEPublicKey
+        Samples with a prime modulus whose first :math:`n` rows are independent.
+
+    Returns
+    -------
+    LWELatticeAttackResult
+        ``secret`` and ``error`` are ``None`` when no reduced row has last
+        coordinate :math:`\pm 1`. With too few samples for the noise, a
+        different secret with an even shorter error can come back instead.
+
+    Raises
+    ------
+    TypeError
+        ``public`` is not an :class:`~cybersecuritykit.pqc.core.base.LWEPublicKey`.
+    ValueError
+        :math:`q` is not prime, or the first :math:`n` samples are dependent.
+
+    Examples
+    --------
+    >>> from cybersecuritykit import pqc
+    >>> keys = pqc.lwe_keygen(4, 16, 97, seed=1)
+    >>> pqc.lwe_gaussian_attack(keys.public).secret == keys.secret
+    False
+    >>> pqc.lwe_lattice_attack(keys.public).secret == keys.secret
+    True
+    """
+    _public(public)
+    n, q, a, b = public.n, public.q, public.a, public.b
+    prime_field.check_prime(q, "q")
+    m = len(b)
+    inverse = prime_field.inverse(a[:n], q)
+    if inverse is None:
+        raise ValueError("the first n samples must be independent")
+    columns = list(zip(*inverse, strict=True))
+    c = [prime_field.mat_vec(columns, row, q) for row in a[n:]]
+    basis = [
+        tuple(int(i == j) for j in range(n)) + tuple(row[i] for row in c) + (0,) for i in range(n)
+    ]
+    basis += [(0,) * j + (q,) + (0,) * (m - j) for j in range(n, m)]
+    basis.append(tuple(b) + (1,))
+    reduction = lll_reduce(basis)
+    rows = [row for row in reduction.basis if abs(row[-1]) == 1]
+    if not rows:
+        return LWELatticeAttackResult(None, None, m + 1, reduction.swaps)
+    row = min(rows, key=lambda v: dot(v, v))
+    error = tuple(row[-1] * x for x in row[:m])
+    top = [y - e for y, e in zip(b[:n], error[:n], strict=True)]
+    secret = tuple(prime_field.mat_vec(inverse, top, q))
+    return LWELatticeAttackResult(secret, error, m + 1, reduction.swaps)

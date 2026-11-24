@@ -15,7 +15,7 @@ from fractions import Fraction
 
 from cybersecuritykit import _validation
 from cybersecuritykit.pqc.core.base import LLLResult
-from cybersecuritykit.pqc.utils.rings import int_vector
+from cybersecuritykit.pqc.utils.rings import dot, int_vector
 
 __all__ = ["lll_reduce"]
 
@@ -29,10 +29,6 @@ def _basis(rows: Sequence[Sequence[int]]) -> list[list[int]]:
     return basis
 
 
-def _dot(u: Sequence[int], v: Sequence[int]) -> int:
-    return sum(x * y for x, y in zip(u, v, strict=True))
-
-
 def _gram_schmidt(b: list[list[int]]) -> tuple[list[list[Fraction]], list[Fraction]]:
     """Return the coefficients ``mu`` and squared norms ``B`` of the Gram-Schmidt vectors."""
     n = len(b)
@@ -41,9 +37,9 @@ def _gram_schmidt(b: list[list[int]]) -> tuple[list[list[Fraction]], list[Fracti
     for i in range(n):
         for j in range(i):
             mu[i][j] = (
-                Fraction(_dot(b[i], b[j])) - sum(mu[j][k] * mu[i][k] * norms[k] for k in range(j))
+                Fraction(dot(b[i], b[j])) - sum(mu[j][k] * mu[i][k] * norms[k] for k in range(j))
             ) / norms[j]
-        norm = _dot(b[i], b[i]) - sum(mu[i][k] ** 2 * norms[k] for k in range(i))
+        norm = dot(b[i], b[i]) - sum(mu[i][k] ** 2 * norms[k] for k in range(i))
         if norm == 0:
             raise ValueError("basis vectors are linearly dependent")
         norms.append(Fraction(norm))

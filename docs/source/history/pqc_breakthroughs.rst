@@ -175,7 +175,8 @@ Gram-Schmidt length drops too fast, as measured by the Lovász condition:
 It runs in polynomial time and returns a first vector within an exponential
 factor of the shortest. That factor is useless against cryptographic
 dimensions but decisive in small ones, and LLL with its block descendants is
-the yardstick against which every lattice scheme sets its parameters.
+the yardstick against which every lattice scheme sets its parameters; the
+primal attack on learning with errors (2005, below) runs it directly.
 
 *Implementation:* :func:`cybersecuritykit.pqc.systems.lattice.lll_reduce`
 keeps the Gram-Schmidt data as exact fractions and updates it on each swap
@@ -461,22 +462,31 @@ Decryption computes :math:`v - \langle u, s \rangle`, the bit times
 :math:`\lfloor q/2 \rfloor` plus the summed errors, and rounds; it is correct
 while the summed errors stay below :math:`q/4`. Learning with errors became
 the most flexible hardness assumption in cryptography, under encryption,
-key exchange and fully homomorphic encryption alike.
+key exchange and fully homomorphic encryption alike. Its parameters are set
+against the primal lattice attack: :math:`b` lies a short step :math:`e` from
+the lattice :math:`\{A x \bmod q\}`, and Kannan's embedding turns that
+closest-vector problem into a search for the short vector :math:`(e, 1)`.
 
 *Implementation:* :func:`cybersecuritykit.pqc.systems.lwe.lwe_keygen`,
 :func:`cybersecuritykit.pqc.systems.lwe.lwe_encrypt` and
 :func:`cybersecuritykit.pqc.systems.lwe.lwe_decrypt` draw errors from
 Kyber's centered binomial distribution instead of a discrete Gaussian, with
 dimensions around 8; :func:`cybersecuritykit.pqc.systems.lwe.lwe_gaussian_attack`
-shows elimination recovering the secret only when the noise is zero.
+shows elimination recovering the secret only when the noise is zero, and
+:func:`cybersecuritykit.pqc.systems.lwe.lwe_lattice_attack` runs the primal
+attack, Kannan's embedding reduced by LLL, which recovers a noisy secret in
+dimension about 25 but not at the hundreds of dimensions real schemes use.
 
 *References:* O. Regev, "On lattices, learning with errors, random linear
 codes, and cryptography", *Proceedings of the 37th Annual ACM Symposium on
 Theory of Computing*, 84–93 (2005).
 `DOI <https://doi.org/10.1145/1060590.1060603>`__. Journal version: *J. ACM*
-56(6), 34 (2009). `DOI <https://doi.org/10.1145/1568318.1568324>`__.
+56(6), 34 (2009). `DOI <https://doi.org/10.1145/1568318.1568324>`__. R.
+Kannan, "Minkowski's convex body theorem and integer programming",
+*Mathematics of Operations Research* 12(3), 415–440 (1987).
+`DOI <https://doi.org/10.1287/moor.12.3.415>`__.
 
-.. minigallery:: ../../examples/pqc/lwe/plot_06_regev_lwe.py
+.. minigallery:: ../../examples/pqc/lwe/plot_06_regev_lwe.py ../../examples/pqc/lwe/plot_10_lwe_lattice_attack.py
 
 2009 -- Fiat-Shamir with aborts
 -------------------------------
@@ -668,6 +678,10 @@ learn from. NIST selected Kyber in 2022 and published it as ML-KEM in FIPS
 SHAKE-256 from :mod:`hashlib`) with :math:`q = 3329`, but default to degree
 16, multiply schoolbook instead of in the NTT domain and serialize
 differently, so outputs are not FIPS 203 known answers.
+:func:`cybersecuritykit.pqc.systems.kyber.kyber_failure_rate` measures the
+decryption-failure rate over seeded trials: none with Kyber's own noise,
+whose real rate is about :math:`2^{-139}`, and a measurable rate once the
+noise is widened.
 
 *References:* J. Bos, L. Ducas, E. Kiltz, T. Lepoint, V. Lyubashevsky, J. M.
 Schanck, P. Schwabe, G. Seiler and D. Stehlé, "CRYSTALS -- Kyber: a

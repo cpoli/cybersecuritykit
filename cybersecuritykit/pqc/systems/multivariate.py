@@ -25,6 +25,7 @@ import random
 from collections.abc import Sequence
 
 from cybersecuritykit import _validation
+from cybersecuritykit.constants import DEFAULT_SEED
 from cybersecuritykit.pqc.core.base import (
     LinearizationResult,
     MatsumotoImaiKeyPair,
@@ -32,7 +33,7 @@ from cybersecuritykit.pqc.core.base import (
     QuadraticMap,
 )
 from cybersecuritykit.pqc.utils import binary, prime_field
-from cybersecuritykit.pqc.utils.galois import MODULI, gf_pow
+from cybersecuritykit.pqc.utils.galois import check_degree, gf_pow
 from cybersecuritykit.pqc.utils.quadratic import interpolate
 
 __all__ = [
@@ -51,7 +52,7 @@ def _power(x: Sequence[int], exponent: int, n: int) -> list[int]:
     return list(binary.unpack(gf_pow(binary.pack(x), exponent, n), n))
 
 
-def matsumoto_imai_keygen(n: int, theta: int, *, seed: int) -> MatsumotoImaiKeyPair:
+def matsumoto_imai_keygen(n: int, theta: int, seed: int = DEFAULT_SEED) -> MatsumotoImaiKeyPair:
     """Generate a toy Matsumoto-Imai key over GF(2^n).
 
     Parameters
@@ -60,7 +61,7 @@ def matsumoto_imai_keygen(n: int, theta: int, *, seed: int) -> MatsumotoImaiKeyP
         Number of plaintext bits, ``2 <= n <= 12``.
     theta : int
         ``1 <= theta < n`` with ``gcd(2^theta + 1, 2^n - 1) = 1``.
-    seed : int
+    seed : int, optional
         Seed for the secret affine maps.
 
     Returns
@@ -76,9 +77,7 @@ def matsumoto_imai_keygen(n: int, theta: int, *, seed: int) -> MatsumotoImaiKeyP
     >>> pqc.matsumoto_imai_decrypt(keys.private, ciphertext)
     (1, 0, 1, 1, 0)
     """
-    _validation.integer(n, "n", minimum=2)
-    if n not in MODULI:
-        raise ValueError(f"n must be at most {max(MODULI)}")
+    check_degree(n, "n")
     _validation.integer(theta, "theta", minimum=1)
     if theta >= n or math.gcd(2**theta + 1, 2**n - 1) != 1:
         raise ValueError("theta must satisfy theta < n and gcd(2^theta + 1, 2^n - 1) = 1")
@@ -116,18 +115,21 @@ def matsumoto_imai_decrypt(
     t_inverse = prime_field.inverse(private.t_matrix, 2)
     s_inverse = prime_field.inverse(private.s_matrix, 2)
     assert t_inverse is not None and s_inverse is not None  # invertible by construction
-    y_central = prime_field.mat_vec(t_inverse, _affine(_identity(n), private.t_offset, y), 2)
+    y_central = prime_field.mat_vec(
+        t_inverse, _affine(prime_field.identity(n), private.t_offset, y), 2
+    )
     x_central = _power(y_central, pow(2**private.theta + 1, -1, 2**n - 1), n)
-    x = prime_field.mat_vec(s_inverse, _affine(_identity(n), private.s_offset, x_central), 2)
+    x = prime_field.mat_vec(
+        s_inverse, _affine(prime_field.identity(n), private.s_offset, x_central), 2
+    )
     return tuple(x)
 
 
-def _identity(n: int) -> list[list[int]]:
-    return [[int(i == j) for j in range(n)] for i in range(n)]
-
-
 def patarin_linearization(
-    public: QuadraticMap, ciphertext: Sequence[int], *, seed: int, pairs: int | None = None
+    public: QuadraticMap,
+    ciphertext: Sequence[int],
+    seed: int = DEFAULT_SEED,
+    pairs: int | None = None,
 ) -> LinearizationResult:
     """Decrypt a Matsumoto-Imai ciphertext from the public key with Patarin's relations.
 
@@ -137,7 +139,7 @@ def patarin_linearization(
         A Matsumoto-Imai public key over GF(2).
     ciphertext : sequence of int
         The target ciphertext bits.
-    seed : int
+    seed : int, optional
         Seed for choosing the plaintexts of the known pairs.
     pairs : int, optional
         How many pairs to compute, at most ``2^n``; defaults to ``2 (n + 1)^2``.

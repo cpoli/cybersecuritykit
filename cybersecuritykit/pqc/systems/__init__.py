@@ -1,6 +1,5 @@
 """Models and algorithms for :mod:`cybersecuritykit.pqc`."""
 
-# --- slice A ---
 from cybersecuritykit.pqc.systems.aborts import (
     lyubashevsky_keygen,
     lyubashevsky_leakage,
@@ -16,9 +15,15 @@ from cybersecuritykit.pqc.systems.grover import (
     grover_iterations,
     grover_search,
 )
+from cybersecuritykit.pqc.systems.isd import (
+    prange_isd,
+    prange_success_probability,
+    syndrome,
+)
 from cybersecuritykit.pqc.systems.kyber import (
     kyber_decapsulate,
     kyber_encapsulate,
+    kyber_failure_rate,
     kyber_keygen,
 )
 from cybersecuritykit.pqc.systems.lattice import lll_reduce
@@ -27,32 +32,7 @@ from cybersecuritykit.pqc.systems.lwe import (
     lwe_encrypt,
     lwe_gaussian_attack,
     lwe_keygen,
-)
-from cybersecuritykit.pqc.systems.ntru import (
-    ntru_decrypt,
-    ntru_encrypt,
-    ntru_keygen,
-    ntru_keypair,
-    ntru_lattice_attack,
-)
-from cybersecuritykit.pqc.systems.ring_lwe import (
-    ring_lwe_decrypt,
-    ring_lwe_encrypt,
-    ring_lwe_keygen,
-)
-from cybersecuritykit.pqc.systems.shor import (
-    shor_distribution,
-    shor_factor,
-)
-
-# isort: split
-# --- end slice A ---
-
-# --- slice B: codes and multivariate ---
-from cybersecuritykit.pqc.systems.isd import (
-    prange_isd,
-    prange_success_probability,
-    syndrome,
+    lwe_lattice_attack,
 )
 from cybersecuritykit.pqc.systems.mceliece import (
     break_mceliece,
@@ -72,6 +52,13 @@ from cybersecuritykit.pqc.systems.multivariate import (
     matsumoto_imai_keygen,
     patarin_linearization,
 )
+from cybersecuritykit.pqc.systems.ntru import (
+    ntru_decrypt,
+    ntru_encrypt,
+    ntru_keygen,
+    ntru_keypair,
+    ntru_lattice_attack,
+)
 from cybersecuritykit.pqc.systems.oil_vinegar import (
     beullens_rainbow_attack,
     oil_vinegar_sign,
@@ -79,9 +66,15 @@ from cybersecuritykit.pqc.systems.oil_vinegar import (
     rainbow_keygen,
     uov_keygen,
 )
-
-# --- end slice B ---
-# --- slice C ---
+from cybersecuritykit.pqc.systems.ring_lwe import (
+    ring_lwe_decrypt,
+    ring_lwe_encrypt,
+    ring_lwe_keygen,
+)
+from cybersecuritykit.pqc.systems.shor import (
+    shor_distribution,
+    shor_factor,
+)
 from cybersecuritykit.pqc.systems.sphincs import (
     few_time_security,
     horst_forge,
@@ -110,63 +103,20 @@ from cybersecuritykit.pqc.systems.xmss import (
     xmss_verify,
 )
 
-# --- end slice C ---
-
 __all__: list[str] = [
-    # --- slice A ---
-    "ajtai_collision",
-    "ajtai_hash",
-    "ajtai_keygen",
-    "grover_iterations",
-    "grover_search",
-    "kyber_decapsulate",
-    "kyber_encapsulate",
-    "kyber_keygen",
-    "lll_reduce",
-    "lwe_decrypt",
-    "lwe_encrypt",
-    "lwe_gaussian_attack",
-    "lwe_keygen",
-    "lyubashevsky_keygen",
-    "lyubashevsky_leakage",
-    "lyubashevsky_sign",
-    "lyubashevsky_verify",
-    "ntru_decrypt",
-    "ntru_encrypt",
-    "ntru_keygen",
-    "ntru_keypair",
-    "ntru_lattice_attack",
-    "ring_lwe_decrypt",
-    "ring_lwe_encrypt",
-    "ring_lwe_keygen",
-    "shor_distribution",
-    "shor_factor",
-    # --- end slice A ---
-    # --- slice B: codes and multivariate ---
-    "beullens_rainbow_attack",
+    "prange_isd",
+    "prange_success_probability",
+    "syndrome",
     "break_mceliece",
     "break_niederreiter",
     "goppa_code",
     "goppa_decode",
-    "matsumoto_imai_decrypt",
-    "matsumoto_imai_encrypt",
-    "matsumoto_imai_keygen",
     "mceliece_decrypt",
     "mceliece_encrypt",
     "mceliece_keygen",
     "niederreiter_decrypt",
     "niederreiter_encrypt",
     "niederreiter_keygen",
-    "oil_vinegar_sign",
-    "oil_vinegar_verify",
-    "patarin_linearization",
-    "prange_isd",
-    "prange_success_probability",
-    "rainbow_keygen",
-    "syndrome",
-    "uov_keygen",
-    # --- end slice B ---
-    # --- slice C ---
     "WINTERNITZ_WIDTHS",
     "winternitz_cost",
     "winternitz_digest",
@@ -175,6 +125,44 @@ __all__: list[str] = [
     "winternitz_keygen",
     "winternitz_sign",
     "winternitz_verify",
+    "lll_reduce",
+    "matsumoto_imai_decrypt",
+    "matsumoto_imai_encrypt",
+    "matsumoto_imai_keygen",
+    "patarin_linearization",
+    "shor_distribution",
+    "shor_factor",
+    "grover_iterations",
+    "grover_search",
+    "ajtai_collision",
+    "ajtai_hash",
+    "ajtai_keygen",
+    "ntru_decrypt",
+    "ntru_encrypt",
+    "ntru_keygen",
+    "ntru_keypair",
+    "ntru_lattice_attack",
+    "beullens_rainbow_attack",
+    "oil_vinegar_sign",
+    "oil_vinegar_verify",
+    "rainbow_keygen",
+    "uov_keygen",
+    "lwe_decrypt",
+    "lwe_encrypt",
+    "lwe_gaussian_attack",
+    "lwe_keygen",
+    "lwe_lattice_attack",
+    "lyubashevsky_keygen",
+    "lyubashevsky_leakage",
+    "lyubashevsky_sign",
+    "lyubashevsky_verify",
+    "ring_lwe_decrypt",
+    "ring_lwe_encrypt",
+    "ring_lwe_keygen",
+    "xmss_forge",
+    "xmss_keygen",
+    "xmss_sign",
+    "xmss_verify",
     "few_time_security",
     "horst_forge",
     "horst_indices",
@@ -184,9 +172,8 @@ __all__: list[str] = [
     "sphincs_keygen",
     "sphincs_sign",
     "sphincs_verify",
-    "xmss_forge",
-    "xmss_keygen",
-    "xmss_sign",
-    "xmss_verify",
-    # --- end slice C ---
+    "kyber_decapsulate",
+    "kyber_encapsulate",
+    "kyber_failure_rate",
+    "kyber_keygen",
 ]

@@ -22,7 +22,7 @@ from cybersecuritykit.pqc.core.base import (
     WinternitzPublicKey,
     WinternitzSignature,
 )
-from cybersecuritykit.pqc.utils.hash_trees import derive, tweak_hash
+from cybersecuritykit.pqc.utils import hash_trees
 
 __all__ = [
     "WINTERNITZ_WIDTHS",
@@ -35,27 +35,8 @@ __all__ = [
     "winternitz_verify",
 ]
 
-WINTERNITZ_WIDTHS = (2, 4, 16, 256)
+WINTERNITZ_WIDTHS = hash_trees.WIDTHS
 """The Winternitz parameters allowed; each digit is a whole number of bits dividing 8."""
-
-
-def _check_width(w: int) -> int:
-    """Validate the Winternitz parameter and return its bits per digit."""
-    _validation.integer(w, "w", 2)
-    if w not in WINTERNITZ_WIDTHS:
-        raise ValueError(f"w must be one of {WINTERNITZ_WIDTHS}")
-    return w.bit_length() - 1
-
-
-def _lengths(n: int, w: int) -> tuple[int, int]:
-    """Message digits and checksum digits for an ``n``-byte digest (RFC 8391, 3.1.1)."""
-    bits = w.bit_length() - 1
-    message = 8 * n // bits
-    checksum, top = 1, message * (w - 1)
-    while top >= w:
-        top //= w
-        checksum += 1
-    return message, checksum
 
 
 def winternitz_digits(digest: bytes, w: int) -> tuple[int, ...]:
@@ -84,65 +65,8 @@ def winternitz_digits(digest: bytes, w: int) -> tuple[int, ...]:
     (1, 2, 3, 4, 3, 2)
     """
     _validation.byte_string(digest, "digest", allow_empty=False)
-    bits = _check_width(w)
-    message_count, checksum_count = _lengths(len(digest), w)
-    value = int.from_bytes(digest, "big")
-    digits = [(value >> (bits * i)) & (w - 1) for i in reversed(range(message_count))]
-    checksum = sum(w - 1 - d for d in digits)
-    digits += [(checksum >> (bits * i)) & (w - 1) for i in reversed(range(checksum_count))]
-    return tuple(digits)
-
-
-def _check_hash_length(n: int) -> None:
-    _validation.integer(n, "n", 2)
-    if n > 32:
-        raise ValueError("n must be at most 32, the length of a SHA-256 digest")
-
-
-def _chain(
-    public_seed: bytes, address: bytes, index: int, value: bytes, start: int, steps: int
-) -> bytes:
-    """Apply steps ``start + 1, ..., start + steps`` of chain ``index`` to ``value``."""
-    for step in range(start, start + steps):
-        tweak = address + b"chain" + index.to_bytes(2, "big") + step.to_bytes(1, "big")
-        value = tweak_hash(public_seed, tweak, value)
-    return value
-
-
-def _wots_key(secret_seed: bytes, public_seed: bytes, address: bytes, w: int) -> WinternitzKey:
-    """The one-time key at ``address``, derived from ``secret_seed``."""
-    count = sum(_lengths(len(public_seed), w))
-    secret = tuple(
-        derive(secret_seed, address + b"wots" + i.to_bytes(2, "big")) for i in range(count)
-    )
-    chains = tuple(_chain(public_seed, address, i, s, 0, w - 1) for i, s in enumerate(secret))
-    return WinternitzKey(secret, WinternitzPublicKey(chains, public_seed, address, w))
-
-
-def _wots_sign(key: WinternitzKey, digest: bytes) -> WinternitzSignature:
-    """Sign an ``n``-byte digest: move each chain forward by its digit."""
-    public = key.public
-    digits = winternitz_digits(digest, public.w)
-    return WinternitzSignature(
-        tuple(
-            _chain(public.public_seed, public.address, i, s, 0, d)
-            for i, (s, d) in enumerate(zip(key.secret, digits, strict=True))
-        )
-    )
-
-
-def _wots_public(
-    public_seed: bytes, address: bytes, w: int, digest: bytes, signature: WinternitzSignature
-) -> WinternitzPublicKey | None:
-    """Finish every chain of a signature; ``None`` if it has the wrong number of chains."""
-    digits = winternitz_digits(digest, w)
-    if len(signature.chains) != len(digits):
-        return None
-    chains = tuple(
-        _chain(public_seed, address, i, v, d, w - 1 - d)
-        for i, (v, d) in enumerate(zip(signature.chains, digits, strict=True))
-    )
-    return WinternitzPublicKey(chains, public_seed, address, w)
+    hash_trees.check_width(w)
+    return hash_trees.digits(digest, w)
 
 
 def winternitz_keygen(seed: int = DEFAULT_SEED, *, n: int = 16, w: int = 16) -> WinternitzKey:
@@ -176,11 +100,11 @@ def winternitz_keygen(seed: int = DEFAULT_SEED, *, n: int = 16, w: int = 16) -> 
     35
     """
     _validation.seed(seed)
-    _check_hash_length(n)
-    _check_width(w)
+    hash_trees.check_hash_length(n)
+    hash_trees.check_width(w)
     rng = random.Random(seed)
     secret_seed, public_seed = rng.randbytes(n), rng.randbytes(n)
-    return _wots_key(secret_seed, public_seed, b"", w)
+    return hash_trees.wots_key(secret_seed, public_seed, b"", w)
 
 
 def winternitz_digest(public: WinternitzPublicKey, message: bytes) -> bytes:
@@ -197,7 +121,7 @@ def winternitz_digest(public: WinternitzPublicKey, message: bytes) -> bytes:
     8
     """
     _validation.byte_string(message, "message")
-    return tweak_hash(public.public_seed, public.address + b"message", message)
+    return hash_trees.wots_digest(public.public_seed, public.address, message)
 
 
 def winternitz_sign(key: WinternitzKey, message: bytes) -> WinternitzSignature:
@@ -215,7 +139,7 @@ def winternitz_sign(key: WinternitzKey, message: bytes) -> WinternitzSignature:
     >>> pqc.winternitz_verify(key.public, b"hello", signature)
     True
     """
-    return _wots_sign(key, winternitz_digest(key.public, message))
+    return hash_trees.wots_sign(key, winternitz_digest(key.public, message))
 
 
 def winternitz_verify(
@@ -237,38 +161,10 @@ def winternitz_verify(
     False
     """
     digest = winternitz_digest(public, message)
-    recovered = _wots_public(public.public_seed, public.address, public.w, digest, signature)
+    recovered = hash_trees.wots_public(
+        public.public_seed, public.address, public.w, digest, signature
+    )
     return recovered is not None and recovered.chains == public.chains
-
-
-def _forge_chains(
-    public: WinternitzPublicKey,
-    observed: Sequence[tuple[bytes, WinternitzSignature]],
-    max_tries: int,
-) -> WinternitzForgery:
-    """Search messages whose every digit is at least the smallest digit seen there."""
-    w, seed, address = public.w, public.public_seed, public.address
-    lowest: list[tuple[int, bytes]] = []
-    for message, signature in observed:
-        if not winternitz_verify(public, message, signature):
-            raise ValueError("every observed signature must verify under the public key")
-        digits = winternitz_digits(winternitz_digest(public, message), w)
-        pairs = zip(digits, signature.chains, strict=True)
-        lowest = (
-            list(pairs) if not lowest else [min(a, b) for a, b in zip(lowest, pairs, strict=True)]
-        )
-    signed = {message for message, _ in observed}
-    for tested in range(1, max_tries + 1):
-        candidate = b"forgery %d" % (tested - 1)
-        digits = winternitz_digits(winternitz_digest(public, candidate), w)
-        if candidate in signed or any(d < low for d, (low, _) in zip(digits, lowest, strict=True)):
-            continue
-        chains = tuple(
-            _chain(seed, address, i, value, low, d - low)
-            for i, (d, (low, value)) in enumerate(zip(digits, lowest, strict=True))
-        )
-        return WinternitzForgery(candidate, WinternitzSignature(chains), tested)
-    return WinternitzForgery(None, None, max_tries)
 
 
 def winternitz_forge(
@@ -321,7 +217,7 @@ def winternitz_forge(
     _validation.integer(max_tries, "max_tries", 1)
     if not observed:
         raise ValueError("observed must hold at least one signed message")
-    return _forge_chains(public, observed, max_tries)
+    return hash_trees.forge_chains(public, observed, max_tries)
 
 
 def winternitz_cost(n: int, w: int) -> WinternitzCost:
@@ -336,7 +232,7 @@ def winternitz_cost(n: int, w: int) -> WinternitzCost:
     >>> pqc.winternitz_cost(16, 16)
     WinternitzCost(w=16, chains=35, signature_bytes=560, keygen_hashes=525)
     """
-    _check_hash_length(n)
-    _check_width(w)
-    chains = sum(_lengths(n, w))
+    hash_trees.check_hash_length(n)
+    hash_trees.check_width(w)
+    chains = sum(hash_trees.lengths(n, w))
     return WinternitzCost(w, chains, chains * n, chains * (w - 1))

@@ -23,18 +23,10 @@ from cybersecuritykit import _validation
 from cybersecuritykit.constants import DEFAULT_SEED
 from cybersecuritykit.pqc.core.base import NTRUAttackResult, NTRUKeyPair, NTRUPublicKey
 from cybersecuritykit.pqc.systems.lattice import lll_reduce
-from cybersecuritykit.pqc.utils.rings import Poly, centered, int_vector, multiply
+from cybersecuritykit.pqc.utils import prime_field
+from cybersecuritykit.pqc.utils.rings import Poly, centered, int_vector, multiply, ternary
 
 __all__ = ["ntru_decrypt", "ntru_encrypt", "ntru_keygen", "ntru_keypair", "ntru_lattice_attack"]
-
-
-def _smallest_factor(n: int) -> int:
-    d = 2
-    while d * d <= n:
-        if n % d == 0:
-            return d
-        d += 1
-    return n
 
 
 def _parameters(n: int, p: int, q: int) -> int:
@@ -42,13 +34,9 @@ def _parameters(n: int, p: int, q: int) -> int:
     _validation.integer(n, "n", minimum=2)
     _validation.integer(p, "p", minimum=2)
     _validation.integer(q, "q", minimum=2)
-    if _smallest_factor(p) != p:
-        raise ValueError("p must be prime")
-    prime = _smallest_factor(q)
-    power = q
-    while power % prime == 0:
-        power //= prime
-    if power != 1:
+    prime_field.check_prime(p, "p")
+    prime = prime_field.prime_power_base(q)
+    if prime is None:
         raise ValueError("q must be a prime power")
     if prime == p or q <= p:
         raise ValueError("q must be coprime to p and larger than it")
@@ -56,24 +44,12 @@ def _parameters(n: int, p: int, q: int) -> int:
 
 
 def _invert_mod_prime(a: Poly, prime: int) -> Poly | None:
-    """Inverse of ``a`` in Z_prime[x]/(x^n - 1) by Gaussian elimination, or None."""
+    """Inverse of ``a`` in Z_prime[x]/(x^n - 1), or None: solve ``M b = 1`` for its matrix."""
     n = len(a)
-    # Column j of the multiplication matrix is a * x^j; solve M b = 1.
-    rows = [[a[(i - j) % n] % prime for j in range(n)] + [int(i == 0)] for i in range(n)]
-    for col in range(n):
-        pivot = next((r for r in range(col, n) if rows[r][col]), None)
-        if pivot is None:
-            return None
-        rows[col], rows[pivot] = rows[pivot], rows[col]
-        scale = pow(rows[col][col], -1, prime)
-        rows[col] = [x * scale % prime for x in rows[col]]
-        for r in range(n):
-            if r != col and rows[r][col]:
-                factor = rows[r][col]
-                rows[r] = [
-                    (x - factor * y) % prime for x, y in zip(rows[r], rows[col], strict=True)
-                ]
-    return tuple(row[n] for row in rows)
+    # Column j of the multiplication matrix is a * x^j.
+    matrix = [[a[(i - j) % n] for j in range(n)] for i in range(n)]
+    b, kernel = prime_field.solve(matrix, [int(i == 0) for i in range(n)], n, prime)
+    return None if b is None or kernel else tuple(b)
 
 
 def _invert(a: Poly, prime: int, q: int) -> Poly | None:
@@ -139,12 +115,6 @@ def ntru_keypair(f: Sequence[int], g: Sequence[int], p: int, q: int) -> NTRUKeyP
     return keys
 
 
-def _ternary(rng: random.Random, n: int, ones: int, minus: int) -> Poly:
-    coefficients = [1] * ones + [-1] * minus + [0] * (n - ones - minus)
-    rng.shuffle(coefficients)
-    return tuple(coefficients)
-
-
 def ntru_keygen(n: int, p: int, q: int, d: int, seed: int = DEFAULT_SEED) -> NTRUKeyPair:
     """Draw a random NTRU key pair.
 
@@ -185,8 +155,8 @@ def ntru_keygen(n: int, p: int, q: int, d: int, seed: int = DEFAULT_SEED) -> NTR
         raise ValueError("need 2d + 1 <= n")
     rng = random.Random(seed)
     while True:
-        f = _ternary(rng, n, d + 1, d)
-        keys = _pair(f, _ternary(rng, n, d, d), p, q, prime)
+        f = ternary(rng, n, d + 1, d)
+        keys = _pair(f, ternary(rng, n, d, d), p, q, prime)
         if keys is not None:
             return keys
 
@@ -247,7 +217,7 @@ def ntru_encrypt(
     m = _small(message, "message", public.n, public.p)
     _validation.seed(seed)
     if blinding is None:
-        r = _ternary(random.Random(seed), public.n, public.n // 3, public.n // 3)
+        r = ternary(random.Random(seed), public.n, public.n // 3, public.n // 3)
     else:
         r = int_vector(blinding, "blinding", public.n)
     prh = multiply(r, tuple(public.p * x for x in public.h), public.q, 1)

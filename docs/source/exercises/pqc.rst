@@ -379,7 +379,47 @@ curve.
    the random subset sometimes sums more than 16 errors, and one ciphertext
    in five fails at :math:`\eta = 24`.
 
-13. Fiat-Shamir with aborts: the expected number of attempts
+13. The primal attack: how short the hidden vector is
+-----------------------------------------------------
+
+From :doc:`/api/gallery/pqc/lwe/plot_10_lwe_lattice_attack`. Compute the
+length :math:`\|(e, 1)\|` of the vector the attack looks for at
+:math:`\eta = 4`, and compare it with the Gaussian heuristic
+:math:`\sqrt{d / (2 \pi e)} \, \det(L)^{1/d}` for the shortest vector of a
+random lattice of the same dimension :math:`d = m + 1` and determinant
+:math:`q^{m - n}`.
+
+.. dropdown:: Solution
+
+   .. doctest::
+
+      >>> import math
+      >>> keys = csk.pqc.lwe_keygen(8, 24, 97, eta=4, seed=1)
+      >>> attack = csk.pqc.lwe_lattice_attack(keys.public)
+      >>> attack.secret == keys.secret
+      True
+      >>> round(math.sqrt(sum(x * x for x in attack.error) + 1), 2)
+      6.56
+      >>> d = 25
+      >>> round(math.sqrt(d / (2 * math.pi * math.e)) * 97 ** ((24 - 8) / d), 2)
+      22.61
+      >>> [round(math.sqrt(eta / 2 * 24 + 1), 1) for eta in (4, 16, 32)]
+      [7.0, 13.9, 19.6]
+
+   The embedded lattice has the :math:`n` rows :math:`(e_i, C_i, 0)`, the
+   :math:`m - n` rows :math:`q e_j` and the row :math:`(b, 1)`, so its
+   determinant is :math:`q^{m - n}`. A random lattice of that dimension and
+   volume has shortest vectors of length about 22.6, while
+   :math:`\|(e, 1)\| \approx 6.6`, about :math:`\sqrt{m \eta / 2 + 1} = 7`
+   from the variance :math:`\eta / 2` of each error. The hidden vector is
+   more than three times shorter than anything else, a gap LLL's
+   approximation factor easily resolves in dimension 25. At
+   :math:`\eta = 32` the expected length is 19.6, close to the heuristic, so
+   the gap vanishes and the gallery's success count drops. Real parameters
+   keep the gap small and the dimension in the hundreds, where only BKZ with
+   large blocks could close it.
+
+14. Fiat-Shamir with aborts: the expected number of attempts
 ------------------------------------------------------------
 
 From :doc:`/api/gallery/pqc/lattice_signatures/plot_08_fiat_shamir_aborts`.
@@ -411,7 +451,7 @@ measured average.
    attempts is geometric with mean :math:`(257/249)^{32} \approx 2.75`. The
    200 measured signatures average 2.69.
 
-14. Ring-LWE: the negacyclic matrix
+15. Ring-LWE: the negacyclic matrix
 -----------------------------------
 
 From :doc:`/api/gallery/pqc/lwe/plot_07_ring_lwe`. Write :math:`a` as an
@@ -441,7 +481,7 @@ sign, and why?
    fixed by its first column, :math:`n` numbers instead of the :math:`n^2`
    of plain LWE, which is the whole saving of the ring version.
 
-15. XMSS: authentication paths and leaf reuse
+16. XMSS: authentication paths and leaf reuse
 ---------------------------------------------
 
 From :doc:`/api/gallery/pqc/hash_signatures/plot_61_xmss_merkle_signatures`.
@@ -469,7 +509,7 @@ signature on each of several leaves?
    key, as in the previous exercise, and that happens only when the state is
    reused, for example after restoring a backup of the key.
 
-16. SPHINCS: few-time keys at full size
+17. SPHINCS: few-time keys at full size
 ---------------------------------------
 
 From :doc:`/api/gallery/pqc/hash_signatures/plot_62_sphincs_stateless`. Real
@@ -494,7 +534,7 @@ explain why a few-time key there can sign several times without harm.
    scheme absorbs the collisions that a stateless random choice produces,
    which is what removes the need for state.
 
-17. Kyber: why decapsulation never reports failure
+18. Kyber: why decapsulation never reports failure
 --------------------------------------------------
 
 From :doc:`/api/gallery/pqc/lwe/plot_09_kyber_kem`. Suppose decapsulation
@@ -528,7 +568,7 @@ use that signal.
    rejection from a success and the oracle disappears. An explicit error, or
    a timing difference, would bring it back.
 
-18. Beullens: the polar form and the oil space
+19. Beullens: the polar form and the oil space
 ----------------------------------------------
 
 From :doc:`/api/gallery/pqc/multivariate/plot_35_beullens_rainbow`. Show that

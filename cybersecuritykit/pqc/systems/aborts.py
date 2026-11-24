@@ -36,6 +36,7 @@ from cybersecuritykit.pqc.utils.rings import (
     multiply,
     power_of_two,
     subtract,
+    ternary,
     uniform,
 )
 
@@ -45,10 +46,6 @@ __all__ = [
     "lyubashevsky_sign",
     "lyubashevsky_verify",
 ]
-
-
-def _ternary(rng: random.Random, n: int) -> Poly:
-    return tuple(rng.choice((-1, 0, 1)) for _ in range(n))
 
 
 def _challenge(public: LyubashevskyPublicKey, w: Poly, message: bytes) -> Poly:
@@ -117,7 +114,7 @@ def lyubashevsky_keygen(
     _validation.seed(seed)
     rng = random.Random(seed)
     a = uniform(rng, n, q)
-    s1, s2 = _ternary(rng, n), _ternary(rng, n)
+    s1, s2 = ternary(rng, n), ternary(rng, n)
     t = add(multiply(a, s1, q, -1), s2, q)
     return LyubashevskyKeyPair(LyubashevskyPublicKey(n, q, kappa, b, a, t), s1, s2)
 
