@@ -192,7 +192,7 @@ def kyber_encapsulate(public: KyberPublicKey, seed: int = DEFAULT_SEED) -> Kyber
     Raises
     ------
     TypeError
-        ``public`` is not a :class:`KyberPublicKey`.
+        ``public`` is not a :class:`~cybersecuritykit.pqc.core.base.KyberPublicKey`.
 
     Examples
     --------

@@ -117,7 +117,7 @@ that cannot be simulated faithfully.
 
 1. 1962 -- Prange's information-set decoding
 2. 1978 -- McEliece's code-based encryption
-3. 1979 -- Winternitz one-time signatures (Merkle 1979 [check]; Lamport stays in blockchainkit)
+3. 1979 -- Winternitz one-time signatures (Merkle 1979, published CRYPTO '89; Lamport stays in blockchainkit)
 4. 1982 -- LLL lattice reduction
 5. 1986 -- Niederreiter's dual formulation
 6. 1988 -- Matsumoto-Imai multivariate encryption and Patarin's 1995 linearization attack
@@ -125,15 +125,15 @@ that cannot be simulated faithfully.
 8. 1996 -- Grover's search and halved key-search security
 9. 1996 -- Ajtai's worst-case to average-case reduction
 10. 1998 -- NTRU
-11. 1999 -- Patarin's oil and vinegar signatures [check]
+11. 1999 -- Kipnis-Patarin-Goubin unbalanced oil and vinegar (Patarin's balanced scheme of 1997 in the text)
 12. 2005 -- Regev's learning with errors
-13. 2010 -- Ring-LWE (Lyubashevsky-Peikert-Regev)
-14. 2011 -- XMSS and stateful hash-based signatures
-15. 2012 -- Lyubashevsky's Fiat-Shamir with aborts
+13. 2009 -- Lyubashevsky's Fiat-Shamir with aborts (ASIACRYPT 2009)
+14. 2010 -- Ring-LWE (Lyubashevsky-Peikert-Regev)
+15. 2011 -- XMSS and stateful hash-based signatures
 16. 2015 -- SPHINCS: stateless hash-based signatures
 17. 2018 -- Kyber (now ML-KEM, FIPS 203, 2024)
 18. 2022 -- Beullens's break of Rainbow (toy parameters)
-19. 2022 -- Castryck-Decru on SIDH [stretch: only if a toy isogeny model is faithful]
+19. ~~2022 -- Castryck-Decru on SIDH~~ dropped: no faithful toy isogeny model (see the progress notes)
 
 ### protocols
 
@@ -352,6 +352,15 @@ that cannot be simulated faithfully.
   marked [check] were verified: Babbage is mentioned without a date, Friedman
   is Riverbank Publication No. 22 (1922), Jakobsen is *Cryptologia* 19(3)
   (1995).
+- 2026-11-24: S3 `pqc` done: 18 breakthroughs, each with its own gallery
+  example. Castryck-Decru (2022) dropped, since a faithful toy needs
+  supersingular curves over F_{p^2}, Vélu isogenies and genus-2 Richelot
+  chains, more machinery than the rest of the domain; it is cited in the
+  Rainbow entry and the page introduction instead. The dates marked [check]
+  were verified: Winternitz is Merkle's 1979 scheme (published CRYPTO '89,
+  1990), oil and vinegar is Kipnis-Patarin-Goubin (EUROCRYPT 1999) with
+  Patarin's balanced scheme (1997) in the text, and Fiat-Shamir with aborts
+  is ASIACRYPT 2009, not 2012.
 
 ## Verification
 

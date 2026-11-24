@@ -30,9 +30,7 @@ from cybersecuritykit.pqc.core.base import (
 # isort: split
 # --- end slice A ---
 
-# --- slice B: codes and multivariate ---
-# --- end slice B ---
-# --- slice C ---
+# --- slices B and C (isort merges their imports) ---
 from cybersecuritykit.pqc.core.base import (
     GoppaCode,
     HORSTForgery,
@@ -69,7 +67,7 @@ from cybersecuritykit.pqc.core.base import (
     XMSSSigned,
 )
 
-# --- end slice C ---
+# --- end slices B and C ---
 
 __all__: list[str] = [
     # --- slice A ---

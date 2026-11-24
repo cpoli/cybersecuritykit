@@ -99,7 +99,7 @@ def lwe_encrypt(
     Raises
     ------
     TypeError
-        ``public`` is not an :class:`LWEPublicKey`.
+        ``public`` is not an :class:`~cybersecuritykit.pqc.core.base.LWEPublicKey`.
     ValueError
         A bit or subset entry other than 0 or 1, or a subset of the wrong length.
 
@@ -195,7 +195,7 @@ def lwe_gaussian_attack(public: LWEPublicKey) -> LWEAttackResult:
     Raises
     ------
     TypeError
-        ``public`` is not an :class:`LWEPublicKey`.
+        ``public`` is not an :class:`~cybersecuritykit.pqc.core.base.LWEPublicKey`.
     ValueError
         :math:`q` is not prime, or fewer than :math:`n` samples are independent.
 

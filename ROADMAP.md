@@ -28,7 +28,7 @@ Zenodo hook.
 delivers systems modules, frozen results, plots, tests, a history page with at
 least 15 breakthroughs, one gallery example per breakthrough, and an exercise
 page.
-**Done:** S1 `classical` (2026-11-23).
+**Done:** S1 `classical` (2026-11-23), S3 `pqc` (2026-11-24).
 
 ## R3. Integration (S14)
 

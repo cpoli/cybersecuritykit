@@ -36,7 +36,7 @@ __all__ = [
 ]
 
 WINTERNITZ_WIDTHS = (2, 4, 16, 256)
-"""The Winternitz parameters allowed: each digit is a whole number of bits dividing 8."""
+"""The Winternitz parameters allowed; each digit is a whole number of bits dividing 8."""
 
 
 def _check_width(w: int) -> int:

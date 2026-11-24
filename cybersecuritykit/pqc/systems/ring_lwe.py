@@ -95,7 +95,7 @@ def ring_lwe_encrypt(
     Raises
     ------
     TypeError
-        ``public`` is not a :class:`RingLWEPublicKey`.
+        ``public`` is not a :class:`~cybersecuritykit.pqc.core.base.RingLWEPublicKey`.
     ValueError
         A message of the wrong length or with entries other than 0 and 1.
 

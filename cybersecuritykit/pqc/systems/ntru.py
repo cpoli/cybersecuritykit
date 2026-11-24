@@ -231,7 +231,7 @@ def ntru_encrypt(
     Raises
     ------
     TypeError
-        ``public`` is not an :class:`NTRUPublicKey`.
+        ``public`` is not an :class:`~cybersecuritykit.pqc.core.base.NTRUPublicKey`.
     ValueError
         A message or blinding polynomial of the wrong length or range.
 
@@ -273,7 +273,7 @@ def ntru_decrypt(keypair: NTRUKeyPair, ciphertext: Sequence[int]) -> Poly:
     Raises
     ------
     TypeError
-        ``keypair`` is not an :class:`NTRUKeyPair`.
+        ``keypair`` is not an :class:`~cybersecuritykit.pqc.core.base.NTRUKeyPair`.
     ValueError
         A ciphertext of the wrong length.
 
@@ -315,7 +315,7 @@ def ntru_lattice_attack(public: NTRUPublicKey) -> NTRUAttackResult:
     Raises
     ------
     TypeError
-        ``public`` is not an :class:`NTRUPublicKey`.
+        ``public`` is not an :class:`~cybersecuritykit.pqc.core.base.NTRUPublicKey`.
     ValueError
         No reduced row gives an invertible :math:`f`.
 

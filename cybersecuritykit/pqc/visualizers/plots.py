@@ -328,7 +328,7 @@ def plot_isd_iterations(
         Observed iteration counts, such as ``ISDResult.iterations`` over many seeds.
     probability : float
         Success probability of one guess, from
-        :func:`~cybersecuritykit.pqc.prange_success_probability`.
+        :func:`~cybersecuritykit.pqc.systems.isd.prange_success_probability`.
     ax : matplotlib.axes.Axes, optional
         Axes to draw on; a new figure is created if omitted.
 
