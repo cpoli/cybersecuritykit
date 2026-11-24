@@ -77,6 +77,25 @@ napoleon_type_aliases = {
     "SpuriousKeyCount": "cybersecuritykit.classical.core.base.SpuriousKeyCount",
     "UnicityResult": "cybersecuritykit.classical.core.base.UnicityResult",
     "VigenereBreakResult": "cybersecuritykit.classical.core.base.VigenereBreakResult",
+    # pqc (slice C)
+    "HORSTForgery": "cybersecuritykit.pqc.core.base.HORSTForgery",
+    "HORSTKey": "cybersecuritykit.pqc.core.base.HORSTKey",
+    "HORSTPublicKey": "cybersecuritykit.pqc.core.base.HORSTPublicKey",
+    "HORSTSignature": "cybersecuritykit.pqc.core.base.HORSTSignature",
+    "SPHINCSKey": "cybersecuritykit.pqc.core.base.SPHINCSKey",
+    "SPHINCSPublicKey": "cybersecuritykit.pqc.core.base.SPHINCSPublicKey",
+    "SPHINCSSignature": "cybersecuritykit.pqc.core.base.SPHINCSSignature",
+    "WinternitzCost": "cybersecuritykit.pqc.core.base.WinternitzCost",
+    "WinternitzForgery": "cybersecuritykit.pqc.core.base.WinternitzForgery",
+    "WinternitzKey": "cybersecuritykit.pqc.core.base.WinternitzKey",
+    "WinternitzPublicKey": "cybersecuritykit.pqc.core.base.WinternitzPublicKey",
+    "WinternitzSignature": "cybersecuritykit.pqc.core.base.WinternitzSignature",
+    "XMSSForgery": "cybersecuritykit.pqc.core.base.XMSSForgery",
+    "XMSSKey": "cybersecuritykit.pqc.core.base.XMSSKey",
+    "XMSSPublicKey": "cybersecuritykit.pqc.core.base.XMSSPublicKey",
+    "XMSSSignature": "cybersecuritykit.pqc.core.base.XMSSSignature",
+    "XMSSSigned": "cybersecuritykit.pqc.core.base.XMSSSigned",
+    # end pqc (slice C)
 }
 
 autodoc_default_options = {
