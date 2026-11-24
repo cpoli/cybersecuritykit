@@ -65,7 +65,8 @@ def _cbd(sigma: bytes, nonce: int, eta: int, n: int) -> Poly:
     data = hashlib.shake_256(sigma + bytes([nonce])).digest(eta * n // 4)
     bits = [(byte >> j) & 1 for byte in data for j in range(8)]
     return tuple(
-        sum(bits[2 * i * eta : (2 * i + 1) * eta]) - sum(bits[(2 * i + 1) * eta : (2 * i + 2) * eta])
+        sum(bits[2 * i * eta : (2 * i + 1) * eta])
+        - sum(bits[(2 * i + 1) * eta : (2 * i + 2) * eta])
         for i in range(n)
     )
 
@@ -76,7 +77,7 @@ def _matrix(rho: bytes, k: int, n: int) -> tuple[Vector, ...]:
 
 def _dot(a: Vector, b: Vector) -> Poly:
     total = (0,) * len(a[0])
-    for x, y in zip(a, b):
+    for x, y in zip(a, b, strict=True):
         total = add(total, multiply(x, y, Q, -1), Q)
     return total
 
@@ -105,12 +106,12 @@ def _encrypt(public: KyberPublicKey, message: bytes, coins: bytes) -> KyberCiphe
     """K-PKE.Encrypt: the passively secure Module-LWE encryption."""
     k, n = public.k, public.n
     eta1, eta2, du, dv = _parameters(k)
-    a =_matrix(public.rho, k, n)
+    a = _matrix(public.rho, k, n)
     r = tuple(_cbd(coins, i, eta1, n) for i in range(k))
     e1 = tuple(_cbd(coins, k + i, eta2, n) for i in range(k))
     e2 = _cbd(coins, 2 * k, eta2, n)
     columns = tuple(tuple(a[j][i] for j in range(k)) for i in range(k))
-    u = tuple(add(_dot(col, r), e, Q) for col, e in zip(columns, e1))
+    u = tuple(add(_dot(col, r), e, Q) for col, e in zip(columns, e1, strict=True))
     bits = [(byte >> j) & 1 for byte in message for j in range(8)]
     m = tuple((Q + 1) // 2 * b for b in bits)
     v = add(add(_dot(public.t, r), e2, Q), m, Q)
@@ -121,13 +122,15 @@ def _decrypt(keypair: KyberKeyPair, ciphertext: KyberCiphertext) -> bytes:
     """K-PKE.Decrypt: round :math:`v - s^T u` to the nearest multiple of :math:`q/2`."""
     _, _, du, dv = _parameters(keypair.public.k)
     u = tuple(_decompress(p, du) for p in ciphertext.u)
-    w = tuple((x - y) % Q for x, y in zip(_decompress(ciphertext.v, dv), _dot(keypair.s, u)))
+    w = tuple(
+        (x - y) % Q for x, y in zip(_decompress(ciphertext.v, dv), _dot(keypair.s, u), strict=True)
+    )
     bits = _compress(w, 1)
     return bytes(sum(bits[8 * i + j] << j for j in range(8)) for i in range(len(bits) // 8))
 
 
 def kyber_keygen(k: int = 2, n: int = 16, seed: int = DEFAULT_SEED) -> KyberKeyPair:
-    r"""Generate a Kyber-like key pair: :math:`t = A s + e` with :math:`A` expanded from :math:`\rho`.
+    r"""Generate a Kyber-like key pair, :math:`t = A s + e` with :math:`A` from :math:`\rho`.
 
     Parameters
     ----------
@@ -168,12 +171,12 @@ def kyber_keygen(k: int = 2, n: int = 16, seed: int = DEFAULT_SEED) -> KyberKeyP
     a = _matrix(rho, k, n)
     s = tuple(_cbd(sigma, i, eta1, n) for i in range(k))
     e = tuple(_cbd(sigma, k + i, eta1, n) for i in range(k))
-    t = tuple(add(_dot(row, s), ei, Q) for row, ei in zip(a, e))
+    t = tuple(add(_dot(row, s), ei, Q) for row, ei in zip(a, e, strict=True))
     return KyberKeyPair(KyberPublicKey(k, n, t, rho), s, z)
 
 
 def kyber_encapsulate(public: KyberPublicKey, seed: int = DEFAULT_SEED) -> KyberEncapsulation:
-    r"""Encapsulate: :math:`(K, r) = G(m \,\|\, H(\mathrm{ek}))`, then encrypt :math:`m` with coins :math:`r`.
+    r"""Encapsulate: :math:`(K, r) = G(m \,\|\, H(\mathrm{ek}))`, encrypt with coins :math:`r`.
 
     Parameters
     ----------

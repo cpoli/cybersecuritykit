@@ -88,7 +88,10 @@ def test_coppersmith_shamir_lattice_attack_recovers_a_working_key(seed):
         (lambda: pq.ntru_encrypt("key", MESSAGE), TypeError),
         (lambda: pq.ntru_encrypt(pq.NTRUPublicKey(7, 3, 41, H), MESSAGE[:6]), ValueError),
         (lambda: pq.ntru_encrypt(pq.NTRUPublicKey(7, 3, 41, H), (2,) * 7), ValueError),
-        (lambda: pq.ntru_encrypt(pq.NTRUPublicKey(7, 3, 41, H), MESSAGE, blinding=(1,)), ValueError),
+        (
+            lambda: pq.ntru_encrypt(pq.NTRUPublicKey(7, 3, 41, H), MESSAGE, blinding=(1,)),
+            ValueError,
+        ),
         (lambda: pq.ntru_decrypt("keys", CIPHERTEXT), TypeError),
         (lambda: pq.ntru_decrypt(pq.ntru_keypair(F, G, 3, 41), CIPHERTEXT[:3]), ValueError),
         (lambda: pq.ntru_lattice_attack("key"), TypeError),

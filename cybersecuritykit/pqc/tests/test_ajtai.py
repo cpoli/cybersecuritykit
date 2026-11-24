@@ -29,10 +29,12 @@ def test_a_collision_is_a_short_solution_of_the_sis_problem():
     collision = pq.ajtai_collision(key)
     assert collision.x != collision.y
     assert pq.ajtai_hash(key, collision.x) == pq.ajtai_hash(key, collision.y)
-    assert collision.difference == tuple(a - b for a, b in zip(collision.x, collision.y))
+    assert collision.difference == tuple(
+        a - b for a, b in zip(collision.x, collision.y, strict=True)
+    )
     assert set(collision.difference) <= {-1, 0, 1}
     for row in key.matrix:
-        assert sum(a * z for a, z in zip(row, collision.difference)) % 11 == 0
+        assert sum(a * z for a, z in zip(row, collision.difference, strict=True)) % 11 == 0
     # Pigeonhole: 11^2 + 1 inputs always contain a collision.
     assert collision.tested <= 11**2 + 1
 
@@ -43,10 +45,10 @@ def test_a_collision_is_a_short_solution_of_the_sis_problem():
 def test_the_hash_is_linear(seed, x, y):
     key = pq.ajtai_keygen(2, 8, 11, seed)
     hx, hy = pq.ajtai_hash(key, x), pq.ajtai_hash(key, y)
-    s = [a + b for a, b in zip(x, y)]
+    s = [a + b for a, b in zip(x, y, strict=True)]
     # A(x + y) = Ax + Ay mod q, checked through the matrix itself for 0/1/2 entries.
-    expected = tuple(sum(a * v for a, v in zip(row, s)) % 11 for row in key.matrix)
-    assert tuple((a + b) % 11 for a, b in zip(hx, hy)) == expected
+    expected = tuple(sum(a * v for a, v in zip(row, s, strict=True)) % 11 for row in key.matrix)
+    assert tuple((a + b) % 11 for a, b in zip(hx, hy, strict=True)) == expected
 
 
 @pytest.mark.parametrize(

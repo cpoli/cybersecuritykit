@@ -73,7 +73,7 @@ def lyubashevsky_keygen(
     bound: int | None = None,
     seed: int = DEFAULT_SEED,
 ) -> LyubashevskyKeyPair:
-    r"""Draw ternary :math:`s_1, s_2` and publish :math:`t = a s_1 + s_2` in :math:`\mathbb{Z}_q[x]/(x^n + 1)`.
+    r"""Draw ternary :math:`s_1, s_2` and publish :math:`t = a s_1 + s_2` mod :math:`x^n + 1`.
 
     Parameters
     ----------
@@ -125,7 +125,7 @@ def lyubashevsky_keygen(
 def lyubashevsky_sign(
     keypair: LyubashevskyKeyPair, message: bytes, seed: int = DEFAULT_SEED, abort: bool = True
 ) -> LyubashevskySignature:
-    r"""Sign: commit to :math:`w = a y_1 + y_2`, set :math:`c = H(w, \mu)`, answer :math:`z = y + c s`.
+    r"""Sign: commit to :math:`w = a y_1 + y_2`, hash it to :math:`c`, answer :math:`z = y + c s`.
 
     Parameters
     ----------

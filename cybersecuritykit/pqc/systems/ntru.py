@@ -70,7 +70,9 @@ def _invert_mod_prime(a: Poly, prime: int) -> Poly | None:
         for r in range(n):
             if r != col and rows[r][col]:
                 factor = rows[r][col]
-                rows[r] = [(x - factor * y) % prime for x, y in zip(rows[r], rows[col])]
+                rows[r] = [
+                    (x - factor * y) % prime for x, y in zip(rows[r], rows[col], strict=True)
+                ]
     return tuple(row[n] for row in rows)
 
 
@@ -249,7 +251,7 @@ def ntru_encrypt(
     else:
         r = int_vector(blinding, "blinding", public.n)
     prh = multiply(r, tuple(public.p * x for x in public.h), public.q, 1)
-    return tuple((x + y) % public.q for x, y in zip(prh, m))
+    return tuple((x + y) % public.q for x, y in zip(prh, m, strict=True))
 
 
 def ntru_decrypt(keypair: NTRUKeyPair, ciphertext: Sequence[int]) -> Poly:

@@ -182,7 +182,9 @@ def shor_factor(
         measurements.append(y)
         multiple = math.lcm(multiple, Fraction(y, size).limit_denominator(n).denominator)
         if pow(base, multiple, n) == 1:
-            period = min(d for d in range(1, multiple + 1) if multiple % d == 0 and pow(base, d, n) == 1)
+            period = min(
+                d for d in range(1, multiple + 1) if multiple % d == 0 and pow(base, d, n) == 1
+            )
             break
     factors = None
     if period is not None and period % 2 == 0 and pow(base, period // 2, n) != n - 1:

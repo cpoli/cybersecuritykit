@@ -27,7 +27,9 @@ def test_period_finding_for_21_when_r_does_not_divide_q():
     assert sorted(peaks) == [0, 171, 341, 512, 683, 853]  # round(1024 k / 6)
 
 
-@pytest.mark.parametrize(("n", "base", "period", "factors"), [(15, 7, 4, (3, 5)), (21, 2, 6, (3, 7))])
+@pytest.mark.parametrize(
+    ("n", "base", "period", "factors"), [(15, 7, 4, (3, 5)), (21, 2, 6, (3, 7))]
+)
 def test_shor_factors_the_textbook_cases(n, base, period, factors):
     result = pq.shor_factor(n, base=base, seed=1)
     assert (result.n, result.base, result.period, result.factors) == (n, base, period, factors)

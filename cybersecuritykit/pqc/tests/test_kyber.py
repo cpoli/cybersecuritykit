@@ -54,7 +54,9 @@ def test_tampered_ciphertexts_get_a_pseudorandom_key():
     # Fujisaki-Okamoto re-encryption check rejects it anyway.
     bumped = ((u0[0] + 1) % 1024,) + u0[1:]
     forged = dataclasses.replace(sent.ciphertext, u=(bumped,) + sent.ciphertext.u[1:])
-    other = dataclasses.replace(sent.ciphertext, v=((sent.ciphertext.v[0] + 1) % 16,) + sent.ciphertext.v[1:])
+    other = dataclasses.replace(
+        sent.ciphertext, v=((sent.ciphertext.v[0] + 1) % 16,) + sent.ciphertext.v[1:]
+    )
     rejected = pq.kyber_decapsulate(keys, forged)
     assert rejected != sent.shared_key
     assert rejected == pq.kyber_decapsulate(keys, forged)

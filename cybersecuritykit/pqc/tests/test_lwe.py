@@ -15,8 +15,8 @@ def test_the_public_key_is_a_noisy_linear_system():
     public = keys.public
     assert (public.n, public.q) == (8, 257)
     assert len(public.a) == len(public.b) == 32
-    for row, b in zip(public.a, public.b):
-        error = (b - sum(x * s for x, s in zip(row, keys.secret))) % 257
+    for row, b in zip(public.a, public.b, strict=True):
+        error = (b - sum(x * s for x, s in zip(row, keys.secret, strict=True))) % 257
         assert min(error, 257 - error) <= 2
 
 
@@ -39,7 +39,9 @@ def test_bits_round_trip_within_the_error_budget(seed, bit):
 
 def test_too_much_noise_breaks_decryption():
     keys = pq.lwe_keygen(8, 96, 97, eta=16, seed=1)
-    wrong = sum(pq.lwe_decrypt(keys, pq.lwe_encrypt(keys.public, 1, seed=s)) != 1 for s in range(60))
+    wrong = sum(
+        pq.lwe_decrypt(keys, pq.lwe_encrypt(keys.public, 1, seed=s)) != 1 for s in range(60)
+    )
     assert wrong > 5
 
 

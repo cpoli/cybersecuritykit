@@ -61,7 +61,10 @@ def lwe_keygen(n: int, m: int, q: int, eta: int = 2, seed: int = DEFAULT_SEED) -
     a = tuple(uniform(rng, n, q) for _ in range(m))
     secret = uniform(rng, n, q)
     errors = binomial(rng, m, eta)
-    b = tuple((sum(x * s for x, s in zip(row, secret)) + e) % q for row, e in zip(a, errors))
+    b = tuple(
+        (sum(x * s for x, s in zip(row, secret, strict=True)) + e) % q
+        for row, e in zip(a, errors, strict=True)
+    )
     return LWEKeyPair(LWEPublicKey(n, q, a, b), secret)
 
 
@@ -76,7 +79,7 @@ def lwe_encrypt(
     seed: int = DEFAULT_SEED,
     subset: Sequence[int] | None = None,
 ) -> LWECiphertext:
-    r"""Encrypt one bit: :math:`u = \sum_{i \in S} a_i`, :math:`v = \sum_{i \in S} b_i + \lfloor q/2 \rfloor \cdot \mathrm{bit}`.
+    r"""Encrypt a bit: :math:`(u, v) = (\sum_S a_i, \sum_S b_i + \lfloor q/2 \rfloor \mathrm{bit})`.
 
     Parameters
     ----------
@@ -119,8 +122,11 @@ def lwe_encrypt(
         if any(x not in (0, 1) for x in chosen):
             raise ValueError("subset entries must be 0 or 1")
     q = public.q
-    u = tuple(sum(row[j] for row, c in zip(public.a, chosen) if c) % q for j in range(public.n))
-    v = (sum(b for b, c in zip(public.b, chosen) if c) + q // 2 * bit) % q
+    u = tuple(
+        sum(row[j] for row, c in zip(public.a, chosen, strict=True) if c) % q
+        for j in range(public.n)
+    )
+    v = (sum(b for b, c in zip(public.b, chosen, strict=True) if c) + q // 2 * bit) % q
     return LWECiphertext(u, v)
 
 
@@ -164,7 +170,9 @@ def lwe_decrypt(keypair: LWEKeyPair, ciphertext: LWECiphertext) -> int:
     if len(ciphertext.u) != keypair.public.n:
         raise ValueError("ciphertext has the wrong dimension")
     q = keypair.public.q
-    d = centered(ciphertext.v - sum(u * s for u, s in zip(ciphertext.u, keypair.secret)), q)
+    d = centered(
+        ciphertext.v - sum(u * s for u, s in zip(ciphertext.u, keypair.secret, strict=True)), q
+    )
     return int(abs(d) > q // 4)
 
 
@@ -202,7 +210,7 @@ def lwe_gaussian_attack(public: LWEPublicKey) -> LWEAttackResult:
     n, q = public.n, public.q
     if any(q % d == 0 for d in range(2, int(q**0.5) + 1)):
         raise ValueError("q must be prime")
-    rows = [[x % q for x in a] + [b % q] for a, b in zip(public.a, public.b)]
+    rows = [[x % q for x in a] + [b % q] for a, b in zip(public.a, public.b, strict=True)]
     for col in range(n):
         pivot = next((r for r in range(col, len(rows)) if rows[r][col]), None)
         if pivot is None:
@@ -213,9 +221,10 @@ def lwe_gaussian_attack(public: LWEPublicKey) -> LWEAttackResult:
         for r, row in enumerate(rows):
             if r != col and row[col]:
                 factor = row[col]
-                rows[r] = [(x - factor * y) % q for x, y in zip(row, rows[col])]
+                rows[r] = [(x - factor * y) % q for x, y in zip(row, rows[col], strict=True)]
     secret = tuple(row[n] for row in rows[:n])
     consistent = sum(
-        (sum(x * s for x, s in zip(a, secret)) - b) % q == 0 for a, b in zip(public.a, public.b)
+        (sum(x * s for x, s in zip(a, secret, strict=True)) - b) % q == 0
+        for a, b in zip(public.a, public.b, strict=True)
     )
     return LWEAttackResult(secret, consistent)

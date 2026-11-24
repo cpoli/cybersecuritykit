@@ -131,6 +131,6 @@ def ajtai_collision(key: AjtaiKey, limit: int = 1 << 16) -> SISCollision:
         value = _hash(key, bits)
         if value in seen:
             x = seen[value]
-            return SISCollision(x, bits, tuple(a - b for a, b in zip(x, bits)), tested)
+            return SISCollision(x, bits, tuple(a - b for a, b in zip(x, bits, strict=True)), tested)
         seen[value] = bits
     raise ValueError("no collision among the inputs tried; raise limit")

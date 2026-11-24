@@ -1,53 +1,86 @@
 """Models and algorithms for :mod:`cybersecuritykit.pqc`."""
 
-__all__: list[str] = []
-
-# --- slice A: lattices and the quantum threat ---
-from cybersecuritykit.pqc.systems.aborts import (  # noqa: E402
+# --- slice A ---
+from cybersecuritykit.pqc.systems.aborts import (
     lyubashevsky_keygen,
     lyubashevsky_leakage,
     lyubashevsky_sign,
     lyubashevsky_verify,
 )
-from cybersecuritykit.pqc.systems.ajtai import (  # noqa: E402
+from cybersecuritykit.pqc.systems.ajtai import (
     ajtai_collision,
     ajtai_hash,
     ajtai_keygen,
 )
-from cybersecuritykit.pqc.systems.grover import (  # noqa: E402
+from cybersecuritykit.pqc.systems.grover import (
     grover_iterations,
     grover_search,
 )
-from cybersecuritykit.pqc.systems.kyber import (  # noqa: E402
+from cybersecuritykit.pqc.systems.kyber import (
     kyber_decapsulate,
     kyber_encapsulate,
     kyber_keygen,
 )
-from cybersecuritykit.pqc.systems.lattice import lll_reduce  # noqa: E402
-from cybersecuritykit.pqc.systems.lwe import (  # noqa: E402
+from cybersecuritykit.pqc.systems.lattice import lll_reduce
+from cybersecuritykit.pqc.systems.lwe import (
     lwe_decrypt,
     lwe_encrypt,
     lwe_gaussian_attack,
     lwe_keygen,
 )
-from cybersecuritykit.pqc.systems.ntru import (  # noqa: E402
+from cybersecuritykit.pqc.systems.ntru import (
     ntru_decrypt,
     ntru_encrypt,
     ntru_keygen,
     ntru_keypair,
     ntru_lattice_attack,
 )
-from cybersecuritykit.pqc.systems.ring_lwe import (  # noqa: E402
+from cybersecuritykit.pqc.systems.ring_lwe import (
     ring_lwe_decrypt,
     ring_lwe_encrypt,
     ring_lwe_keygen,
 )
-from cybersecuritykit.pqc.systems.shor import (  # noqa: E402
+from cybersecuritykit.pqc.systems.shor import (
     shor_distribution,
     shor_factor,
 )
 
-__all__ += [
+# isort: split
+# --- end slice A ---
+
+# --- slice C ---
+from cybersecuritykit.pqc.systems.sphincs import (
+    few_time_security,
+    horst_forge,
+    horst_indices,
+    horst_keygen,
+    horst_sign,
+    horst_verify,
+    sphincs_keygen,
+    sphincs_sign,
+    sphincs_verify,
+)
+from cybersecuritykit.pqc.systems.winternitz import (
+    WINTERNITZ_WIDTHS,
+    winternitz_cost,
+    winternitz_digest,
+    winternitz_digits,
+    winternitz_forge,
+    winternitz_keygen,
+    winternitz_sign,
+    winternitz_verify,
+)
+from cybersecuritykit.pqc.systems.xmss import (
+    xmss_forge,
+    xmss_keygen,
+    xmss_sign,
+    xmss_verify,
+)
+
+# --- end slice C ---
+
+__all__: list[str] = [
+    # --- slice A ---
     "ajtai_collision",
     "ajtai_hash",
     "ajtai_keygen",
@@ -75,5 +108,28 @@ __all__ += [
     "ring_lwe_keygen",
     "shor_distribution",
     "shor_factor",
+    # --- end slice A ---
+    # --- slice C ---
+    "WINTERNITZ_WIDTHS",
+    "winternitz_cost",
+    "winternitz_digest",
+    "winternitz_digits",
+    "winternitz_forge",
+    "winternitz_keygen",
+    "winternitz_sign",
+    "winternitz_verify",
+    "few_time_security",
+    "horst_forge",
+    "horst_indices",
+    "horst_keygen",
+    "horst_sign",
+    "horst_verify",
+    "sphincs_keygen",
+    "sphincs_sign",
+    "sphincs_verify",
+    "xmss_forge",
+    "xmss_keygen",
+    "xmss_sign",
+    "xmss_verify",
+    # --- end slice C ---
 ]
-# --- end slice A ---

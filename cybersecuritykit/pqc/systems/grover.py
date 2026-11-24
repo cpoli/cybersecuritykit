@@ -29,7 +29,7 @@ MAX_QUBITS = 16
 
 
 def grover_iterations(space: int, marked: int = 1) -> int:
-    r"""The iteration count :math:`\lfloor \pi / (4 \theta) \rfloor`, :math:`\sin \theta = \sqrt{M/N}`.
+    r"""Iterations :math:`\lfloor \pi / (4 \theta) \rfloor` with :math:`\sin^2 \theta = M/N`.
 
     Parameters
     ----------

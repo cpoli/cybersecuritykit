@@ -1,4 +1,4 @@
-"""Integer vectors and polynomial rings shared by the lattice schemes of :mod:`cybersecuritykit.pqc`.
+"""Integer vectors and polynomial rings for the lattice schemes of :mod:`cybersecuritykit.pqc`.
 
 Polynomials are tuples of coefficients, constant term first. The cyclic ring
 :math:`\\mathbb{Z}_q[x]/(x^n - 1)` is NTRU's; the negacyclic ring

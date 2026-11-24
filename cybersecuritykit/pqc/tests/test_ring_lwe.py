@@ -21,7 +21,7 @@ def test_the_public_key_is_a_times_s_plus_a_small_error():
         for j in range(16):
             sign = 1 if i + j < 16 else -1
             product[(i + j) % 16] += sign * a[i] * s[j]
-    errors = [(y - x) % 257 for x, y in zip(product, b)]
+    errors = [(y - x) % 257 for x, y in zip(product, b, strict=True)]
     assert all(min(e, 257 - e) <= 1 for e in errors)
 
 
@@ -66,7 +66,9 @@ def test_wider_errors_cause_decryption_failures():
         (lambda: pq.ring_lwe_decrypt("keys", pq.RingLWECiphertext((0,), (0,))), TypeError),
         (lambda: pq.ring_lwe_decrypt(pq.ring_lwe_keygen(16, 257), "ct"), TypeError),
         (
-            lambda: pq.ring_lwe_decrypt(pq.ring_lwe_keygen(16, 257), pq.RingLWECiphertext((0,), (0,))),
+            lambda: pq.ring_lwe_decrypt(
+                pq.ring_lwe_keygen(16, 257), pq.RingLWECiphertext((0,), (0,))
+            ),
             ValueError,
         ),
     ],

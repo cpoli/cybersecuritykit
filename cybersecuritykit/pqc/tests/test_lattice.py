@@ -18,8 +18,8 @@ def _gram_schmidt(basis):
         for u in out:
             if not any(u):
                 continue
-            mu = sum(Fraction(x) * y for x, y in zip(b, u)) / sum(y * y for y in u)
-            v = [x - mu * y for x, y in zip(v, u)]
+            mu = sum(Fraction(x) * y for x, y in zip(b, u, strict=True)) / sum(y * y for y in u)
+            v = [x - mu * y for x, y in zip(v, u, strict=True)]
         out.append(v)
     return out
 
@@ -42,7 +42,7 @@ def _coordinates(basis, vector):
         for r in range(n):
             if r != col and rows[r][col]:
                 f = rows[r][col]
-                rows[r] = [x - f * y for x, y in zip(rows[r], rows[col])]
+                rows[r] = [x - f * y for x, y in zip(rows[r], rows[col], strict=True)]
     return [row[n] for row in rows]
 
 
@@ -93,7 +93,7 @@ def test_lll_output_is_size_reduced_lovasz_and_spans_the_same_lattice(basis, del
     norms = [sum(x * x for x in v) for v in star]
     for i, b in enumerate(result.basis):
         for j in range(i):
-            mu = sum(Fraction(x) * y for x, y in zip(b, star[j])) / norms[j]
+            mu = sum(Fraction(x) * y for x, y in zip(b, star[j], strict=True)) / norms[j]
             assert abs(mu) <= Fraction(1, 2)
             if j == i - 1:
                 assert norms[i] >= (Fraction(delta) - mu * mu) * norms[j]
